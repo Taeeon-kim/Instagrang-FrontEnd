@@ -25,7 +25,7 @@ Text.defaultProps ={
 
 const P = styled.p`
     word-break : ${(props)=>props.wordbreak? `break-all` : null};
-    ${(props)=>(props.bold? `font-weight: 700;`: `font-weight: 300;`)};
+    ${(props)=>(props.bold? `font-weight: 600;`: `font-weight: 300;`)};
     ${(props)=>(`color : ${props.color};`)};
     ${(props)=> (`font-size: ${props.size};`)};
     ${(props)=>(`margin : ${props.margin};`)};
