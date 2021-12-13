@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import {
-  FcLike, // 좋아요 선택
   AiOutlineHeart, // 좋아요 해제
-  FaRegComment, // 코멘트 아이콘
-  MdOutlineAddBox, // 포스트 추가 버튼
   AiOutlineCheck, // 게시물 등록 버튼
-  BiArrowBack, // 뒤로가기 버튼
 } from "react-icons/ai";
+import {BiArrowBack} from "react-icons/bi"
+import {FaRegComment} from "react-icons/fa"
+import {FcLike} from "react-icons/fc"
+import { MdOutlineAddBox } from "react-icons/md";
+
 
 const IconButton = (props) => {
   // props
@@ -32,7 +33,8 @@ const IconButton = (props) => {
   };
 
   if (likeIcon) {
-    return (
+
+    return(
       <React.Fragment>
         <Icon {...styles}>
           <FcLike size={size} onClick={_onClick}></FcLike>
@@ -41,7 +43,7 @@ const IconButton = (props) => {
     );
   }
   if (unLikeIcon) {
-    return (
+    return(
       <React.Fragment>
         <Icon {...styles}>
           <AiOutlineHeart size={size} onClick={_onClick}></AiOutlineHeart>
@@ -50,7 +52,7 @@ const IconButton = (props) => {
     );
   }
   if (commentIcon) {
-    return (
+    return(
       <React.Fragment>
         <Icon {...styles}>
           <FaRegComment size={size} onClick={_onClick}></FaRegComment>
@@ -59,7 +61,7 @@ const IconButton = (props) => {
     );
   }
   if (plusIcon) {
-    return (
+    return(
       <React.Fragment>
         <Icon {...styles}>
           <MdOutlineAddBox size={size} onClick={_onClick}></MdOutlineAddBox>
@@ -68,7 +70,7 @@ const IconButton = (props) => {
     );
   }
   if (checkIcon) {
-    return (
+    return(
       <React.Fragment>
         <Icon {...styles}>
           <AiOutlineCheck size={size} onClick={_onClick}></AiOutlineCheck>
@@ -77,7 +79,7 @@ const IconButton = (props) => {
     );
   }
   if (leftArrowIcon) {
-    return (
+    return(
       <React.Fragment>
         <Icon {...styles}>
           <BiArrowBack size={size} onClick={_onClick}></BiArrowBack>
@@ -101,6 +103,7 @@ IconButton.defaultProps = {
   plusIcon: false,
   checkIcon: false,
   leftArrowIcon: false,
+  width: "100%",
 };
 
 // ImageButton 스타일드 컴포넌트
