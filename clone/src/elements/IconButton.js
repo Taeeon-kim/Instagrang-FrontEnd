@@ -23,10 +23,12 @@ const IconButton = (props) => {
     size,
     height,
     margin,
+    padding,
   } = props;
 
   // props style
   const styles = {
+    padding : padding,
     size: size,
     height: height,
     margin: margin,
@@ -92,8 +94,8 @@ const IconButton = (props) => {
 // IconButton DefaultProps
 IconButton.defaultProps = {
   delete: false,
-  size: "16px",
-  height: "16px",
+  size: "24px",
+  height: "24px",
   margin: null,
   padding: null,
   _onClick: () => {},

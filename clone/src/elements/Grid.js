@@ -58,6 +58,7 @@ ${(props) =>props.border?`border:${props.border};`:"border: none;"}
 ${(props) =>props.is_fix?` position: fixed; top: 0; width:100%;  z-index: 1;`:""}
 ${(props) =>props.position?`display: relative;`:""}
 ${(props)=> props.borderBottom ? `border-bottom : ${props.borderBottom};`: ""}
+
 `
 
 
