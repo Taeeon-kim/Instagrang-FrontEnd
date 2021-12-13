@@ -20,7 +20,7 @@ const ImageButton = (props) => {
     margin: margin,
   };
 
-  if (props.deleteIcon) {
+  if (deleteIcon) {
     return (
       <React.Fragment>
         <Icon {...styles}>
