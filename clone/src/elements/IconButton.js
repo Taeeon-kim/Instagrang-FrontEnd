@@ -8,6 +8,7 @@ import {
   AiOutlineCheck, // 게시물 등록 버튼
   BiArrowBack, // 뒤로가기 버튼
 } from "react-icons/ai";
+// 해당하는 주소 바꿈
 
 const IconButton = (props) => {
   // props

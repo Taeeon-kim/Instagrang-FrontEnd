@@ -52,10 +52,10 @@ ${(props) => (props.margin ? `margin:${props.margin};`:"")}
 ${(props) => (props.bg ? `background-color:${props.bg};`:"")}
 ${(props) => props.is_flex ? `display: flex; align-tiems: center; justify-content: space-between;`:"" }
 
-${(props =>props.border?`border:${props.border};`:"none")}
-${(props =>props.is_fix?` position: fixed; top: 0; width:100%;  z-index: 1;`:"")}
-${(props =>props.position?`display: relative;`:"")}
-${(props)=> props.borderBottom ? `border-bottom : ${props.borderBottom};`: "none"}
+${(props) =>(props.border?`border:${props.border};`:"none")}
+${(props) =>(props.is_fix?` position: fixed; top: 0; width:100%;  z-index: 1;`:"")}
+${(props) =>(props.position?`display: relative;`:"")}
+${(props)=> (props.borderBottom ? `border-bottom : ${props.borderBottom};`: "none"}
 `
 
 
