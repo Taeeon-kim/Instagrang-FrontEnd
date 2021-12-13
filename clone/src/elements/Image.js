@@ -1,15 +1,36 @@
-import React from 'react'
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
 const Image = (props) => {
-    const {src, size, bgsize, imageType} = props
+
+    const {imageType,
+    src,
+    size,
+    bgsize,
+    width,
+    height,
+    margin,
+    padding,} = props
 
     const styles = { // style끼리 구분하는게 편해서
-        src : src,
-        size: size,
-        bgsize: bgsize
+ imageType,
+    src,
+    size,
+    bgsize,
+    width,
+    height,
+    margin,
+    padding,
     }
 
+    if (imageType === "logo") {
+    return (
+      <>
+        <ImageLogo {...styles}></ImageLogo>
+      </>
+    );
+  } 
+    
   if(imageType === "circle"){
     return(<ImageCircle {...styles}></ImageCircle>)
   }
@@ -42,6 +63,16 @@ Image.defaultProps = {
     bgsize : "cover",
 }
 
+
+const ImageLogo = styled.div`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
+  background-size: ${(props) => props.backgroundSize};
+  background-image: url("${(props) => props.imageUrl}");
+`;
+
 const OutBox = styled.div`
     width: 100%;
 `
@@ -67,4 +98,5 @@ const ImageCircle = styled.div`
     margin: 4px;
 `;
 
-export default Image
+
+export default Image;

@@ -1,50 +1,65 @@
-import React from 'react';
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
 const Grid = (props) => {
+  const {
+    is_fix,
+    border,
+    is_flex,
+    width,
+    padding,
+    margin,
+    bg,
+    children,
+    _onClick,
+    position,
+    height,
+    cursor,
+    borderBottom,
+  } = props;
 
-    const {is_fix,border,is_flex, width, padding, margin, bg, children, _onClick, position, height,cursor, borderBottom} = props
+  const styles = {
+    is_flex: is_flex,
+    width: width,
+    margin: margin,
+    padding: padding,
+    bg: bg,
+    border: border,
+    is_fix: is_fix,
+    position: position,
+    height: height,
+    cursor: cursor,
+    borderBottom: borderBottom,
+  };
 
-    const styles = {
-        is_flex:is_flex,
-        width:width,
-        margin: margin,
-        padding: padding,
-        bg:bg,
-        border:border,
-        is_fix:is_fix,
-        position:position,
-        height: height,
-        cursor: cursor,
-        borderBottom: borderBottom,
-    }
-
-    return (
-        <>
-        <GridBox {...styles} onClick={_onClick}>
+  return (
+    <>
+      <GridBox {...styles} onClick={_onClick}>
         {children}
-        </GridBox>
-        </>
-    )
-}
+      </GridBox>
+    </>
+  );
+};
 
 Grid.defaultProps = {
-    children:null,
-    is_flex: false,
-    width:"100%",
-    padding: false,
-    margin: false,
-    bg: false,
-    _onClick: ()=>{},
-    border:false,
-    is_fix:false,
-    position : false,
-    height :"100%", 
-    cursor :"Default",
-    borderBottom : false
-}
+  children: null,
+  is_flex: false,
+  width: "100%",
+  padding: false,
+  margin: false,
+  bg: false,
+  _onClick: () => {},
+  border: false,
+  is_fix: false,
+  position: false,
+  height: "100%",
+  cursor: "Default",
+  borderBottom: false,
+};
 
 const GridBox = styled.div`
+
+
 width:${(props) => props.width};
 height :${(props)=> props.height};
 box-sizing: border-box; 
@@ -63,5 +78,4 @@ ${(props)=> props.borderBottom ? `border-bottom : ${props.borderBottom};`: ""}
 
 
 
-
-export default Grid
+export default Grid;

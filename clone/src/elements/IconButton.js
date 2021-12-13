@@ -4,11 +4,10 @@ import {
   AiOutlineHeart, // 좋아요 해제
   AiOutlineCheck, // 게시물 등록 버튼
 } from "react-icons/ai";
-import {BiArrowBack} from "react-icons/bi"
-import {FaRegComment} from "react-icons/fa"
-import {FcLike} from "react-icons/fc"
+import { BiArrowBack } from "react-icons/bi";
+import { FaRegComment } from "react-icons/fa";
+import { FcLike } from "react-icons/fc";
 import { MdOutlineAddBox } from "react-icons/md";
-
 
 const IconButton = (props) => {
   // props
@@ -35,8 +34,7 @@ const IconButton = (props) => {
   };
 
   if (likeIcon) {
-
-    return(
+    return (
       <React.Fragment>
         <Icon {...styles}>
           <FcLike size={size} onClick={_onClick}></FcLike>
@@ -45,7 +43,7 @@ const IconButton = (props) => {
     );
   }
   if (unLikeIcon) {
-    return(
+    return (
       <React.Fragment>
         <Icon {...styles}>
           <AiOutlineHeart size={size} onClick={_onClick}></AiOutlineHeart>
@@ -54,7 +52,7 @@ const IconButton = (props) => {
     );
   }
   if (commentIcon) {
-    return(
+    return (
       <React.Fragment>
         <Icon {...styles}>
           <FaRegComment size={size} onClick={_onClick}></FaRegComment>
@@ -63,7 +61,7 @@ const IconButton = (props) => {
     );
   }
   if (plusIcon) {
-    return(
+    return (
       <React.Fragment>
         <Icon {...styles}>
           <MdOutlineAddBox size={size} onClick={_onClick}></MdOutlineAddBox>
@@ -72,7 +70,7 @@ const IconButton = (props) => {
     );
   }
   if (checkIcon) {
-    return(
+    return (
       <React.Fragment>
         <Icon {...styles}>
           <AiOutlineCheck size={size} onClick={_onClick}></AiOutlineCheck>
@@ -81,7 +79,7 @@ const IconButton = (props) => {
     );
   }
   if (leftArrowIcon) {
-    return(
+    return (
       <React.Fragment>
         <Icon {...styles}>
           <BiArrowBack size={size} onClick={_onClick}></BiArrowBack>
