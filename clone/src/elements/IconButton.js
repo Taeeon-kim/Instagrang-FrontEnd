@@ -9,7 +9,7 @@ import {
   BiArrowBack, // 뒤로가기 버튼
 } from "react-icons/ai";
 
-const ImageButton = (props) => {
+const IconButton = (props) => {
   // props
   const {
     _onClick,
@@ -87,14 +87,20 @@ const ImageButton = (props) => {
   }
 };
 
-// ImageButton DefaultProps
-ImageButton.defaultProps = {
+// IconButton DefaultProps
+IconButton.defaultProps = {
   delete: false,
   size: "16px",
   height: "16px",
   margin: null,
   padding: null,
   _onClick: () => {},
+  likeIcon: false,
+  unLikeIcon: false,
+  commentIcon: false,
+  plusIcon: false,
+  checkIcon: false,
+  leftArrowIcon: false,
 };
 
 // ImageButton 스타일드 컴포넌트
@@ -107,4 +113,4 @@ const Icon = styled.div`
   padding: ${(props) => props.padding};
 `;
 
-export default ImageButton;
+export default IconButton;
