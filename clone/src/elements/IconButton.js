@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import {
-  FcLike, // 좋아요 선택
   AiOutlineHeart, // 좋아요 해제
-  FaRegComment, // 코멘트 아이콘
-  MdOutlineAddBox, // 포스트 추가 버튼
   AiOutlineCheck, // 게시물 등록 버튼
-  BiArrowBack, // 뒤로가기 버튼
 } from "react-icons/ai";
-// 해당하는 주소 바꿈
+import { BiArrowBack } from "react-icons/bi";
+import { FaRegComment } from "react-icons/fa";
+import { FcLike } from "react-icons/fc";
+import { MdOutlineAddBox } from "react-icons/md";
 
 const IconButton = (props) => {
   // props
@@ -102,6 +101,7 @@ IconButton.defaultProps = {
   plusIcon: false,
   checkIcon: false,
   leftArrowIcon: false,
+  width: "100%",
 };
 
 // ImageButton 스타일드 컴포넌트
