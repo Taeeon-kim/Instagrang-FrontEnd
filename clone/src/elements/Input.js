@@ -9,7 +9,7 @@ const Input = (props) => {
     placeholder,
     _onChange,
     width,
-    // multiLine,
+    multiLine,
     onSubmit,
     border,
     padding,
@@ -22,19 +22,19 @@ const Input = (props) => {
     width: width,
     border: border,
   };
-  // if (multiLine) {
-  //   return (
-  //     <Grid>
-  //       <ElTextarea
-  //         {...styles}
-  //         rows={5}
-  //         value={value}
-  //         onChange={_onChange}
-  //       ></ElTextarea>{" "}
-  //       {/* rows는 몇줄을넣을지 */}
-  //     </Grid>
-  //   );
-  // }
+  if (multiLine) {
+    return (
+      <Grid>
+        <ElTextarea
+          {...styles}
+          rows={5}
+          value={value}
+          onChange={_onChange}
+        ></ElTextarea>{" "}
+        {/* rows는 몇줄을넣을지 */}
+      </Grid>
+    );
+  }
 
   return (
     <React.Fragment>
@@ -68,12 +68,12 @@ Input.defaultProps = {
   width: "100%",
 };
 
-// const ElTextarea = styled.textarea`
-//   border: 1px solid #212121;
-//   width: 100%;
-//   padding: 12px 4px;
-//   box-sizing: border-box;
-// `;
+const ElTextarea = styled.textarea`
+  border: 1px solid #212121;
+  width: 100%;
+  padding: 12px 4px;
+  box-sizing: border-box;
+`;
 
 const InputSome = styled.input`
   border: 1px solid #e4e4e4;
