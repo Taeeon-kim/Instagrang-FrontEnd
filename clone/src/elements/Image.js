@@ -26,22 +26,23 @@ const Image = (props) => {
   }
   if (imageType === "rectangle") {
     return (
-    <>
-      <OutBox>
-        <InBox {...styles} />
-      </OutBox>
-    </>
+      <>
+        <OutBox>
+          <InBox {...styles} />
+        </OutBox>
+      </>
+    );
   }
-if (imageType === "preview"){
-  return <ImageRectangle {...styles}></ImageRectangle>;
-}
-    return (
+
+  if (imageType === "preview") {
+    return <ImageRectangle {...styles}></ImageRectangle>;
+  }
+  return (
     <>
       <OutBox>
         <InBox {...styles} />
       </OutBox>
     </>
-
   );
 };
 

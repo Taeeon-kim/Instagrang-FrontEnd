@@ -40,7 +40,7 @@ const AddPost = (props) => {
             </Text>
             <Image
               margin="0 0 0 auto"
-              imageType="rectangle"
+              imageType="preview"
               size="200px"
               bgsize="cover"
               src={
