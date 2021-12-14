@@ -13,21 +13,24 @@ const PostList = (props) => {
   // const user_list = useSelector();
   const dispatch = useDispatch();
   const postList = useSelector((state) => state.post.list); // state는 리덕스 스토어의 전체 데이터
-  console.log(postList[0].nickname)
+  
 //   const is_login = useSelector((state) => state.user.is_login);
   // console.log(user_list);
-  console.log(postList);
+//   console.log(postList);  // 여기서 불러오면 아래 useEffect 전에 불러와지므로 initial 값만 불러온다
 
   React.useEffect(() => {
     dispatch(postActions.getMainAPI());
+    setTimeout(function() {
+        console.log(postList);
+      }, 1000);
   }, []);
 
   return (
     <Grid>
       {postList.map((p, idx) => {
         return (
-          <Grid margin="20px 0px">
-            <Post {...p}/>
+          <Grid margin="20px 0px" key={p.postId}>
+            <Post {...p} /> 
           </Grid>
         ); 
    
