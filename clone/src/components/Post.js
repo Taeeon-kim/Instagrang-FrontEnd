@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import Input from "../elements/Input";
 import { useDispatch } from "react-redux";
 import {actionCreators as postAction} from '../redux/modules/post';
+import CommentWrite from './CommentWrite';
 
 const Post = (props) => {
   const dispatch = useDispatch();
@@ -39,15 +40,11 @@ const Post = (props) => {
         <Grid >
         <Text size= "10px" margin="0px 10px" bold>{props.createdAt}</Text>
         </Grid>
-        <Grid is_flex>
-          <Input padding="10px" placeholder="댓글 달기.." _onChange={(e)=>{  setInput(e.target.value)}}></Input>
-         {is_input.length>0 ? <Text position ="absolute" left="70%" color ="#0095F6">게시</Text>: <Text position ="absolute" left="70%" color ="#BFE0FD">게시</Text>}
-        </Grid>
+        <CommentWrite  post_id={props.postId}/>
       </Grid>
     </React.Fragment>
   );
 };
-
 
 Post.defaultProps = {
      

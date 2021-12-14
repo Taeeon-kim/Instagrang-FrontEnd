@@ -3,14 +3,16 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
-// import User from "./modules/user";   // export 했던 user의 리듀서를 가져온것이다. 이때 handleActions로 쓰고 이름은 안정했기때문에 해당 user 에서 import 하면 이렇게 정해서 쓸수있다
-import Post from "./modules/post"
+import User from "./modules/user";   // export 했던 user의 리듀서를 가져온것이다. 이때 handleActions로 쓰고 이름은 안정했기때문에 해당 user 에서 import 하면 이렇게 정해서 쓸수있다
+import Post from "./modules/post";
+import Comment from "./modules/comment";
 
 export const history = createBrowserHistory();   //history를 만들어줌
 
 const rootReducer = combineReducers({   //우리가 만들 리듀서를 묶을때 넣어줌 이때 user 소문자 변수로 쓴것때문에 user.user. ~~ 에서 좀 헷갈린것이다. 그냥 user.js, post.js 등등 에서 받아온 reducer 정보들을 묶어서 여기서 쓴다
-    // user: User,
+    user: User,
     post: Post,
+    comment: Comment,
     router : connectRouter(history), //history 를 만들고 createBrowserHistory()를 넣어준다. 그리고 리듀서를 묶는 구간에 router 에다가 history를 connectRouter로 router와 연결이 되게 하고  스토어에 history 저장.
   });
 

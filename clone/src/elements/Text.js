@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 const Text = (props) => {
 
-const {children, size, color, bold, margin, width, height,  wordbreak, padding, position, top, left, textalign} = props;
+const {children, size, color, bold, margin, width, height,  wordbreak, padding, position, top, left, textalign, _onClick} = props;
  const styles = {size, color, bold, margin, width, height,  wordbreak, padding, position, top, left, textalign}
     return (
         <React.Fragment>
-            <P {...styles}>{children}</P>
+            <P {...styles} onClick={_onClick}>{children}</P>
         </React.Fragment>
     )
 }
@@ -26,6 +26,7 @@ Text.defaultProps ={
  top:null,
  left:null,
  textalign: false, 
+ _onClick: () => {},
 }
 
 const P = styled.p`
