@@ -1,11 +1,11 @@
-import { createAction, handleActions } from "redux-actions";
-import produce from "immer";
-import axios from "axios";
-import instance from "../../axios";
-import moment from "moment";
+import {createAction,handleActions} from "redux-actions"
+import produce from "immer" 
+import axios from "axios"
+import instance from "../../axios"
+import moment from "moment"
+
 
 // 액션 타입 지정
-
 const SET_POST = 'SET_POST'
 const ADD_POST = 'ADD_POST'
 const DELETE_POST = 'DELETE_POST'
@@ -22,21 +22,22 @@ const initialState = {
     detail: false
 }
 
-
 const initalPost = {
-  content: "",
-  // img_url:"https://newsimg.hankookilbo.com/cms/articlerelease/2021/06/05/ef519975-80c8-40b6-b25a-47ab6270dc60.png",
-  post_date: moment().format("YYYY-MM-DD"),
-  title: "",
-  // uid: "키값",
-  // userId:"값",
-  area: "",
-};
+   
+    
+    content:"",
+    // img_url:"https://newsimg.hankookilbo.com/cms/articlerelease/2021/06/05/ef519975-80c8-40b6-b25a-47ab6270dc60.png",
+    post_date: moment().format('YYYY-MM-DD'),
+    title:"",
+    // uid: "키값",
+    // userId:"값",
+    area: ""
+} 
+
 
 // const addPostDB = (title, content, area) => {
-
+    
 //     }
-
 
 const getMainAPI = () => { 
     return function (dispatch,getState,{history}){
@@ -70,12 +71,6 @@ const getMainAPI = () => {
             
 
 
-    // post_list.push(post)
-    console.log(post);
-    dispatch(setPost(post)); //나중에 필요
-  };
-};
-
 // withdraw
 // const deleteDB = (postId) => {
 //     return function (dispatch, getState, {history}){
@@ -95,7 +90,6 @@ const getMainAPI = () => {
 //         });
 //     };
 // };
-
 
 
 
@@ -137,5 +131,4 @@ const actionCreators = {
     
 }
 
-
-export { actionCreators };
+export {actionCreators}
