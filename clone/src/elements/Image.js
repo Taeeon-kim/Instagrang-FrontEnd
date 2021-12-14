@@ -30,7 +30,7 @@ const Image = (props) => {
       <OutBox>
         <InBox {...styles} />
       </OutBox>
-    </>
+    </>)
   }
 if (imageType === "preview"){
   return <ImageRectangle {...styles}></ImageRectangle>;
