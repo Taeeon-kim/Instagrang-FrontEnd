@@ -25,14 +25,23 @@ const Image = (props) => {
     return <ImageCircle {...styles}></ImageCircle>;
   }
   if (imageType === "rectangle") {
-    return <ImageRectangle {...styles}></ImageRectangle>;
-  }
-  return (
+    return (
     <>
       <OutBox>
         <InBox {...styles} />
       </OutBox>
     </>
+  }
+if (imageType === "preview"){
+  return <ImageRectangle {...styles}></ImageRectangle>;
+}
+    return (
+    <>
+      <OutBox>
+        <InBox {...styles} />
+      </OutBox>
+    </>
+
   );
 };
 
