@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 const Text = (props) => {
 
-const {children, size, color, bold, margin, width, height,  wordbreak, padding} = props;
- const styles = {size, color, bold, margin, width, height,  wordbreak, padding}
+const {children, size, color, bold, margin, width, height,  wordbreak, padding, position, top, left, textalign} = props;
+ const styles = {size, color, bold, margin, width, height,  wordbreak, padding, position, top, left, textalign}
     return (
         <React.Fragment>
             <P {...styles}>{children}</P>
@@ -22,6 +22,10 @@ Text.defaultProps ={
  height : null,
  wordbreak: null,
  padding: null,
+ position: null,
+ top:null,
+ left:null,
+ textalign: false, 
 }
 
 const P = styled.p`
@@ -33,7 +37,10 @@ const P = styled.p`
     ${(props)=>(`width : ${props.width};`)};
     ${(props)=>(`height : ${props.height};`)};
     ${(props)=>(`padding : ${props.padding};`)};
-    
+    ${(props) =>(`position : ${props.position};`)};
+    ${(props) =>(`top : ${props.top};`)};
+    ${(props) =>(`left : ${props.left};`)};
+    ${(props)=> (props.textalign? `text-align: center;` : null)};
 `;
 
 
