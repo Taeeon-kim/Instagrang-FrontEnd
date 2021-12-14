@@ -13,9 +13,10 @@ const Post = (props) => {
   const dispatch = useDispatch();
   const [detail, setDetail] = React.useState(false);
   const [is_input, setInput] = React.useState(false);
+  const [is_like, setLike] =React.useState(false); // 임시로 색잘나오는지 쓰는거다, 나중에 userId 로 비교해서 해야한다.
   
   React.useEffect(()=>{
-  },[detail])
+  },[])
   return (
     <React.Fragment>
       <Grid border="1px solid #DBDBDB" position  margin="auto" width="50%" >
@@ -26,7 +27,7 @@ const Post = (props) => {
         <Image imageType="rectangle" src={"http://3.36.100.253"+props.image}/> 
         </Grid>
         <Grid is_flex padding="6px 0px 8px 10px">
-         {props.is_like ?  <IconButton likeIcon padding="8px"/> : <IconButton unLikeIcon padding="8px"/> } <IconButton commentIcon padding="8px"/>   {/*좋아요하트 아이콘, 댓글말풍선 아이콘*/} 
+         {is_like ?  <IconButton likeIcon padding="8px" _onClick={()=>{setLike(!is_like)}}/> : <IconButton unLikeIcon padding="8px" _onClick={()=>{setLike(!is_like)}}/> } <IconButton commentIcon padding="8px"/>   {/*좋아요하트 아이콘, 댓글말풍선 아이콘*/} 
         </Grid>
         <Grid>
            <Text bold margin ="0px 10px">좋아요 {props.likeList.length} 개</Text>
@@ -48,7 +49,7 @@ const Post = (props) => {
 
 Post.defaultProps = {
      
-  is_like: false,     
+      
 user_profile : "https://youngble.s3.ap-northeast-2.amazonaws.com/KakaoTalk_Photo_2021-11-17-00-56-23.jpeg", //테스트용으로 그전 강의에서 쓰던것 가져와서 먼저 써봄
 likeList:[], 
 detail: false,
