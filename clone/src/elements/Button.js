@@ -44,5 +44,6 @@ const BtnBox = styled.button`
     props.border ? `border : 1px solid #000000;` : `border : none;`}
 background-color: ${(props) => props.bg};
   color: ${(props) => props.color};
+  cursor: pointer; // 버튼에 마우스 가져다 될 때 손가락 모양의 포인터 추가
 `;
 export default Button;

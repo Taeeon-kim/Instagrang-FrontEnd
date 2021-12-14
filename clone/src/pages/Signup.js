@@ -6,12 +6,13 @@ import Input from "../elements/Input";
 import Grid from "../elements/Grid";
 import Image from "../elements/Image";
 import Button from "../elements/Button";
-import Text from "../elements/Text";
+// import Text from "../elements/Text";
 
+import { actionCreators as userActions } from "../redux/modules/user";
 import { emailCheck, checkPassword } from "../shared/signupCheck";
 
 const Signup = () => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // 상태관리
   const [email, setEmail] = useState("");
@@ -44,18 +45,19 @@ const Signup = () => {
       return;
     }
 
-    // dispatch(userActions.signupDB(id, userName, pwd, pwdCheck));
+    dispatch(userActions.signupDB(email, userName, pwd, pwdCheck));
   };
 
   return (
     <React.Fragment>
       <Grid width="350px" border="1px solid #e4e4e4" margin="100px auto">
         <Image
+          imageType="logo"
           width="190px"
           height="70px"
-          backgroundSize="cover"
+          bgsize="cover"
           margin="22px auto 22px auto"
-          imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2560px-Instagram_logo.svg.png"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2560px-Instagram_logo.svg.png"
         />
         <Grid width="268px" margin=" 0 auto">
           <Input
@@ -67,7 +69,7 @@ const Signup = () => {
             padding="11px 0px 9px 8px"
             margin="5px auto"
           />
-          <Grid hide={email === "" ? "none" : null}>
+          {/* <Grid hide={email === "" ? "none" : null}>
             <Text
               color={emailCheck(email) ? "#1fc40f" : "#ff5d5d"}
               bold
@@ -78,7 +80,7 @@ const Signup = () => {
                 ? "올바른 양식의 아이디입니다"
                 : "올바르지 않는 아이디 형식입니다."}
             </Text>
-          </Grid>
+          </Grid> */}
           <Input
             _onChange={(e) => {
               setUserName(e.target.value);
@@ -99,7 +101,7 @@ const Signup = () => {
             margin="5px auto"
             type="password"
           />
-          <Grid hide={pwd === "" ? "none" : null}>
+          {/* <Grid hide={pwd === "" ? "none" : null}>
             <Text
               color={
                 checkPassword(pwd) && pwd.includes(email) === false
@@ -114,7 +116,7 @@ const Signup = () => {
                 ? "사용할 수 있는 비밀번호입니다"
                 : "아이디가 포함되지 않은 숫자+영문자 형식입니다."}
             </Text>
-          </Grid>
+          </Grid> */}
           <Input
             _onChange={(e) => {
               setPwdCheck(e.target.value);
