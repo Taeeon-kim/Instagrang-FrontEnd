@@ -7,6 +7,7 @@ import Post from "../components/Post";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import PostList from "../pages/PostList";
+import AddPost from "../pages/AddPost";
 import { history } from "../redux/configureStore";
 import Grid from "../elements/Grid";
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/" exact component={PostList} />
+        <Route path="/addpost" exact component={AddPost} />
       </ConnectedRouter>
     </Grid>
   );
