@@ -4,6 +4,7 @@ import Text from "../elements/Text";
 import Image from "../elements/Image";
 import IconButton from '../elements/IconButton';
 import styled from 'styled-components';
+import Input from "../elements/Input";
 
 const Post = (props) => {
   return (
@@ -23,6 +24,9 @@ const Post = (props) => {
         </Grid>
         <Grid is_flex>
         <Text margin="0px 10px" bold>{props.nickname}</Text>{props.detail?<Text >{props.content}</Text>:<Grid><SkipContent>{props.content}</SkipContent><Grid _onClick={()=>{}}><Text>더보기</Text></Grid></Grid>}  {/* 생략부분*/}
+        </Grid>
+        <Grid>
+          <Input padding="10px" placeholder="댓글 달기.."></Input>
         </Grid>
       </Grid>
     </React.Fragment>
@@ -49,7 +53,7 @@ const SkipContent=styled.p`
     overflow: hidden;
 display: -webkit-box;
 -webkit-box-orient: vertical;
--webkit-line-clamp: 1;
+-webkit-line-clamp: 2;
 width: 70%px;
 white-space: pre-wrap;
     
