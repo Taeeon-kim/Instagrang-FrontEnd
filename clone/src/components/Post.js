@@ -5,8 +5,15 @@ import Image from "../elements/Image";
 import IconButton from '../elements/IconButton';
 import styled from 'styled-components';
 import Input from "../elements/Input";
+import { useDispatch } from "react-redux";
+import {actionCreators as postAction} from '../redux/modules/post';
 
 const Post = (props) => {
+  const dispatch = useDispatch;
+  const [detail, setDetail] = React.useState(false);
+  
+  React.useEffect(()=>{
+  },[detail])
   return (
     <React.Fragment>
       <Grid border="1px solid #DBDBDB" position  margin="auto" width="50%" >
@@ -14,7 +21,7 @@ const Post = (props) => {
            <Image imageType = "circle" src ={props.user_profile} /><Text margin="0px 0px" bold>{props.nickname}</Text><Grid margin="0px 200px"> {/*is_me? 수정,삭제 btn : ...*/}</Grid>
         </Grid>
         <Grid>
-        <Image imageType="rectangle" src={props.image}/> 
+        <Image imageType="rectangle" src={"http://3.36.100.253"+props.image}/> 
         </Grid>
         <Grid is_flex padding="6px 0px 8px 10px">
          {/*is_click? : */}  <IconButton likeIcon padding="8px"/> : <IconButton unLikeIcon padding="8px"/>  <IconButton commentIcon padding="8px"/>   {/*좋아요하트 아이콘, 댓글말풍선 아이콘*/} 
@@ -23,7 +30,7 @@ const Post = (props) => {
            <Text bold margin ="0px 10px">좋아요 oo 개</Text>
         </Grid>
         <Grid is_flex>
-        <Text margin="0px 10px" bold>{props.nickname}</Text>{props.detail?<Text >{props.content}</Text>:<Grid><SkipContent>{props.content}</SkipContent><Grid _onClick={()=>{}}><Text>더보기</Text></Grid></Grid>}  {/* 생략부분*/}
+        <Text margin="0px 10px" bold>{props.nickname}</Text>{detail?<Text padding="5px">{props.content}</Text>:<Grid is_flex><SkipContent >{props.content}</SkipContent><Grid _onClick={()=>setDetail(true)}><Text >더보기</Text></Grid></Grid>}  {/* 생략부분*/}
         </Grid>
         <Grid>
           <Input padding="10px" placeholder="댓글 달기.."></Input>
@@ -53,10 +60,10 @@ const SkipContent=styled.p`
     overflow: hidden;
 display: -webkit-box;
 -webkit-box-orient: vertical;
--webkit-line-clamp: 2;
-width: 70%px;
+-webkit-line-clamp: 1;
+width: 100%;
 white-space: pre-wrap;
-    
+/* margin : 0px 20px 0px 0px; */
   `
 
 export default Post;
