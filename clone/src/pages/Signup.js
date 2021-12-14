@@ -9,7 +9,7 @@ import Button from "../elements/Button";
 import Text from "../elements/Text";
 
 import { actionCreators as userActions } from "../redux/modules/user";
-import { checkEmail, checkPassword } from "../shared/signupCheck";
+import { checkEmail, checkPassword, checkName } from "../shared/signupCheck";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -77,8 +77,8 @@ const Signup = () => {
               size="0.75rem"
             >
               {checkEmail(email)
-                ? "올바른 양식의 아이디입니다"
-                : "올바르지 않는 아이디 형식입니다."}
+                ? "올바른 양식의 이메일입니다"
+                : "올바르지 않는 이메일 형식입니다."}
             </Text>
           </Grid>
           <Input
@@ -90,7 +90,17 @@ const Signup = () => {
             padding="11px 0px 9px 8px"
             margin="5px auto"
           />
-
+          <Text
+            color={checkName(userName) ? "#1fc40f" : "#ff5d5d"}
+            bold
+            margin="0px 0px 13px 5px"
+            size="0.75rem"
+          >
+            {checkName(userName)
+              ? // userName == null || userName.length() < 4 || userName.length() > 15
+                "사용할 수 있는 이름입니다"
+              : "최소 4자 이상, 15글자 이하가 되어야 합니다."}
+          </Text>
           <Input
             _onChange={(e) => {
               setPwd(e.target.value);
@@ -114,7 +124,7 @@ const Signup = () => {
             >
               {checkPassword(pwd) && pwd.includes(email) === false
                 ? "사용할 수 있는 비밀번호입니다"
-                : "아이디가 포함되지 않은 숫자+영문자 형식입니다."}
+                : "특수문자 영문, 숫자 포함, 최소 8자 이상이어야 합니다."}
             </Text>
           </Grid>
           <Input

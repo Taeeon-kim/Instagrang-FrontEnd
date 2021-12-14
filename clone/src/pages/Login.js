@@ -12,6 +12,9 @@ import Input from "../elements/Input";
 import Grid from "../elements/Grid";
 import Image from "../elements/Image";
 import Button from "../elements/Button";
+import Text from "../elements/Text";
+
+import { checkEmail, checkPassword } from "../shared/signupCheck";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -64,6 +67,18 @@ const Login = () => {
             padding="11px 0px 9px 8px"
             margin="5px auto"
           />
+          <Grid hide={email === "" ? "none" : null}>
+            <Text
+              color={checkEmail(email) ? "#1fc40f" : "#ff5d5d"}
+              bold
+              margin="0px 0px 5px 5px"
+              size="0.75rem"
+            >
+              {checkEmail(email)
+                ? "올바른 양식의 이메일입니다"
+                : "올바르지 않는 이메일 형식입니다."}
+            </Text>
+          </Grid>
           <Input
             _onChange={(e) => {
               setPwd(e.target.value);
@@ -74,6 +89,22 @@ const Login = () => {
             margin="5px auto"
             type="password"
           />
+          <Grid hide={pwd === "" ? "none" : null}>
+            <Text
+              color={
+                checkPassword(pwd) && pwd.includes(email) === false
+                  ? "#1fc40f"
+                  : "#ff5d5d"
+              }
+              bold
+              margin="0px 0px 13px 5px"
+              size="0.75rem"
+            >
+              {checkPassword(pwd) && pwd.includes(email) === false
+                ? "사용할 수 있는 비밀번호입니다"
+                : "특수문자 영문, 숫자 포함, 최소 8자 이상이어야 합니다."}
+            </Text>
+          </Grid>
           <Button
             _onClick={login}
             padding="8px 0px"
