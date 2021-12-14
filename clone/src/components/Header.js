@@ -14,6 +14,7 @@ const Header = (props) => {
     dispatch(userActions.logoutDB());
   };
 
+  // 로그인 확인
   const is_login = localStorage.getItem("token");
 
   if (is_login) {

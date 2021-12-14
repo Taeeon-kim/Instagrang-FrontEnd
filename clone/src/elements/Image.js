@@ -26,19 +26,22 @@ const Image = (props) => {
   }
   if (imageType === "rectangle") {
     return (
-      <>
-        <OutBox>
-          <InBox {...styles} />
-        </OutBox>
-      </>
-    );
-  }
-  return (
     <>
       <OutBox>
         <InBox {...styles} />
       </OutBox>
     </>
+  }
+if (imageType === "preview"){
+  return <ImageRectangle {...styles}></ImageRectangle>;
+}
+    return (
+    <>
+      <OutBox>
+        <InBox {...styles} />
+      </OutBox>
+    </>
+
   );
 };
 
@@ -48,6 +51,15 @@ Image.defaultProps = {
   size: 40,
   bgsize: "cover",
 };
+
+const ImageRectangle = styled.div`
+  width: 200px;
+  height: 200px;
+  margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
+  background-size: ${(props) => props.bgsize};
+  background-image: url("${(props) => props.src}");
+`;
 
 const ImageLogo = styled.div`
   width: ${(props) => props.width};
