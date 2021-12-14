@@ -16,6 +16,7 @@ const Grid = (props) => {
     height,
     cursor,
     borderBottom,
+    hide,
   } = props;
 
   const styles = {
@@ -30,6 +31,7 @@ const Grid = (props) => {
     height: height,
     cursor: cursor,
     borderBottom: borderBottom,
+    hide: hide,
   };
 
   return (
@@ -58,24 +60,26 @@ Grid.defaultProps = {
 };
 
 const GridBox = styled.div`
-
-
-width:${(props) => props.width};
-height :${(props)=> props.height};
-box-sizing: border-box; 
-cursor: ${(props)=> props.cursor};
-${(props) => (props.padding ? `padding:${props.padding};`:"")}
-${(props) => (props.margin ? `margin:${props.margin};`:"")}
-${(props) => (props.bg ? `background-color:${props.bg};`:"")}
-/* ${(props) => props.is_flex ? `display: flex; align-tiems: center; justify-content: space-between;`:"" } */
-${(props) => props.is_flex ? `display: flex; align-items: center;`:"" }
-${(props) =>props.border?`border:${props.border};`:"border: none;"}
-${(props) =>props.is_fix?` position: fixed; top: 0; width:100%;  z-index: 1;`:""}
-${(props) =>props.position?`display: relative;`:""}
-${(props)=> props.borderBottom ? `border-bottom : ${props.borderBottom};`: ""}
-
-`
-
-
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  box-sizing: border-box;
+  cursor: ${(props) => props.cursor};
+  ${(props) => (props.padding ? `padding:${props.padding};` : "")}
+  ${(props) => (props.margin ? `margin:${props.margin};` : "")}
+${(props) => (props.bg ? `background-color:${props.bg};` : "")}
+/* ${(props) =>
+    props.is_flex
+      ? `display: flex; align-tiems: center; justify-content: space-between;`
+      : ""} */
+${(props) => (props.is_flex ? `display: flex; align-items: center;` : "")}
+${(props) => (props.border ? `border:${props.border};` : "border: none;")}
+${(props) =>
+    props.is_fix ? ` position: fixed; top: 0; width:100%;  z-index: 1;` : ""}
+${(props) => (props.position ? `display: relative;` : "")}
+${(props) =>
+    props.borderBottom ? `border-bottom : ${props.borderBottom};` : ""}
+${(props) =>
+    props.hide ? `display:none` : "none"}; // 가입양식 유효성 검사시 안내문구
+`;
 
 export default Grid;

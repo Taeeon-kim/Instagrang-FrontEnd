@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Grid from "../elements/Grid";
 import Button from "../elements/Button";
+import IconButton from "../elements/IconButton";
 import { history } from "../redux/configureStore";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -13,29 +14,45 @@ const Header = (props) => {
     dispatch(userActions.logoutDB());
   };
 
-  const email = localStorage.getItem("token");
+  const is_login = localStorage.getItem("token");
 
-  if (email) {
+  if (is_login) {
     return (
       <Grid is_flex>
-        <Grid padding="10px" borderBottom="1px solid #DBDBDB">
-          <img src="insta.png" />
+        <Grid is_flex padding="10px" borderBottom="1px solid #DBDBDB">
+          <Grid
+            _onClick={() => {
+              history.push("/");
+            }}
+          >
+            <img src="insta.png" />
+          </Grid>
+
+          <IconButton
+            plusIcon
+            margin="0 0 0 auto"
+            padding="0 0 7px 0"
+            size="32px"
+          ></IconButton>
+          <Button
+            _onClick={() => {
+              // 로그아웃 확인 코드
+              const onRemove = () => {
+                if (window.confirm("로그아웃 하시겠습니까?") === true) {
+                  logOut();
+                } else {
+                  return false;
+                }
+              };
+              onRemove();
+            }}
+            width="default"
+            bg="white"
+            color="#0095F6"
+          >
+            로그아웃
+          </Button>
         </Grid>
-        <Button
-          _onClick={() => {
-            // 로그아웃 확인 코드
-            const onRemove = () => {
-              if (window.confirm("로그아웃 하시겠습니까?") === true) {
-                logOut();
-              } else {
-                return false;
-              }
-            };
-            onRemove();
-          }}
-        >
-          로그아웃
-        </Button>
       </Grid>
     );
   }

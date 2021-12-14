@@ -27,7 +27,7 @@ const IconButton = (props) => {
 
   // props style
   const styles = {
-    padding : padding,
+    padding: padding,
     size: size,
     height: height,
     margin: margin,
@@ -87,6 +87,7 @@ const IconButton = (props) => {
       </React.Fragment>
     );
   }
+  return <React.Fragment></React.Fragment>;
 };
 
 // IconButton DefaultProps

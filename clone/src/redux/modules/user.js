@@ -43,7 +43,7 @@ const loginDB = (email, pwd) => {
       })
       .catch((err) => {
         console.log(err);
-        window.alert(err.response.data.errorMessage);
+        window.alert("아이디 또는 비밀번호가 다릅니다.");
         return;
       });
   };
@@ -57,17 +57,17 @@ const signupDB = (email, userName, pwd) => {
       nickname: userName,
       password: pwd,
     };
+    console.log(user);
     // apis
     //   .signUp(user)
     axios
       .post("http://3.36.100.253/user/signup", user)
       .then(() => {
         window.alert("회원가입을 축하드립니다!");
-        history.push("/");
+        history.push("/login");
       })
       .catch((err) => {
-        const aa = { ...err };
-        window.alert(err.response.data.errorMessage);
+        console.log(err);
       });
   };
 };
