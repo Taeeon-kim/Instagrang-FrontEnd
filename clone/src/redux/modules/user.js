@@ -35,11 +35,14 @@ const loginDB = (email, pwd) => {
       .post("http://3.36.100.253/user/login", user)
       .then((res) => {
         console.log("loginDB 접근 확인");
+        const userId = res.data.userId
         const jwtToken = res.headers.authorization;
         localStorage.setItem("token", jwtToken);
-        dispatch(setUser({ email: email, user_name: email }));
+        dispatch(setUser({ email: email, user_name: email, userId: userId }));
         alert("정상적으로 로그인 되었습니다.");
-        window.location.href = "/";
+        // window.location.href = "/";  // 요렇게하면 redux 값이 다 날라감
+        history.push('/')
+        
       })
       .catch((err) => {
         console.log(err);
