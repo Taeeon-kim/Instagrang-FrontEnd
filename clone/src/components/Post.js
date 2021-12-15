@@ -8,6 +8,10 @@ import Input from "../elements/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postAction } from "../redux/modules/post";
 import { actionCreators as userAction } from "../redux/modules/user";
+
+import { actionCreators as commentActions } from "../redux/modules/comment";
+import {history} from '../redux/configureStore';
+
 import CommentWrite from "./CommentWrite";
 
 const Post = (props) => {
@@ -15,10 +19,12 @@ const Post = (props) => {
   const user_list = useSelector((state) => state.user.user);
   // const is_like = useSelector((state)=>state.post.is_like);
   const _post = useSelector((state) => state.post);
+
   console.log(props.postId);
   // console.log(props.likeList)
   const login_userId = user_list.userId;
   // console.log(login_userId);
+
   const [detail, setDetail] = React.useState(false);
   const [is_input, setInput] = React.useState(false);
 
@@ -30,6 +36,7 @@ const Post = (props) => {
   React.useEffect(() => {
     dispatch(postAction.getMainAPI());
 
+
     // dispatch(post)
   }, [is_like]); //좋아요를 누를때마다 update 되게 해줌
 
@@ -37,6 +44,7 @@ const Post = (props) => {
     console.log("클릭확인");
     dispatch(postAction.deletePostDB(props.postId));
   };
+
 
   return (
     <React.Fragment>
@@ -47,13 +55,16 @@ const Post = (props) => {
             {props.nickname}
           </Text>
           {props.is_me ? (
+
             <Grid is_flex>
               <Text
                 margin="0 0 0 auto"
+
                 padding="0px 0px 6px 0px"
                 textalign
                 bold
                 size="15px"
+
                 left="60%"
                 color="#0095F6"
               >
@@ -61,10 +72,12 @@ const Post = (props) => {
               </Text>
               <Text
                 margin="0 16px 0 10px"
+
                 padding="0px 0px 6px 0px"
                 textalign
                 bold
                 size="15px"
+
                 left="70%"
                 color="#0095F6"
                 cursor="pointer"
@@ -80,6 +93,7 @@ const Post = (props) => {
               margin="0 16px 0 auto"
               cursor="default"
             ></IconButton>
+
           )}
         </Grid>
         <Grid>
@@ -107,8 +121,12 @@ const Post = (props) => {
                 setLike(!is_like);
               }}
             />
-          )}{" "}
-          <IconButton commentIcon padding="8px" />{" "}
+
+          )}
+          <IconButton commentIcon padding="8px" _onClick={()=> { dispatch(commentActions.getComment(props.postId))
+              history.push(`/posts/${props.postId}`);
+            }}/>
+
           {/*좋아요하트 아이콘, 댓글말풍선 아이콘*/}
         </Grid>
         <Grid>
@@ -136,7 +154,11 @@ const Post = (props) => {
         </Grid>
         <Grid>
           {props.commentList.length > 0 ? (
-            <Text bold margin="0px 10px">
+
+            <Text bold margin="0px 10px" _onClick={()=> { dispatch(commentActions.getComment(props.postId))
+              history.push(`/posts/${props.postId}`);
+            }}>
+
               댓글 {props.commentList.length}개 모두 보기
             </Text>
           ) : null}
@@ -146,7 +168,9 @@ const Post = (props) => {
             {props.createdAt}
           </Text>
         </Grid>
-        <CommentWrite post_id={props.postId} />
+
+        <CommentWrite postId={props.postId} />
+
       </Grid>
     </React.Fragment>
   );

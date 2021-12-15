@@ -9,7 +9,7 @@ import instance from '../../axios';
 const ADD_COMMENT = "ADD_COMMENT";
 const SET_COMMENT = "SET_COMMENT";
 const addComment = createAction(ADD_COMMENT, (content) => ({content}));
-const setComment = createAction(SET_COMMENT, (postId)=>({postId}));
+const setComment = createAction(SET_COMMENT, (comments)=>({comments}));
 const initialState = {
     // list: {}, // image-community 에서는 요렇게 초기값되어있음
     list:[],
@@ -35,7 +35,12 @@ const initialState = {
 const getComment = (postId) => {
   return function (dispatch, getState, { history }) {
     instance.get("/").then((response) => {
-      console.log(response.data[postId]);
+      // console.log(postId);
+     
+      const _post = response.data.filter((list)=>list.postId===postId)
+      console.log(_post[0].commentList);
+      const p_comments= _post[0].commentList;
+      dispatch(setComment(p_comments));
       // const result = response.data[postId]
       // console.log(result.commentList);
       // let post_list = [];
@@ -59,7 +64,8 @@ export default handleActions(
       }),
 
       [SET_COMMENT]: (state, action) => produce(state, (draft)=> {
-
+          draft.list = action.payload.comments;
+          console.log(draft.list)
       }),
       
 }, initialState)

@@ -32,18 +32,14 @@ const PostList = (props) => {
       {postList.map((p, idx) => {
         if(p.userId === is_login){
         return (
-          <Grid margin="20px 0px" key={p.postId} _onClick={()=> { dispatch(commentActions.getComment(p.postId))
-            history.push(`/posts/${p.postId}`);
-          }}>
+          <Grid margin="20px 0px" key={p.postId}>
             <Post {...p} is_me/> 
           </Grid>
         ); 
         }
         else{
           return (
-            <Grid margin="20px 0px" key={p.postId} _onClick={()=> { dispatch(commentActions.getComment(p.postId))
-              history.push(`/posts/${p.postId}`);
-            }}>
+            <Grid margin="20px 0px" key={p.postId}>
               <Post {...p} /> 
             </Grid>
           ); 
