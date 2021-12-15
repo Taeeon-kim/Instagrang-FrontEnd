@@ -31,7 +31,6 @@ function App() {
         <Route path="/signup" exact component={Signup} />
         <Route path="/" exact component={PostList} />
         <Route path="/addpost" exact component={AddPost} />
-        <Route path="/" exact component={PostList} />
         <Route path="/posts/:id" exact component={PostDetail} />
       </ConnectedRouter>
     </Grid>

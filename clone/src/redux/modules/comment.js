@@ -36,8 +36,8 @@ const getComment = (postId) => {
   return function (dispatch, getState, { history }) {
     instance.get("/").then((response) => {
       console.log(response.data[postId]);
-      const result = response.data[postId]
-      console.log(result.commentList);
+      // const result = response.data[postId]
+      // console.log(result.commentList);
       // let post_list = [];
       // response.data.forEach((post) => {
       //   // console.log({...post});
