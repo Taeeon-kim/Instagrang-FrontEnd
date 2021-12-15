@@ -8,6 +8,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { FaRegComment } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
 import { MdOutlineAddBox } from "react-icons/md";
+import { BsThreeDots } from "react-icons/bs";
 
 const IconButton = (props) => {
   // props
@@ -19,10 +20,12 @@ const IconButton = (props) => {
     plusIcon, // 포스트 추가 아이콘
     checkIcon, // 게시물 등록 아이콘
     leftArrowIcon, // 뒤로가기 아이콘
+    moreView, // 더보기 아이콘
     size,
     height,
     margin,
     padding,
+    cursor, //커서 변수로 추가
   } = props;
 
   // props style
@@ -31,6 +34,7 @@ const IconButton = (props) => {
     size: size,
     height: height,
     margin: margin,
+    cursor: cursor, //커서 변수로 추가
   };
 
   if (likeIcon) {
@@ -87,6 +91,15 @@ const IconButton = (props) => {
       </React.Fragment>
     );
   }
+  if (moreView) {
+    return (
+      <React.Fragment>
+        <Icon {...styles}>
+          <BsThreeDots size={size} onClick={_onClick}></BsThreeDots>
+        </Icon>
+      </React.Fragment>
+    );
+  }
   return <React.Fragment></React.Fragment>;
 };
 
@@ -104,13 +117,15 @@ IconButton.defaultProps = {
   plusIcon: false,
   checkIcon: false,
   leftArrowIcon: false,
+  moreView: false,
   width: "100%",
+  cursor: "pointer", //커서 변수로 추가
 };
 
 // ImageButton 스타일드 컴포넌트
 const Icon = styled.div`
   margin: ${(props) => props.margin};
-  cursor: pointer;
+  cursor: ${(props) => props.cursor}; //커서 변수로 추가
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
