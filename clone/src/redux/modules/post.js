@@ -43,7 +43,6 @@ const addPostDB = (image, content) => {
   formData.append("image", image);
   formData.append("content", content);
   const TOKEN = localStorage.getItem("token");
-  console.log(TOKEN);
   //   const options = {
   //     headers: {
   //       "content-type": "multipart/form-data",
@@ -67,6 +66,7 @@ const addPostDB = (image, content) => {
       .then((res) => {
         console.log(res);
         console.log("addPostDB 접근 확인");
+        history.replace("/");
         dispatch(addPost());
       })
       .catch((err) => {
@@ -83,9 +83,8 @@ const getMainAPI = () => {
       response.data.forEach((post) => {
         // console.log({...post});
         post_list.push({ ...post });
-        
       });
-      console.log(post_list)
+      console.log(post_list);
       dispatch(setPost(post_list));
     });
 
@@ -103,25 +102,33 @@ const getMainAPI = () => {
 };
 
 // withdraw
-// const deleteDB = (postId) => {
-//     return function (dispatch, getState, {history}){
-//         console.log(postId);
-//         const TOKEN = localStorage.getItem("token");
-//         console.log(TOKEN)
-//         // const a = `Bearer ${TOKEN}`;
-//         // console.log(a.split(" "));
-//         instance.delete(`/api/posts/${postId}`,{postId},{ headers: {
-//             "authorization" : `Bearer ${TOKEN}`
-//           }, }).then((res) => {
-//             console.log(res);
-//             // let users = res.data
-//             // dispatch(deletePost(users));
-//         }).catch(err => {
-//             console.log("withdraw : 에.러", err);
-//         });
-//     };
-// };
-
+// [공성훈] deleteDB 작업 중
+const deletePostDB = (postId) => {
+  return function (dispatch, getState, { history }) {
+    console.log(postId);
+    const TOKEN = localStorage.getItem("token");
+    console.log(TOKEN);
+    // const a = `Bearer ${TOKEN}`;
+    // console.log(a.split(" "));
+    instance
+      .delete(`/api/posts/${postId}`, {
+        headers: {
+          authorization: `${TOKEN}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        console.log("deletePostDB 접근 확인");
+        // let users = res.data
+        history.replace("/");
+        dispatch(deletePost());
+      })
+      .catch((err) => {
+        console.log("withdraw : 에.러", err);
+      });
+  };
+};
+// deletePost
 const getDetailPost = () => {
   return function (dispatch, getState, { history }) {
     dispatch(getDetail());
@@ -187,6 +194,8 @@ const actionCreators = {
   getMainAPI,
   addPostDB, // [공성훈] 작업 중
   addPost,
+  deletePost,
+  deletePostDB,
   getDetailPost,
   likePost,
   like,
