@@ -5,6 +5,7 @@ import Button from "../elements/Button";
 import Grid from "../elements/Grid";
 
 import { actionCreators as imageActions } from "../redux/modules/image";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const Upload = () => {
   const fileInput = React.useRef();
@@ -18,13 +19,18 @@ const Upload = () => {
     console.log(fileInput.current.files[0]);
 
     const reader = new FileReader();
-    const file = fileInput.current.files[0];
-
-    reader.readAsDataURL(file);
+    const selectImage = fileInput.current.files[0];
+    // const formData = new FormData();
+    // formData.append("image", selectImage);
+    console.log(selectImage);
+    reader.readAsDataURL(selectImage);
 
     reader.onloadend = () => {
-      console.log(reader.result);
-      dispatch(imageActions.setPreview(reader.result));
+      const selectedImage = reader.result;
+      console.log(selectedImage);
+
+      dispatch(imageActions.setPreview(selectedImage));
+      //   dispatch(postActions.addPostDB(selectedImage));
     };
   };
 

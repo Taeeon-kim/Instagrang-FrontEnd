@@ -13,8 +13,8 @@ const Header = (props) => {
   const logOut = (props) => {
     dispatch(userActions.logoutDB());
   };
- const is_login = useSelector((state)=> state.user.is_login);
- console.log(is_login)
+  const is_login = useSelector((state) => state.user.is_login);
+  console.log(is_login);
   // 로그인 확인
   // const is_login = localStorage.getItem("token");
 
@@ -35,6 +35,9 @@ const Header = (props) => {
             margin="0 0 0 auto"
             padding="0 0 7px 0"
             size="32px"
+            _onClick={() => {
+              history.push("/addpost");
+            }}
           ></IconButton>
           <Button
             _onClick={() => {
