@@ -17,6 +17,7 @@ const Grid = (props) => {
     cursor,
     borderBottom,
     hide,
+    minWidth, // 최소 width 값 지정
   } = props;
 
   const styles = {
@@ -32,6 +33,7 @@ const Grid = (props) => {
     cursor: cursor,
     borderBottom: borderBottom,
     hide: hide,
+    minWidth: minWidth, // 최소 width 값 지정
   };
 
   return (
@@ -57,6 +59,7 @@ Grid.defaultProps = {
   height: "100%",
   cursor: "Default",
   borderBottom: false,
+  minWidth: null, // 최소 width 값 지정
 };
 
 const GridBox = styled.div`
@@ -80,6 +83,7 @@ ${(props) =>
     props.borderBottom ? `border-bottom : ${props.borderBottom};` : ""}
 ${(props) =>
     props.hide ? `display:none` : "none"}; // 가입양식 유효성 검사시 안내문구
+  min-width: ${(props) => props.minWidth}; // 최소 width 값 지정
 `;
 
 export default Grid;

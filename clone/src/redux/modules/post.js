@@ -1,11 +1,10 @@
-import {createAction,handleActions} from "redux-actions"
-import produce from "immer" 
-import axios from "axios"
-import instance from "../../axios"
-import moment from "moment"
+import { createAction, handleActions } from "redux-actions";
+import produce from "immer";
+import axios from "axios";
+import instance from "../../axios";
+import moment from "moment";
 
 
-// 액션 타입 지정
 const SET_POST = 'SET_POST'
 const ADD_POST = 'ADD_POST'
 const DELETE_POST = 'DELETE_POST'
@@ -25,54 +24,54 @@ const initialState = {
     is_like: false,
 }
 
+
 const initalPost = {
-   
-    
-    content:"",
-    // img_url:"https://newsimg.hankookilbo.com/cms/articlerelease/2021/06/05/ef519975-80c8-40b6-b25a-47ab6270dc60.png",
-    post_date: moment().format('YYYY-MM-DD'),
-    title:"",
-    // uid: "키값",
-    // userId:"값",
-    area: ""
-} 
+  content: "",
+  // img_url:"https://newsimg.hankookilbo.com/cms/articlerelease/2021/06/05/ef519975-80c8-40b6-b25a-47ab6270dc60.png",
+  post_date: moment().format("YYYY-MM-DD"),
+  title: "",
+  // uid: "키값",
+  // userId:"값",
+  area: "",
+};
 
+// [공성훈] addPost 작업 중
+const addPostDB = () => {
+  //   console.log(selectedImage);
+  const formData = new FormData();
+  formData.append("image");
+  return function (dispatch, getState, { history }) {
+    instance.post().then((res) => {
+      console.log("addPostDB 접근 확인");
+    });
+  };
+};
 
-// const addPostDB = (title, content, area) => {
-    
-//     }
+const getMainAPI = () => {
+  return function (dispatch, getState, { history }) {
+    instance.get("/").then((response) => {
+      console.log(response.data);
+      let post_list = [];
+      response.data.forEach((post) => {
+        // console.log({...post});
+        post_list.push({ ...post });
+        // console.log(post_list)
+      });
+      dispatch(setPost(post_list));
+    });
 
-const getMainAPI = () => { 
-    return function (dispatch,getState,{history}){
-       
-        instance.get('/').then((response)=>{
-            console.log(response.data)
-            let post_list = []
-            response.data.forEach((post)=>{
-                // console.log({...post});
-                post_list.push({...post});
-                // console.log(post_list)
-                
-            })
-            dispatch(setPost(post_list))
-        })
-              
-        
-        // console.log(initialState.list)
-        // const post = [...initialState.list,{id: "yougnble@aa.com",
-        // nickname: "youngble",
-        // content:"test 내용",
-        // image: 'https://newsimg.hankookilbo.com/cms/articlerelease/2021/06/05/ef519975-80c8-40b6-b25a-47ab6270dc60.png'}]
-        // console.log(post);
+    // console.log(initialState.list)
+    // const post = [...initialState.list,{id: "yougnble@aa.com",
+    // nickname: "youngble",
+    // content:"test 내용",
+    // image: 'https://newsimg.hankookilbo.com/cms/articlerelease/2021/06/05/ef519975-80c8-40b6-b25a-47ab6270dc60.png'}]
+    // console.log(post);
 
-       
-        // // post_list.push(post)
-        // console.log(post)
-        // dispatch(setPost(post)) //나중에 필요 
-    } 
-}
-            
-
+    // // post_list.push(post)
+    // console.log(post)
+    // dispatch(setPost(post)) //나중에 필요
+  };
+};
 
 // withdraw
 // const deleteDB = (postId) => {
@@ -94,13 +93,11 @@ const getMainAPI = () => {
 //     };
 // };
 
-
-
-const getDetailPost = ()=>{
-    return function (dispatch, getState,{history}){
-        dispatch(getDetail())
-    }
-}
+const getDetailPost = () => {
+  return function (dispatch, getState, { history }) {
+    dispatch(getDetail());
+  };
+};
 
 
 const likePost =(postId) =>{
@@ -119,6 +116,7 @@ const likePost =(postId) =>{
 
 // 리듀서
 export default handleActions(
+
     {
         [SET_POST] : (state,action) => produce(state,(draft) => {
             draft.list = action.payload.post_list 
@@ -145,7 +143,7 @@ export default handleActions(
 const actionCreators = {
     setPost,
     getMainAPI,
-    // addPostDB,
+    addPostDB, // [공성훈] 작업 중
     addPost,
     getDetailPost,
     likePost,
@@ -154,3 +152,4 @@ const actionCreators = {
 }
 
 export {actionCreators}
+

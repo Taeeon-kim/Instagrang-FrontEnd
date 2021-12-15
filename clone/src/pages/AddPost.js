@@ -9,27 +9,117 @@ import Text from "../elements/Text";
 import Upload from "../shared/Upload";
 
 import { useSelector, useDispatch } from "react-redux";
-
+import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as imageActions } from "../redux/modules/image";
 const AddPost = (props) => {
+  const fileInput = React.useRef();
+  const id = window.sessionStorage.getItem("id");
+  // dispatch 사용
   const dispatch = useDispatch();
-  const is_login = useSelector((state) => state.user.is_login);
-  const preview = useSelector((state) => state.image.preview);
+  // redux
+  const user_list = useSelector((state) => state.user.user); // 유저리스트
+  console.log(user_list);
+  const preview = useSelector((state) => state.image.preview); // 미리보기
+  const is_login = useSelector((state) => state.user.is_login); // 로그인 체크
 
   const post_list = useSelector((state) => state.post.list);
+  console.log(post_list);
 
-  console.log(props.match.params.id);
+  // console.log(props.match.params.id);
 
   const post_id = props.match.params.id;
   const is_edit = post_id ? true : false;
 
   const { history } = props;
 
-  let _post = is_edit ? post_list.find((p) => p.id === post_id) : null;
-  console.log(_post);
+  // let _post = is_edit ? post_list.find((p) => p.id === post_id) : null;
+  // console.log(_post);
 
-  const [contents, setContents] = React.useState(_post ? _post.contents : "");
+  // state 값
+  // const [contents, setContents] = React.useState(_post ? _post.contents : "");
+  const [contents, setContents] = React.useState("");
 
+  React.useEffect(() => {
+    // if (is_edit && !_post) {
+    //   alert("포스트 정보가 없어요.");
+    //   console.log("포스트 정보가 없어요.");
+    //   history.goBack();
+    //   return;
+    // }
+    // if (is_edit) {
+    //   dispatch(imageActions.setPreview(_post.image_url));
+    // }
+    dispatch(imageActions.setPreview());
+  }, []);
+
+  const changeContents = (e) => {
+    setContents(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const addPost = () => {
+    dispatch(postActions.addPostDB(contents));
+  };
+
+  const selectFile = (e) => {
+    console.log(e);
+    console.log(e.target);
+    console.log(e.target.files[0]);
+    console.log(fileInput.current.files[0]);
+
+    const reader = new FileReader();
+    const selectImage = fileInput.current.files[0];
+    // const formData = new FormData();
+    // formData.append("image", selectImage);
+    console.log(selectImage);
+    reader.readAsDataURL(selectImage);
+
+    reader.onloadend = () => {
+      const selectedImage = reader.result;
+      console.log(selectedImage);
+
+      dispatch(imageActions.setPreview(selectedImage));
+      dispatch(postActions.addPost(selectedImage));
+    };
+  };
+  // const editPost = () => {
+  //   dispatch(
+  //     postActions.editPostFB(post_id, {
+  //       contents: contents,
+  //     })
+  //   );
+  // };
+  if (!is_login) {
+    return (
+      <Grid
+        minWidth="428px"
+        width="50%"
+        margin="100px auto"
+        padding="60px"
+        bg="#0095f6"
+        center
+      >
+        <Text color="#fff" size="32px" bold>
+          Instagrang.
+        </Text>
+        <Text color="#fff" size="16px">
+          로그인 후에만 포스트 작성이 가능합니다.
+        </Text>
+        <Grid width="50%" margin="50px 0 32px 0" padding="8px 0">
+          <Button
+            _onClick={() => {
+              history.replace("/login");
+            }}
+            padding="8px 0"
+            bg="#fff"
+            color="#0095f6"
+          >
+            로그인 하러가기
+          </Button>
+        </Grid>
+      </Grid>
+    );
+  }
   return (
     <React.Fragment>
       <Grid margin="auto" width="428px">
@@ -40,7 +130,7 @@ const AddPost = (props) => {
             </Text>
             <Image
               margin="0 0 0 auto"
-              imageType="rectangle"
+              imageType="preview"
               size="200px"
               bgsize="cover"
               src={
@@ -51,34 +141,52 @@ const AddPost = (props) => {
             />
           </Grid>
           <Grid>
-            <Upload type="file" />
+            <input
+              type="file"
+              onChange={selectFile}
+              ref={fileInput}
+              // disabled={is_uploading}
+            />
+            {/* <Grid width="50%" margin="30px auto" padding="8px 0">
+              <Button padding="8px 0" _onClick={Upload}>
+                사진 업로드 하기
+              </Button>
+            </Grid> */}
           </Grid>
         </Grid>
 
         <Grid margin="30px auto">
           <Input
-            // value={contents}
-            // _onChange={changeContents}
+            value={contents}
+            _onChange={changeContents}
             label="게시글 내용"
             placeholder="게시글 작성"
             multiLine
           />
         </Grid>
 
-        <Grid width="50%" margin="30px auto" padding="8px 0">
+        {/* <Grid width="50%" margin="30px auto" padding="8px 0">
           <Button
             padding="8px 0"
             text="게시글 작성"
             _onClick={() => {}}
           ></Button>
-        </Grid>
-        {/* <Grid padding="16px">
-          {is_edit ? (
-          <Button text="게시글 수정" _onClick={editPost}></Button>
-        ) : (
-          <Button text="게시글 작성" _onClick={addPost}></Button>
-        )}
         </Grid> */}
+        <Grid width="50%" margin="30px auto" padding="8px 0">
+          {is_edit ? (
+            <Button
+              padding="8px 0"
+              text="게시글 수정"
+              // _onClick={editPost}
+            ></Button>
+          ) : (
+            <Button
+              padding="8px 0"
+              text="게시글 작성"
+              _onClick={addPost}
+            ></Button>
+          )}
+        </Grid>
       </Grid>
     </React.Fragment>
   );
