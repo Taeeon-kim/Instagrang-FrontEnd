@@ -3,6 +3,7 @@ import { produce } from "immer";
 
 import { deleteCookie, getCookie, setCookie } from "../../shared/cookie";
 import axios from "axios";
+import instance from "../../axios"
 // import { apis } from "../../api/axios";
 
 // 액션
@@ -17,7 +18,9 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 
 // 초기값
 const initialStat = {
-  user: null,
+  user: {
+    userId:null
+  },
   is_login: false,
 };
 
@@ -38,6 +41,8 @@ const loginDB = (email, pwd) => {
         const userId = res.data.userId
         const jwtToken = res.headers.authorization;
         localStorage.setItem("token", jwtToken);
+        localStorage.setItem("userId", userId);
+
         dispatch(setUser({ email: email, user_name: email, userId: userId }));
         alert("정상적으로 로그인 되었습니다.");
         // window.location.href = "/";  // 요렇게하면 redux 값이 다 날라감
@@ -75,24 +80,13 @@ const signupDB = (email, userName, pwd) => {
   };
 };
 
-// const loginCheckDB = () => {
-//   return function (dispatch, getState, { history }) {
-//     const localToken = localStorage.getItem("token");
-//     const token = { token: localToken };
-//     console.log(localToken);
-//     apis
-//       .loginCheck(token)
-//       .then((res) => {
-//         console.log(res);
-//         dispatch(setUser([res]));
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//         alert("로그인 정보가 없습니다.");
-//         history.push("/");
-//       });
-//   };
-// };
+const loginCheckDB = () => {
+  return function (dispatch, getState, { history }) {
+    const userId = localStorage.getItem("userId");
+    dispatch(setUser({ userId: parseInt(userId) }));
+    
+  };
+};
 
 // 토큰삭제
 const logoutDB = () => {
@@ -136,7 +130,7 @@ const actionCreators = {
   getUser,
   signupDB,
   loginDB,
-  // loginCheckDB,
+  loginCheckDB,
   logoutDB,
 };
 

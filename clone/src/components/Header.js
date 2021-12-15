@@ -16,9 +16,9 @@ const Header = (props) => {
   const is_login = useSelector((state) => state.user.is_login);
   console.log(is_login);
   // 로그인 확인
-  // const is_login = localStorage.getItem("token");
+  const is_token = localStorage.getItem("token");
 
-  if (is_login) {
+  if (is_login && is_token ) {
     return (
       <Grid is_flex>
         <Grid is_flex padding="10px" borderBottom="1px solid #DBDBDB">
