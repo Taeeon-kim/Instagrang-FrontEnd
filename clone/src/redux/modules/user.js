@@ -94,6 +94,7 @@ const logoutDB = () => {
     dispatch(logOut());
     alert("로그아웃 되었습니다.");
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     history.push("/login");
     window.location.reload();
   };

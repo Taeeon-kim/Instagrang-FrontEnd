@@ -7,6 +7,7 @@ import Button from "../elements/Button";
 import Input from "../elements/Input";
 import Text from "../elements/Text";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 import Post from "../components/Post";
 
 const PostList = (props) => {
@@ -20,31 +21,21 @@ const PostList = (props) => {
 
   React.useEffect(() => {
     dispatch(postActions.getMainAPI());
-    setTimeout(function() {
-        console.log(postList);
-      }, 1000);
+    
   }, []);
 
   return (
     <Grid>
       {postList.map((p, idx) => {
         return (
-          <Grid margin="20px 0px" key={p.postId}>
+          <Grid margin="20px 0px" key={p.postId} _onClick={()=> { dispatch(commentActions.getComment(p.postId))
+            history.push(`/posts/${p.postId}`);
+          }}>
             <Post {...p} /> 
           </Grid>
         ); 
-   
+  
       })}
-
-      {/* {is_login && (
-        <FloatBtn
-          onClick={() => {
-            history.push("/write");
-          }}
-        >
-          +
-        </FloatBtn>
-      )} */}
     </Grid>
   );
 };

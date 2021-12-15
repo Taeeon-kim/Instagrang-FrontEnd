@@ -55,8 +55,9 @@ const getMainAPI = () => {
       response.data.forEach((post) => {
         // console.log({...post});
         post_list.push({ ...post });
-        // console.log(post_list)
+        
       });
+      console.log(post_list)
       dispatch(setPost(post_list));
     });
 
