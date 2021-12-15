@@ -24,7 +24,7 @@ const Post = (props) => {
   },[])
   const result = props.likeList.filter(userId => userId.userId ===login_userId )
   console.log(result.length);
- 
+  
   return (
     <React.Fragment>
       <Grid border="1px solid #DBDBDB" position  margin="auto" width="50%" >
@@ -41,7 +41,7 @@ const Post = (props) => {
            <Text bold margin ="0px 10px">좋아요 {props.likeList.length} 개</Text>
         </Grid>
         <Grid is_flex>
-        <Text margin="0px 10px" bold>{props.nickname}</Text>{detail?<Text padding="5px">{props.content}</Text>:<Grid is_flex><SkipContent >{props.content}</SkipContent><Grid _onClick={()=>setDetail(true)}><Text color="#8E8E8E">더보기</Text></Grid></Grid>}  {/* 생략부분*/}
+        <Text margin="0px 10px" bold>{props.nickname}</Text>{detail?<Text wordbreak padding="5px">{props.content}</Text>:<Grid is_flex><SkipContent >{props.content}</SkipContent><Grid _onClick={()=>setDetail(true)}><Text color="#8E8E8E">더보기</Text></Grid></Grid>}  {/* 생략부분*/}
         </Grid>
         <Grid>
            {props.commentList.length>0? <Text bold margin ="0px 10px">댓글 {props.commentList.length}개 모두 보기</Text>: null}
