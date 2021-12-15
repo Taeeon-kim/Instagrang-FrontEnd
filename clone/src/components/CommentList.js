@@ -4,15 +4,14 @@ import Grid from "../elements/Grid";
 import Image from '../elements/Image';
 
 import { useDispatch, useSelector } from "react-redux";
-import comment, { actionCreators as commentActions } from "../redux/modules/comment";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const CommentList = (props) => {
 
   const dispatch = useDispatch();
   const comment_list = useSelector(state => state.comment.list);
   console.log(comment_list)
-  const {post_id} =props;
-    console.log(typeof post_id)
+
 
   React.useEffect(()=>{
     // if(!comment_list[post_id]){
@@ -24,35 +23,34 @@ const CommentList = (props) => {
 //   }
 
   return (
-    <React.Fragment>
-      {/* <Grid padding={"16px"}>
-        {comment_list[post_id].map( c =>{
+    
+      <Grid padding="16px">
+        {comment_list.map( c =>{
           return  <CommentItem key={c.id} {...c}/>
         })}
-      
 
-      </Grid> */}
-    </React.Fragment>
+      </Grid>
+ 
   );
 };
 
 CommentList.defaultProps ={
-  post_id:null,
+  postId:null,
 
 }
 
 const CommentItem = (props) => {
 
-    const {user_profile,user_name,user_id,post_id,insert_dt, contents} =props
+    // const {user_profile,user_name,user_id,post_id,insert_dt, contents} =props
   return (
-    <Grid is_flex>
+    <Grid >
         <Grid is_flex width="auto"> 
-            <Image shape="circle"/>
-            <Text bold>{user_name}</Text>
+            <Image imageType="circle" src={props.user_profile}/>
+            <Text bold>{props.nickname}</Text>
+            <Text margin="0px" width ="100%">{props.content}</Text>
         </Grid>
-        <Grid is_flex margin ="0px 4px">
-            <Text margin="0px">{contents}</Text>
-            <Text margin="0px">{insert_dt}</Text>
+        <Grid  margin ="0px 40px">
+            <Text size="13px" color= "#8E8E8E" bold margin="10px">{props.createdAt}</Text>
         </Grid>
     </Grid>
   );
@@ -60,12 +58,11 @@ const CommentItem = (props) => {
 
 
 CommentItem.defaultProps = {
-    user_profile : "",
-    user_name : "youngble",
-    user_id : "",
-    post_id: 1,
-    contents : "아웃도어 클라이밍",
-    insert_dt: '2021-01-01 19:00:00',
+    user_profile : "https://youngble.s3.ap-northeast-2.amazonaws.com/KakaoTalk_Photo_2021-11-17-00-56-23.jpeg",
+    nickname : "test",
+    commentId: null,
+    content : "",
+    createdAt: '2021-01-01 19:00:00',
 }
 
 export default CommentList;

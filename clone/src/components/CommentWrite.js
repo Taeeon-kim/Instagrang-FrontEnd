@@ -12,12 +12,12 @@ const CommentWrite = (props) => {
    
      const [comment_text, setCommentText ]= React.useState("");
  
-    const {post_id} = props;
+    const {postId} = props;
     
     const write =(e) =>{
         setCommentText(e.target.value)
         console.log(comment_text)
-        dispatch(commentActions.addCommentFB(post_id, comment_text))
+        dispatch(commentActions.addCommentDB(postId, comment_text))
         setCommentText("");  //이렇게 클린하기위해서 아래 value={comment_text}를 쓴것이다.
 
 
