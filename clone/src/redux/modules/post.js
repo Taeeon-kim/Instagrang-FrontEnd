@@ -10,16 +10,19 @@ const SET_POST = 'SET_POST'
 const ADD_POST = 'ADD_POST'
 const DELETE_POST = 'DELETE_POST'
 const GET_DETAIL ='GET_DETAIL'
+const IS_LIKE = 'IS_LIKE'
 // 액션 생성 함수
 const setPost = createAction(SET_POST,(post_list) => ({post_list}))
 const addPost = createAction(ADD_POST,(post) => ({post}))
 const deletePost = createAction(DELETE_POST ,(post) => ({post}))
 const getDetail = createAction(GET_DETAIL ,((post)=>({post})))
+const like = createAction(IS_LIKE, (like)=>({like}))
 // 기본값 지정
 const initialState = {
     
     list:[] ,
-    detail: false
+    detail: false,
+    is_like: false,
 }
 
 const initalPost = {
@@ -99,6 +102,21 @@ const getDetailPost = ()=>{
     }
 }
 
+
+const likePost =(postId) =>{
+    return function (dispatch, getState,{history}){
+        const TOKEN = localStorage.getItem("token");
+        console.log(postId);
+        axios.post(`http://3.36.100.253/api/likes/${postId}`,{} ,{ headers: {
+            "authorization" : `${TOKEN}`
+          }}).then((response)=>{
+        console.log("like 눌름");
+        console.log(response);
+        dispatch(like())
+    })
+}
+}
+
 // 리듀서
 export default handleActions(
     {
@@ -117,7 +135,9 @@ export default handleActions(
         [GET_DETAIL] : (state,action) => produce(state, (draft)=>{
             draft.detail = true;
         }),
-
+        [IS_LIKE] : (state, action) => produce(state, (draft) => {
+            draft.is_like ? draft.is_like = false : draft.is_like =true;
+        }),
     }
 ,initialState)
 
@@ -128,6 +148,8 @@ const actionCreators = {
     // addPostDB,
     addPost,
     getDetailPost,
+    likePost,
+    like,
     
 }
 

@@ -7,21 +7,26 @@ import styled from 'styled-components';
 import Input from "../elements/Input";
 import { useDispatch, useSelector } from "react-redux";
 import {actionCreators as postAction} from '../redux/modules/post';
+import {actionCreators as userAction} from '../redux/modules/user';
 import CommentWrite from './CommentWrite';
 
 
 const Post = (props) => {
   const dispatch = useDispatch();
   const user_list = useSelector((state)=> state.user.user)
+  // const is_like = useSelector((state)=>state.post.is_like);
+  const _post = useSelector((state)=>state.post);
   console.log(props.likeList)
   const login_userId= user_list.userId;
+  console.log(login_userId)
   const [detail, setDetail] = React.useState(false);
   const [is_input, setInput] = React.useState(false);
   const [is_like, setLike] =React.useState(false); // 임시로 색잘나오는지 쓰는거다, 나중에 userId 로 비교해서 해야한다.
   
   React.useEffect(()=>{
-
-  },[])
+    dispatch(postAction.getMainAPI());
+    // dispatch(post)
+  },[is_like])
   const result = props.likeList.filter(userId => userId.userId ===login_userId )
   console.log(result.length);
   
@@ -35,7 +40,7 @@ const Post = (props) => {
         <Image imageType="rectangle" src={"http://3.36.100.253"+props.image}/> 
         </Grid>
         <Grid is_flex padding="6px 0px 8px 10px">
-         {result.length ===1 ?  <IconButton likeIcon padding="8px" _onClick={()=>{setLike(!is_like)}}/> : <IconButton unLikeIcon padding="8px" _onClick={()=>{setLike(!is_like)}}/> } <IconButton commentIcon padding="8px"/>   {/*좋아요하트 아이콘, 댓글말풍선 아이콘*/} 
+         {result.length ===1 || is_like?  <IconButton likeIcon padding="8px" _onClick={()=>{setLike(!is_like); dispatch(postAction.likePost(props.postId))}  }/> : <IconButton unLikeIcon padding="8px" _onClick={()=>{setLike(!is_like); dispatch(postAction.likePost(props.postId))}}/> } <IconButton commentIcon padding="8px"/>   {/*좋아요하트 아이콘, 댓글말풍선 아이콘*/} 
         </Grid>
         <Grid>
            <Text bold margin ="0px 10px">좋아요 {props.likeList.length} 개</Text>
