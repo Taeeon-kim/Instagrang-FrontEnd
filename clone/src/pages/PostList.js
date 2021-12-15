@@ -14,7 +14,7 @@ const PostList = (props) => {
   // const user_list = useSelector();
   const dispatch = useDispatch();
   const postList = useSelector((state) => state.post.list); // state는 리덕스 스토어의 전체 데이터
-  
+  const is_login = useSelector((state)=> state.user.user.userId);
 //   const is_login = useSelector((state) => state.user.is_login);
   // console.log(user_list);
 //   console.log(postList);  // 여기서 불러오면 아래 useEffect 전에 불러와지므로 initial 값만 불러온다
@@ -24,17 +24,31 @@ const PostList = (props) => {
     
   }, []);
 
+
+
+
   return (
     <Grid>
       {postList.map((p, idx) => {
+        if(p.userId === is_login){
         return (
           <Grid margin="20px 0px" key={p.postId} _onClick={()=> { dispatch(commentActions.getComment(p.postId))
             history.push(`/posts/${p.postId}`);
           }}>
-            <Post {...p} /> 
+            <Post {...p} is_me/> 
           </Grid>
         ); 
-  
+        }
+        else{
+          return (
+            <Grid margin="20px 0px" key={p.postId} _onClick={()=> { dispatch(commentActions.getComment(p.postId))
+              history.push(`/posts/${p.postId}`);
+            }}>
+              <Post {...p} /> 
+            </Grid>
+          ); 
+        }
+
       })}
     </Grid>
   );

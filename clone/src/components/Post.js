@@ -37,7 +37,7 @@ const Post = (props) => {
     <React.Fragment>
       <Grid border="1px solid #DBDBDB" position  margin="auto" width="50%" >
         <Grid is_flex border="1px solid #DBDBDB">
-           <Image imageType = "circle" src ={props.user_profile} /><Text padding="0px 0px" bold textalign>{props.nickname}</Text><Text padding="0px 0px 6px 0px" textalign bold size= "20px" position ="absolute" left="70%" color ="#000000">...</Text>
+           <Image imageType = "circle" src ={props.user_profile} /><Text padding="0px 0px" bold textalign>{props.nickname}</Text>{props.is_me?<Grid><Text padding="0px 0px 6px 0px" textalign bold size= "15px" position ="absolute" left="60%" color ="#000000">수정하기</Text><Text padding="0px 0px 6px 0px" textalign bold size= "15px" position ="absolute" left="70%" color ="#000000">삭제하기</Text></Grid>:<Text padding="0px 0px 6px 0px" textalign bold size= "20px" position ="absolute" left="70%" color ="#000000">...</Text> }
         </Grid>
         <Grid>
         <Image imageType="rectangle" src={"http://3.36.100.253"+props.image}/> 
