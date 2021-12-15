@@ -14,16 +14,17 @@ import { actionCreators as imageActions } from "../redux/modules/image";
 const AddPost = (props) => {
   const fileInput = React.useRef();
   const id = window.sessionStorage.getItem("id");
+  const token = localStorage.getItem("token");
   // dispatch 사용
   const dispatch = useDispatch();
   // redux
   const user_list = useSelector((state) => state.user.user); // 유저리스트
   console.log(user_list);
-  const preview = useSelector((state) => state.image.preview); // 미리보기
+  // const preview = useSelector((state) => state.image.preview); // 미리보기
   const is_login = useSelector((state) => state.user.is_login); // 로그인 체크
 
-  const post_list = useSelector((state) => state.post.list);
-  console.log(post_list);
+  // const post_list = useSelector((state) => state.post.list);
+  // console.log(post_list);
 
   // console.log(props.match.params.id);
 
@@ -37,9 +38,12 @@ const AddPost = (props) => {
 
   // state 값
   // const [contents, setContents] = React.useState(_post ? _post.contents : "");
-  const [contents, setContents] = React.useState("");
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState("");
+  const [preview, setPreview] = useState("");
 
   React.useEffect(() => {
+    dispatch(postActions.addPostDB());
     // if (is_edit && !_post) {
     //   alert("포스트 정보가 없어요.");
     //   console.log("포스트 정보가 없어요.");
@@ -53,33 +57,27 @@ const AddPost = (props) => {
   }, []);
 
   const changeContents = (e) => {
-    setContents(e.target.value);
+    setContent(e.target.value);
+    dispatch(postActions.addPost(changeContents));
     console.log(e.target.value);
   };
 
   const addPost = () => {
-    dispatch(postActions.addPostDB(contents));
+    dispatch(postActions.addPostDB(image, content));
   };
 
   const selectFile = (e) => {
-    console.log(e);
-    console.log(e.target);
+    const reader = new FileReader(); // 미리보기 리더
+    const targetImage = fileInput.current.files[0];
     console.log(e.target.files[0]);
-    console.log(fileInput.current.files[0]);
-
-    const reader = new FileReader();
-    const selectImage = fileInput.current.files[0];
-    // const formData = new FormData();
-    // formData.append("image", selectImage);
-    console.log(selectImage);
-    reader.readAsDataURL(selectImage);
-
+    console.log(targetImage);
+    reader.readAsDataURL(targetImage);
+    setImage(e.target.files[0]);
     reader.onloadend = () => {
-      const selectedImage = reader.result;
-      console.log(selectedImage);
+      setPreview(reader.result);
 
-      dispatch(imageActions.setPreview(selectedImage));
-      dispatch(postActions.addPost(selectedImage));
+      dispatch(imageActions.setPreview(reader.result));
+      // dispatch(postActions.addPost(reader.result));
     };
   };
   // const editPost = () => {
@@ -157,7 +155,7 @@ const AddPost = (props) => {
 
         <Grid margin="30px auto">
           <Input
-            value={contents}
+            value={content}
             _onChange={changeContents}
             label="게시글 내용"
             placeholder="게시글 작성"
