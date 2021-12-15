@@ -13,9 +13,10 @@ const Header = (props) => {
   const logOut = (props) => {
     dispatch(userActions.logoutDB());
   };
-
+ const is_login = useSelector((state)=> state.user.is_login);
+ console.log(is_login)
   // 로그인 확인
-  const is_login = localStorage.getItem("token");
+  // const is_login = localStorage.getItem("token");
 
   if (is_login) {
     return (
