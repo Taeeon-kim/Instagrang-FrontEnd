@@ -7,6 +7,7 @@ import { history } from "../redux/configureStore";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import Image from "../elements/Image";
 const Header = (props) => {
   const dispatch = useDispatch();
 
@@ -28,7 +29,7 @@ const Header = (props) => {
               history.push("/");
             }}
           >
-            <img alt='insta' src="insta.png" />
+            <Image margin="5px 0px 0px 30%" imageType= "logo"  width="103px" height="29px" bgsize="cover" alt='insta' src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/InstagramLogo.png" />
           </Grid>
 
           <IconButton
@@ -91,7 +92,7 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 0px 0px 0px -10px;
+  margin: -10px 0px 0px -10px;
 `;
 
 const HeaderContents = styled.div`
