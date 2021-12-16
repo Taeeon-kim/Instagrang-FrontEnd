@@ -20,8 +20,9 @@ const Header = (props) => {
 
   if (is_login && is_token ) {
     return (
-      <Grid is_flex>
-        <Grid is_flex padding="10px" borderBottom="1px solid #DBDBDB">
+      <HeaderContainer>
+        
+        <Grid is_flex padding="10px" borderBottom="1px solid #DBDBDB"> 
           <Grid
             _onClick={() => {
               history.push("/");
@@ -51,14 +52,14 @@ const Header = (props) => {
               };
               onRemove();
             }}
-            width="default"
+            width="15%"
             bg="white"
             color="#0095F6"
           >
             로그아웃
           </Button>
         </Grid>
-      </Grid>
+      </HeaderContainer>
     );
   }
   return (
@@ -78,4 +79,27 @@ const HeaderWrap = styled.div`
   position: fixed;
   top: 0px;
   background-color: #fff;
+`;
+
+const HeaderContainer = styled.div`
+  border: 1px solid #dbdbdb;
+  width: 100%;
+  height: 55px;
+  position: fixed;
+  z-index: 1;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0px 0px 0px -10px;
+`;
+
+const HeaderContents = styled.div`
+  max-width: 1000px;
+  width: 100%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;

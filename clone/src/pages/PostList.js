@@ -9,6 +9,7 @@ import Text from "../elements/Text";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import Post from "../components/Post";
+import Story from "../components/Story";
 
 const PostList = (props) => {
   // const user_list = useSelector();
@@ -29,7 +30,8 @@ const PostList = (props) => {
 
 
   return (
-    <Grid>
+    <Grid >
+      <Story />
       {postList.map((p, idx) => {
         if(p.userId === is_login){
         return (

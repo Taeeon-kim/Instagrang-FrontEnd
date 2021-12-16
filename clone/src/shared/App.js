@@ -24,8 +24,9 @@ function App() {
     }
   });
   return (
-    <Grid>
+    <Grid bg="#FAFAFA">
       <Header />
+      <Grid padding="100px 0px 0px 0px ">
       <ConnectedRouter history={history}>
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
@@ -34,6 +35,7 @@ function App() {
         <Route path="/addpost/:id" exact component={AddPost} />
         <Route path="/posts/:id" exact component={PostDetail} />
       </ConnectedRouter>
+      </Grid>
     </Grid>
   );
 }
