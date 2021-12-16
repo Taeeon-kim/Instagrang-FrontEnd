@@ -6,12 +6,18 @@ import moment from "moment";
 
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
+const EDIT_POST = "EDIT_POST";
 const DELETE_POST = "DELETE_POST";
 const GET_DETAIL = "GET_DETAIL";
 const IS_LIKE = "IS_LIKE";
 // 액션 생성 함수
 const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
 const addPost = createAction(ADD_POST, (image, content) => ({
+  image,
+  content,
+}));
+// [공성훈] editPost 작업 중
+const editPost = createAction(EDIT_POST, (image, content) => ({
   image,
   content,
 }));
@@ -35,7 +41,6 @@ const initalPost = {
   area: "",
 };
 
-// [공성훈] addPost 작업 중
 const addPostDB = (image, content) => {
   console.log(image);
   //formData에 이미지 담기
@@ -102,7 +107,36 @@ const getMainAPI = () => {
 };
 
 // withdraw
-// [공성훈] deleteDB 작업 중
+// [공성훈] editDB 작업 중
+const editPostDB = (image, content, postId) => {
+  return function (dispatch, getState, { history }) {
+    //formData에 이미지 담기
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("content", content);
+    const TOKEN = localStorage.getItem("token");
+    console.log(TOKEN);
+    // const a = `Bearer ${TOKEN}`;
+    // console.log(a.split(" "));
+    instance
+      .put(`/api/posts/${postId}`, {
+        headers: {
+          authorization: `${TOKEN}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        console.log("editPostDB 접근 확인");
+        // let users = res.data
+        history.replace("/");
+        dispatch(editPost());
+      })
+      .catch((err) => {
+        console.log("withdraw : 에.러", err);
+      });
+  };
+};
+
 const deletePostDB = (postId) => {
   return function (dispatch, getState, { history }) {
     console.log(postId);
@@ -128,7 +162,7 @@ const deletePostDB = (postId) => {
       });
   };
 };
-// deletePost
+
 const getDetailPost = () => {
   return function (dispatch, getState, { history }) {
     dispatch(getDetail());
@@ -170,6 +204,13 @@ export default handleActions(
         // draft.list = action.payload.post;
         console.log(draft.list);
       }),
+    // [공성훈] 작업 중
+    [EDIT_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list.unshift(action.payload.post);
+        // draft.list = action.payload.post;
+        console.log(draft.list);
+      }),
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
         // draft.study.joinNum -= 1;
@@ -192,8 +233,10 @@ export default handleActions(
 const actionCreators = {
   setPost,
   getMainAPI,
-  addPostDB, // [공성훈] 작업 중
+  addPostDB,
   addPost,
+  editPost, // [공성훈] 작업 중
+  editPostDB, // [공성훈] 작업 중
   deletePost,
   deletePostDB,
   getDetailPost,
