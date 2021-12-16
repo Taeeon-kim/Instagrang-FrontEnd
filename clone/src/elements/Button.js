@@ -12,8 +12,20 @@ const Button = (props) => {
     color,
     border,
     padding,
+    height,
+    borderRadius,
   } = props;
-  const styles = { width, text, margin, bg, color, border, padding };
+  const styles = {
+    width,
+    text,
+    margin,
+    bg,
+    color,
+    border,
+    padding,
+    height,
+    borderRadius,
+  };
   return (
     <>
       <BtnBox {...styles} onClick={_onClick}>
@@ -29,15 +41,19 @@ Button.defaultProps = {
   text: false,
   children: null,
   width: "100%",
+  height: "100%",
   bg: "#0095F6",
   color: "#FFFFFF",
   border: false,
   padding: null,
+  borderRadius: null,
 };
 
 const BtnBox = styled.button`
   width: ${(props) => props.width};
+  height: ${(props) => props.height};
   padding: ${(props) => props.padding};
+  border-radius: ${(props) => props.borderRadius};
   box-sizing: border-box;
   ${(props) => (props.margin ? `margin:${props.margin};` : "")}
   ${(props) =>

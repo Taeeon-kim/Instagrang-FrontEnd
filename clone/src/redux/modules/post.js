@@ -19,9 +19,10 @@ const addPost = createAction(ADD_POST, (post_list) => ({
 }));
 
 // [공성훈] editPost 작업 중
-const editPost = createAction(EDIT_POST, (image, content) => ({
+const editPost = createAction(EDIT_POST, (image, content, postId) => ({
   image,
   content,
+  postId,
 }));
 const deletePost = createAction(DELETE_POST, (post) => ({ post }));
 const getDetail = createAction(GET_DETAIL, (post) => ({ post }));
@@ -31,7 +32,6 @@ const newComment = createAction(NEW_COMMENT, (postId) => ({ postId }));
 const initialState = {
   list: [],
   detail: false,
-  
 };
 
 const initalPost = {
@@ -135,7 +135,7 @@ const editPostDB = (image, content, postId) => {
         console.log("editPostDB 접근 확인");
         // let users = res.data
         history.replace("/");
-        dispatch(editPost());
+        dispatch(editPost(image, content, postId));
       })
       .catch((err) => {
         console.log("에러 메세지", err);
@@ -206,7 +206,6 @@ export default handleActions(
       }), // 리스트를 초기값에서 갈아끼우기
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
-
         draft.list.unshift(action.payload.post_list);
 
         // draft.list = action.payload.post;
@@ -215,7 +214,9 @@ export default handleActions(
     // [공성훈] 작업 중
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
-        let index = draft.list.findIndex((l) => l.id === action.payload.postId);
+        let index = draft.list.findIndex(
+          (l) => l.postId === action.payload.postId
+        );
         console.log(index);
         draft.list[index] = {
           ...draft.list[index],
@@ -240,15 +241,19 @@ export default handleActions(
     [IS_LIKE]: (state, action) =>
       produce(state, (draft) => {
         console.log(state);
-        console.log(action.payload)
+        console.log(action.payload);
         let idx = draft.list.findIndex(
-            (p) => p.postId === action.payload.postId
-          );
-         let likeIdex= draft.list[idx].likeList.findIndex( (p)=> p.userId === action.payload.userId)
-            console.log(likeIdex)
-            const is_like = {userId: action.payload.userId}
-         likeIdex === -1 ? draft.list[idx].likeList.push(is_like) : draft.list[idx].likeList.splice(likeIdex);
-          console.log(state.list[idx])
+          (p) => p.postId === action.payload.postId
+        );
+        let likeIdex = draft.list[idx].likeList.findIndex(
+          (p) => p.userId === action.payload.userId
+        );
+        console.log(likeIdex);
+        const is_like = { userId: action.payload.userId };
+        likeIdex === -1
+          ? draft.list[idx].likeList.push(is_like)
+          : draft.list[idx].likeList.splice(likeIdex);
+        console.log(state.list[idx]);
       }),
     [NEW_COMMENT]: (state, action) =>
       produce(state, (draft) => {
