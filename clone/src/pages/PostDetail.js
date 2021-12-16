@@ -29,12 +29,12 @@ const PostDetail = (props) => {
 
   React.useEffect(() => {
     if(post.length){
-        console.log(post)
-        console.log("여긴?")
+
        return;
     }
-    console.log("여긴?")
+
     dispatch(postActions.getDetailPost(postId));
+    
   }, );
 
   return (

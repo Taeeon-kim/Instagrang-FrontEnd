@@ -13,9 +13,11 @@ const IS_LIKE = "IS_LIKE";
 const NEW_COMMENT = "NEW_COMMENT";
 // 액션 생성 함수
 const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
+
 const addPost = createAction(ADD_POST, (post_list) => ({
   post_list,
 }));
+
 // [공성훈] editPost 작업 중
 const editPost = createAction(EDIT_POST, (image, content) => ({
   image,
@@ -204,7 +206,9 @@ export default handleActions(
       }), // 리스트를 초기값에서 갈아끼우기
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
+
         draft.list.unshift(action.payload.post_list);
+
         // draft.list = action.payload.post;
         console.log(draft.list);
       }),
