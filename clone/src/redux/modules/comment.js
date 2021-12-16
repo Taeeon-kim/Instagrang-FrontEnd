@@ -36,8 +36,8 @@ const initialState = {
               let comment_list = {...response.data};
               console.log(comment_list)
               dispatch(addComment(comment_list))
-              // 코멘트의 숫자를 셀때는 post정보에 포함된 comments 배열의 길이로 숫자를 세서 화면에 표현하므로 post 리덕스의 상태도 수정해주어야 한다.
-        dispatch(postActions.newComment(parseInt(postId)));
+              
+        dispatch(postActions.newComment(parseInt(postId)));// 코멘트의 숫자를 셀때는 post정보에 포함된 comments 배열의 길이로 숫자를 세서 화면에 표현하므로 post 리덕스의 상태도 수정해주어야 한다.
 
       })
   }
@@ -96,7 +96,7 @@ export default handleActions(
     [ADD_COMMENT]: (state, action) => produce(state, (draft)=> {
       console.log(action.payload.content)
       console.log(draft.list[action.payload.postId])
-        draft.list.unshift(action.payload.content);
+        draft.list.shift(action.payload.content);    //unshift 는 최신이 맨앞에, shift는 최신이 맨 뒤에 배치, 이렇게하면 댓글달자마자 디테일페이지 가도 에러없음
        
         console.log(draft.list)
       }),

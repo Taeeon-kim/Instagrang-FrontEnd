@@ -20,20 +20,16 @@ const Post = (props) => {
   const user_list = useSelector((state) => state.user.user);
   // const is_like = useSelector((state)=>state.post.is_like);
   const _post = useSelector((state) => state.post);
-
-  console.log(props.postId);
-  // console.log(props.likeList)
   const login_userId = user_list.userId;
-  // console.log(login_userId);
 
   const [detail, setDetail] = React.useState(false);
-  const [is_input, setInput] = React.useState(false);
 
   const result = props.likeList.filter(
     (userId) => userId.userId === login_userId
   );
-  const [is_like, setLike] = React.useState(result === 1 ? true : false);
-  // console.log(result.length);
+ 
+  const [is_like, setLike] = React.useState(result.length === 1 ? true : false);
+  
   React.useEffect(() => {
     dispatch(postAction.getMainAPI());
 
@@ -106,7 +102,7 @@ const Post = (props) => {
           />
         </Grid>
         <Grid is_flex padding="6px 0px 8px 10px">
-          {result.length === 1 || is_like ? (
+          { is_like ? (
             <IconButton
               likeIcon
               padding="8px"

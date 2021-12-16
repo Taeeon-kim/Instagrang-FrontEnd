@@ -27,7 +27,7 @@ const Header = (props) => {
               history.push("/");
             }}
           >
-            <img src="insta.png" />
+            <img alt='insta' src="insta.png" />
           </Grid>
 
           <IconButton

@@ -58,7 +58,7 @@ const CommentItem = (props) => {
     <Grid >
         <Grid is_flex width="auto"> 
             <Image imageType="circle" src={props.user_profile}/>
-            <Text bold>{props.nickname}</Text>
+            <Text bold margin="0px 5px 0px 0px">{props.nickname}</Text>
             <Text margin="0px" width ="100%">{props.content}</Text>
              <Text
              width= "50px"
