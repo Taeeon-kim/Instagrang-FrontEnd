@@ -54,8 +54,8 @@ Image.defaultProps = {
 };
 
 const ImageRectangle = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 16px;
+  height: 16px;
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   background-size: ${(props) => props.bgsize};
