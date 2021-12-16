@@ -54,7 +54,9 @@ const Login = () => {
         padding="10px 0"
         width="350px"
         border="1px solid #e4e4e4"
+
         margin="100px auto 0px auto"
+
       >
         <Image
           imageType="logo"
@@ -120,6 +122,7 @@ const Login = () => {
           >
             로그인
           </Button>
+
           <Grid is_flex margin="10px auto 18px auto">
             <Line></Line>
             <Text size="13px" margin="0 18px" color="#8e8e8e" bold>
@@ -140,6 +143,7 @@ const Login = () => {
             <Atag>비밀번호를 잊으셨나요?</Atag>
           </Grid>
           {/* <Button
+
             // 회원가입 페이지 이동
             _onClick={() => {
               history.push("/signup");
