@@ -16,8 +16,10 @@ import { history } from "../redux/configureStore";
 import CommentWrite from "./CommentWrite";
 
 const Post = (props) => {
+  // console.log(props)
   const dispatch = useDispatch();
   const user_list = useSelector((state) => state.user.user);
+  // console.log(user_list)
   // const is_like = useSelector((state)=>state.post.is_like);
   const _post = useSelector((state) => state.post);
   const login_userId = user_list.userId;
@@ -34,7 +36,7 @@ const Post = (props) => {
     dispatch(postAction.getMainAPI());
 
     // dispatch(post)
-  }, [is_like]); //좋아요를 누를때마다 update 되게 해줌
+  }, []); //좋아요를 누를때마다 update 되게 해줌
 
   const editPost = () => {
     console.log("editPost 클릭확인");
@@ -107,8 +109,9 @@ const Post = (props) => {
               likeIcon
               padding="8px"
               _onClick={() => {
-                dispatch(postAction.likePost(props.postId));
                 setLike(!is_like);
+                dispatch(postAction.likePost(props.postId, login_userId));
+                
               }}
             />
           ) : (
@@ -116,8 +119,9 @@ const Post = (props) => {
               unLikeIcon
               padding="8px"
               _onClick={() => {
-                dispatch(postAction.likePost(props.postId));
                 setLike(!is_like);
+                dispatch(postAction.likePost(props.postId, login_userId));
+                
               }}
             />
           )}

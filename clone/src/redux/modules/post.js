@@ -25,13 +25,13 @@ const editPost = createAction(EDIT_POST, (image, content) => ({
 }));
 const deletePost = createAction(DELETE_POST, (post) => ({ post }));
 const getDetail = createAction(GET_DETAIL, (post) => ({ post }));
-const like = createAction(IS_LIKE, (like) => ({ like }));
+const like = createAction(IS_LIKE, (postId, userId) => ({ postId, userId }));
 const newComment = createAction(NEW_COMMENT, (postId) => ({ postId }));
 // 기본값 지정
 const initialState = {
   list: [],
   detail: false,
-  is_like: false,
+  
 };
 
 const initalPost = {
@@ -175,7 +175,7 @@ const getDetailPost = () => {
   };
 };
 
-const likePost = (postId) => {
+const likePost = (postId, userId) => {
   return function (dispatch, getState, { history }) {
     const TOKEN = localStorage.getItem("token");
     console.log(postId);
@@ -192,7 +192,7 @@ const likePost = (postId) => {
       .then((response) => {
         console.log("like 눌름");
         console.log(response);
-        dispatch(like());
+        dispatch(like(postId, userId));
       });
   };
 };
@@ -239,7 +239,16 @@ export default handleActions(
       }),
     [IS_LIKE]: (state, action) =>
       produce(state, (draft) => {
-        draft.is_like ? (draft.is_like = false) : (draft.is_like = true);
+        console.log(state);
+        console.log(action.payload)
+        let idx = draft.list.findIndex(
+            (p) => p.postId === action.payload.postId
+          );
+         let likeIdex= draft.list[idx].likeList.findIndex( (p)=> p.userId === action.payload.userId)
+            console.log(likeIdex)
+            const is_like = {userId: action.payload.userId}
+         likeIdex === -1 ? draft.list[idx].likeList.push(is_like) : draft.list[idx].likeList.splice(likeIdex);
+          console.log(state.list[idx])
       }),
     [NEW_COMMENT]: (state, action) =>
       produce(state, (draft) => {
