@@ -29,12 +29,12 @@ const Header = (props) => {
               history.push("/");
             }}
           >
-            <Image margin="5px 0px 0px 30%" imageType= "logo"  width="103px" height="29px" bgsize="cover" alt='insta' src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/InstagramLogo.png" />
+            <Image margin="5px 0px 0px 20%" imageType= "logo"  width="103px" height="29px" bgsize="cover" alt='insta' src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/InstagramLogo.png" />
           </Grid>
 
           <IconButton
             plusIcon
-            margin="0 0 0 auto"
+            margin="0 0 0 150px"
             padding="0 0 7px 0"
             size="32px"
             _onClick={() => {
