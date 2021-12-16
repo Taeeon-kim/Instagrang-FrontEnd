@@ -8,7 +8,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import Grid from "../elements/Grid";
 import Image from "../elements/Image";
 import Text from "../elements/Text";
-
+import Button from "../elements/Button";
 
 const PostDetail = (props) => {
   const postId = props.match.params.id;
@@ -16,10 +16,10 @@ const PostDetail = (props) => {
   const dispatch = useDispatch();
   const user_info = useSelector((state) => state.user.user);
   const post_list = useSelector((state) => state.post.list);
-  console.log(post_list[0].content);
+    console.log(post_list)
 
   const post = post_list.filter((list) => list.postId === parseInt(postId));
-  console.log(post);
+  
   // const post_idx = post_list.findIndex(p => p.postId === parseInt(postId));
   // console.log(post_idx)
   // const post = post_list[post_idx];
@@ -28,15 +28,18 @@ const PostDetail = (props) => {
   // const [post, setPost] = React.useState(post_data? post_data : null);
 
   React.useEffect(() => {
-    // if(post){
-    //    return;
-    // }
-    // dispatch(postActions.getOnePostFB(id));
-  }, []);
+    if(post.length){
+        console.log(post)
+        console.log("여긴?")
+       return;
+    }
+    console.log("여긴?")
+    dispatch(postActions.getDetailPost(postId));
+  }, );
 
   return (
-    <Grid is_flex >
-      <Grid   margin="0px 100px 0px 0px" is_flex >
+    <Grid is_flex>
+      <Grid margin="0px 100px 0px 0px" is_flex>
         {post[0] && (
           <Image
             imageType="rectangle"
@@ -44,18 +47,24 @@ const PostDetail = (props) => {
           />
         )}
       </Grid>
-      <Grid >
-      <Grid is_flex >
-      <Image imageType="circle" src={props.user_profile} />
-    <Text padding="0px 0px" bold textalign>{post[0].nickname}</Text>
-    </Grid>
-    <Text wordbreak padding="5px">
-              {post[0].content}
-            </Text>
+      <Grid>
+        <Grid is_flex>
+          <Image imageType="circle" src={props.user_profile} />
+          <Text padding="0px 0px" bold textalign>
+            {post[0]&& post[0].nickname}
+          </Text>
+        </Grid>
+        <Text wordbreak padding="5px">
+          {post[0]&& post[0].content}
+        </Text>
         <CommentList postId={postId} />
       </Grid>
     </Grid>
   );
 };
 
+
+
+
 export default PostDetail;
+

@@ -23,7 +23,7 @@ const PostList = (props) => {
   React.useEffect(() => {
     dispatch(postActions.getMainAPI());
     
-  }, [postList.length]);
+  }, []);
 
 
 

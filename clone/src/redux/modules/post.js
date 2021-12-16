@@ -23,7 +23,7 @@ const editPost = createAction(EDIT_POST, (image, content) => ({
   content,
 }));
 const deletePost = createAction(DELETE_POST, (post) => ({ post }));
-const getDetail = createAction(GET_DETAIL, (post) => ({ post }));
+const getDetail = createAction(GET_DETAIL, (comment_list) => ({ comment_list }));
 const like = createAction(IS_LIKE, (like) => ({ like }));
 const newComment = createAction(NEW_COMMENT, (postId) => ({postId}));
 // 기본값 지정
@@ -165,9 +165,30 @@ const deletePostDB = (postId) => {
   };
 };
 
-const getDetailPost = () => {
+const getDetailPost = (postId) => {
   return function (dispatch, getState, { history }) {
-    dispatch(getDetail());
+      console.log("detailDB")
+      console.log(postId)
+    instance.get("/").then((response) => {
+        // console.log(postId);
+       console.log(response)
+        const _post = response.data.filter((list)=>list.postId===parseInt(postId))
+        console.log(_post[0]);
+        const comment_list =[]
+         comment_list.push(_post[0]);
+        console.log(comment_list)
+        dispatch(getDetail(comment_list));
+        // const result = response.data[postId]
+        // console.log(result.commentList);
+        // let post_list = [];
+        // response.data.forEach((post) => {
+        //   // console.log({...post});
+        //   post_list.push({ ...post });
+          
+        // });
+       
+      });
+    // dispatch(getDetail());
   };
 };
 
@@ -225,7 +246,9 @@ export default handleActions(
 
     [GET_DETAIL]: (state, action) =>
       produce(state, (draft) => {
-        draft.detail = true;
+          console.log((action.payload))
+        draft.list = action.payload.comment_list;
+        // draft.detail = true;
       }),
     [IS_LIKE]: (state, action) =>
       produce(state, (draft) => {

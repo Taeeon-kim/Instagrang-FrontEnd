@@ -14,11 +14,16 @@ const CommentList = (props) => {
 
 
   React.useEffect(()=>{
-    // if(!comment_list[post_id]){
-    //   dispatch(commentActions.getCommentFB(post_id));
-    // }
+    if(comment_list.length){
+        // console.log("dd")
+        dispatch(commentActions.setComment(comment_list));
+      
+    }
+    dispatch(commentActions.getComment(parseInt(props.postId)));
+    // console.log("dd22")
+    // console.log(props.postId)
   },[])
-//   if(!comment_list[post_id] || !post_id){
+//   if(!comment_list[postId] || !post_id){
 //     return null;
 //   }
 
@@ -41,6 +46,13 @@ CommentList.defaultProps ={
 
 const CommentItem = (props) => {
 
+    const dispatch = useDispatch();
+    const deleteComment = () => {
+
+        console.log(props.commentId);
+        dispatch(commentActions.deleteCommentDB(props.commentId));
+        
+      };
     // const {user_profile,user_name,user_id,post_id,insert_dt, contents} =props
   return (
     <Grid >
@@ -48,6 +60,20 @@ const CommentItem = (props) => {
             <Image imageType="circle" src={props.user_profile}/>
             <Text bold>{props.nickname}</Text>
             <Text margin="0px" width ="100%">{props.content}</Text>
+             <Text
+             width= "50px"
+                margin="0px"
+                padding="0px 0px 6px 0px"
+                textalign
+                bold
+                size="15px"
+                color="#0095F6"
+                cursor="pointer"
+                
+                _onClick={()=> deleteComment(props.commentId)}
+              >
+                삭제
+              </Text>
         </Grid>
         <Grid  margin ="0px 40px">
             <Text size="13px" color= "#8E8E8E" bold margin="10px">{props.createdAt}</Text>

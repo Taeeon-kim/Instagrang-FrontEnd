@@ -9,8 +9,13 @@ import { actionCreators as postActions } from "./post";
 
 const ADD_COMMENT = "ADD_COMMENT";
 const SET_COMMENT = "SET_COMMENT";
-const addComment = createAction(ADD_COMMENT, (content) => ({content}));
+const DELETE_COMMENT = "DELETE_COMMENT"
+
+const addComment = createAction(ADD_COMMENT, (comment_list) => ({comment_list}));
 const setComment = createAction(SET_COMMENT, (comment_list)=>({comment_list}));
+const deleteComment = createAction(DELETE_COMMENT, (commentId)=>({commentId}))
+
+
 const initialState = {
     // list: {}, // image-community 에서는 요렇게 초기값되어있음
     list:[],
@@ -37,6 +42,33 @@ const initialState = {
       })
   }
 }
+
+
+const deleteCommentDB = (commentId) => {
+  return function (dispatch, getState, { history }) {
+    console.log(commentId);
+    const TOKEN = localStorage.getItem("token");
+    console.log(TOKEN);
+    // const a = `Bearer ${TOKEN}`;
+    // console.log(a.split(" "));
+    instance
+      .delete(`/api/comments/${commentId}`, {
+        headers: {
+          authorization: `${TOKEN}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        console.log("코멘트삭제");
+        // let users = res.data
+        // history.replace("/");
+        dispatch(deleteComment(commentId));
+      })
+      .catch((err) => {
+        console.log("withdraw : 에.러", err);
+      });
+  };
+};
 
 const getComment = (postId) => {
   return function (dispatch, getState, { history }) {
@@ -73,6 +105,14 @@ export default handleActions(
           draft.list = action.payload.comment_list;
           console.log(draft.list)
       }),
+      [DELETE_COMMENT]: (state, action) => produce(state, (draft)=> {
+        let new_comment_list = draft.list.filter((v) => {
+          if(v.commentId !== action.payload.commentId){
+            return v
+          }
+        })
+        draft.list = new_comment_list;
+    }),
       
 }, initialState)
 
@@ -82,6 +122,7 @@ const actionCreators ={
     addCommentDB,
     getComment,
     setComment,
+    deleteCommentDB,
 }
 
 export {actionCreators};
