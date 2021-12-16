@@ -49,7 +49,7 @@ const Post = (props) => {
 
   return (
     <React.Fragment>
-      <Grid border="1px solid #DBDBDB" position margin="auto" width="50%">
+      <Grid border="1px solid #DBDBDB" position margin="auto" width="50%" minWidth= "456px">
         <Grid is_flex border="1px solid #DBDBDB">
           <Image imageType="circle" src={props.user_profile} />
           <Text padding="0px 0px" bold textalign>

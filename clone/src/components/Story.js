@@ -54,9 +54,9 @@ const StoryContainer = styled.div`
     border: 1px solid #dbdbdb;
     background-color: white;
     padding: 10px;
-    /* overflow: auto; */     // 요거 쓰면 아래 스크롤생김 
+    overflow: auto;     // 요거 쓰면 아래 스크롤생김 
     margin : auto;
-    
+    min-width: 456px;
 `;
 
 const ImageContainer = styled.div`
