@@ -9,6 +9,7 @@ const ADD_POST = "ADD_POST";
 const DELETE_POST = "DELETE_POST";
 const GET_DETAIL = "GET_DETAIL";
 const IS_LIKE = "IS_LIKE";
+const NEW_COMMENT = "NEW_COMMENT";
 // 액션 생성 함수
 const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
 const addPost = createAction(ADD_POST, (image, content) => ({
@@ -18,6 +19,7 @@ const addPost = createAction(ADD_POST, (image, content) => ({
 const deletePost = createAction(DELETE_POST, (post) => ({ post }));
 const getDetail = createAction(GET_DETAIL, (post) => ({ post }));
 const like = createAction(IS_LIKE, (like) => ({ like }));
+const newComment = createAction(NEW_COMMENT, (postId) => ({postId}));
 // 기본값 지정
 const initialState = {
   list: [],
@@ -121,7 +123,7 @@ const deletePostDB = (postId) => {
         console.log("deletePostDB 접근 확인");
         // let users = res.data
         history.replace("/");
-        dispatch(deletePost());
+        dispatch(deletePost(postId));
       })
       .catch((err) => {
         console.log("withdraw : 에.러", err);
@@ -172,8 +174,12 @@ export default handleActions(
       }),
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
-        // draft.study.joinNum -= 1;
-        // draft.join = action.payload.join
+        let new_post_list = draft.list.filter((v) => {
+            if(v.postId !== action.payload.post){
+              return v
+            }
+          })
+          draft.list = new_post_list;
       }),
 
     [GET_DETAIL]: (state, action) =>
@@ -183,6 +189,13 @@ export default handleActions(
     [IS_LIKE]: (state, action) =>
       produce(state, (draft) => {
         draft.is_like ? (draft.is_like = false) : (draft.is_like = true);
+      }),
+    [NEW_COMMENT] : (state, action) => produce(state, (draft) => {
+        let idx = draft.list.findIndex((p) => p.postId === action.payload.postId);
+        // 게시물 수정과 같은 방법으로 해당 게시물의 index를 찾아내 comments에 아무 정보(add)를 추가해준다. 어차피 comments 숫자 세는 용도로 사용
+        draft.list[idx].commentList.push('count를위해추가')
+        // console.log(draft.list[idx]) // draft는 콘솔로 찍어봐도 proxy 로만뜨고 null 값만 나와서 확인못한다
+        console.log(state.list[idx]) // 위치 체크할땐 state로 해볼것
       }),
   },
   initialState
@@ -199,6 +212,7 @@ const actionCreators = {
   getDetailPost,
   likePost,
   like,
+  newComment,
 };
 
 export { actionCreators };

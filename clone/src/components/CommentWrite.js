@@ -19,10 +19,12 @@ const CommentWrite = (props) => {
         console.log(comment_text)
         dispatch(commentActions.addCommentDB(postId, comment_text))
         setCommentText("");  //이렇게 클린하기위해서 아래 value={comment_text}를 쓴것이다.
-
+        
 
     }
-
+    React.useEffect(()=>{
+        
+      },[])
     return (
          <Grid is_flex>
           <Input padding="10px" placeholder="댓글 달기.." _onChange={(e)=>{  setCommentText(e.target.value)}} value={comment_text}></Input>

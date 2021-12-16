@@ -35,8 +35,8 @@ const PostDetail = (props) => {
   }, []);
 
   return (
-    <Grid is_flex>
-      <Grid margin="0px 100px 0px 0px" is_flex >
+    <Grid is_flex >
+      <Grid   margin="0px 100px 0px 0px" is_flex >
         {post[0] && (
           <Image
             imageType="rectangle"

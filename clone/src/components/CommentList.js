@@ -26,7 +26,7 @@ const CommentList = (props) => {
     
       <Grid padding="16px">
         {comment_list.map( c =>{
-          return  <CommentItem key={c.id} {...c}/>
+          return  <CommentItem key={c.commentId} {...c}/>
         })}
 
       </Grid>

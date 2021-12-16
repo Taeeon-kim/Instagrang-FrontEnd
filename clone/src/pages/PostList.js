@@ -15,14 +15,15 @@ const PostList = (props) => {
   const dispatch = useDispatch();
   const postList = useSelector((state) => state.post.list); // state는 리덕스 스토어의 전체 데이터
   const is_login = useSelector((state)=> state.user.user.userId);
+
 //   const is_login = useSelector((state) => state.user.is_login);
   // console.log(user_list);
-//   console.log(postList);  // 여기서 불러오면 아래 useEffect 전에 불러와지므로 initial 값만 불러온다
+  console.log(postList);  // 여기서 불러오면 아래 useEffect 전에 불러와지므로 initial 값만 불러온다
 
   React.useEffect(() => {
     dispatch(postActions.getMainAPI());
     
-  }, []);
+  }, [postList.length]);
 
 
 
