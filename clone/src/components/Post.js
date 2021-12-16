@@ -10,6 +10,7 @@ import { actionCreators as postAction } from "../redux/modules/post";
 import { actionCreators as userAction } from "../redux/modules/user";
 
 import { actionCreators as commentActions } from "../redux/modules/comment";
+import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
 
 import CommentWrite from "./CommentWrite";
@@ -67,7 +68,11 @@ const Post = (props) => {
                 left="60%"
                 color="#0095F6"
                 cursor="pointer"
-                _onClick={editPost}
+                _onClick={() => {
+                  editPost();
+                  // dispatch(postActions.setPost(props.postId));
+                  history.push(`/addpost/${props.postId}`);
+                }}
               >
                 수정
               </Text>
