@@ -10,19 +10,19 @@ import PostList from "../pages/PostList";
 import AddPost from "../pages/AddPost";
 import { history } from "../redux/configureStore";
 import Grid from "../elements/Grid";
-import {actionCreators as userActions} from '../redux/modules/user';
+import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
 import PostDetail from "../pages/PostDetail";
 
 function App() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const is_token = localStorage.getItem("token") ? true : false;
 
-  React.useEffect(()=>{
-    if(is_token){
+  React.useEffect(() => {
+    if (is_token) {
       dispatch(userActions.loginCheckDB());
     }
-  })
+  });
   return (
     <Grid>
       <Header />

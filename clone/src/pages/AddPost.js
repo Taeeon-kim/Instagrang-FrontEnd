@@ -23,12 +23,13 @@ const AddPost = (props) => {
   // const preview = useSelector((state) => state.image.preview); // 미리보기
   const is_login = useSelector((state) => state.user.is_login); // 로그인 체크
 
-  // const post_list = useSelector((state) => state.post.list);
-  // console.log(post_list);
+  const post_list = useSelector((state) => state.post.list);
+  console.log(post_list);
 
   // console.log(props.match.params.id);
 
   const post_id = props.match.params.id;
+
   const is_edit = post_id ? true : false;
 
   const { history } = props;
@@ -53,7 +54,7 @@ const AddPost = (props) => {
     // if (is_edit) {
     //   dispatch(imageActions.setPreview(_post.image_url));
     // }
-    dispatch(imageActions.setPreview());
+    // dispatch(imageActions.setPreview());
   }, []);
 
   const changeContents = (e) => {
@@ -80,13 +81,9 @@ const AddPost = (props) => {
       // dispatch(postActions.addPost(reader.result));
     };
   };
-  // const editPost = () => {
-  //   dispatch(
-  //     postActions.editPostFB(post_id, {
-  //       contents: contents,
-  //     })
-  //   );
-  // };
+  const editPost = () => {
+    dispatch(postActions.editPostDB(image, content));
+  };
   if (!is_login) {
     return (
       <Grid
@@ -128,7 +125,7 @@ const AddPost = (props) => {
             </Text>
             <Image
               margin="0 0 0 auto"
-              imageType="preview"
+              imageType="rectangle"
               size="200px"
               bgsize="cover"
               src={
@@ -139,17 +136,7 @@ const AddPost = (props) => {
             />
           </Grid>
           <Grid>
-            <input
-              type="file"
-              onChange={selectFile}
-              ref={fileInput}
-              // disabled={is_uploading}
-            />
-            {/* <Grid width="50%" margin="30px auto" padding="8px 0">
-              <Button padding="8px 0" _onClick={Upload}>
-                사진 업로드 하기
-              </Button>
-            </Grid> */}
+            <input type="file" onChange={selectFile} ref={fileInput} />
           </Grid>
         </Grid>
 
@@ -163,19 +150,12 @@ const AddPost = (props) => {
           />
         </Grid>
 
-        {/* <Grid width="50%" margin="30px auto" padding="8px 0">
-          <Button
-            padding="8px 0"
-            text="게시글 작성"
-            _onClick={() => {}}
-          ></Button>
-        </Grid> */}
         <Grid width="50%" margin="30px auto" padding="8px 0">
           {is_edit ? (
             <Button
               padding="8px 0"
               text="게시글 수정"
-              // _onClick={editPost}
+              _onClick={editPost}
             ></Button>
           ) : (
             <Button
