@@ -26,14 +26,23 @@ const AddPost = (props) => {
   const post_list = useSelector((state) => state.post.list);
   console.log(post_list);
 
+  // let _post = is_edit ? post_list.find((p) => p.id === postId) : null;
+  // console.log(_post);
   // console.log(props.match.params.id);
 
-  const post_id = props.match.params.id;
+  const postId = props.match.params.id;
+  console.log(postId);
 
-  const is_edit = post_id ? true : false;
+  const is_edit = postId ? true : false;
 
   const { history } = props;
 
+  const selectPostInfo = post_list.filter(
+    (list) => list.postId === parseInt(postId)
+  );
+  console.log(selectPostInfo);
+  // let editContent = selectPostInfo[0].content;
+  // console.log(editContent);
   // let _post = is_edit ? post_list.find((p) => p.id === post_id) : null;
   // console.log(_post);
 
@@ -42,6 +51,7 @@ const AddPost = (props) => {
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState("");
+  // const [editContent, setEditContent] = useState("");
 
   React.useEffect(() => {
     dispatch(postActions.addPostDB());
@@ -57,11 +67,11 @@ const AddPost = (props) => {
     // dispatch(imageActions.setPreview());
   }, []);
 
-  const changeContents = (e) => {
-    setContent(e.target.value);
-    dispatch(postActions.addPost(changeContents));
-    console.log(e.target.value);
-  };
+  // const changeContents = (e) => {
+  //   setContent(e.target.value);
+  //   dispatch(postActions.addPost(changeContents));
+  //   console.log(e.target.value);
+  // };
 
   const addPost = () => {
     dispatch(postActions.addPostDB(image, content));
@@ -83,6 +93,7 @@ const AddPost = (props) => {
   };
   const editPost = () => {
     dispatch(postActions.editPostDB(image, content));
+    console.log(image, content);
   };
   if (!is_login) {
     return (
@@ -123,17 +134,31 @@ const AddPost = (props) => {
             <Text margin="0 auto auto auto" size="32px" bold>
               미리보기
             </Text>
-            <Image
-              margin="0 0 0 auto"
-              imageType="rectangle"
-              size="200px"
-              bgsize="cover"
-              src={
-                preview
-                  ? preview
-                  : "https://lh3.googleusercontent.com/proxy/-w9TkLeiJ0dHnWLRr7UC2OWsGKn4SwKZpIPhIf3adZLVqlbw5XWpdeVgO37ISdl2PfY1ga7MX_rxND2YPoXMxzTQfCpnRFXEIoZKrA2t7H5xIy5w_DZBlskA5nH_yco"
-              }
-            />
+            {is_edit ? (
+              <Image
+                margin="0 0 0 auto"
+                imageType="rectangle"
+                size="200px"
+                bgsize="cover"
+                src={
+                  preview
+                    ? preview
+                    : "https://lh3.googleusercontent.com/proxy/-w9TkLeiJ0dHnWLRr7UC2OWsGKn4SwKZpIPhIf3adZLVqlbw5XWpdeVgO37ISdl2PfY1ga7MX_rxND2YPoXMxzTQfCpnRFXEIoZKrA2t7H5xIy5w_DZBlskA5nH_yco"
+                }
+              />
+            ) : (
+              <Image
+                margin="0 0 0 auto"
+                imageType="rectangle"
+                size="200px"
+                bgsize="cover"
+                src={
+                  preview
+                    ? preview
+                    : "https://lh3.googleusercontent.com/proxy/-w9TkLeiJ0dHnWLRr7UC2OWsGKn4SwKZpIPhIf3adZLVqlbw5XWpdeVgO37ISdl2PfY1ga7MX_rxND2YPoXMxzTQfCpnRFXEIoZKrA2t7H5xIy5w_DZBlskA5nH_yco"
+                }
+              />
+            )}
           </Grid>
           <Grid>
             <input type="file" onChange={selectFile} ref={fileInput} />
@@ -141,13 +166,27 @@ const AddPost = (props) => {
         </Grid>
 
         <Grid margin="30px auto">
-          <Input
-            value={content}
-            _onChange={changeContents}
-            label="게시글 내용"
-            placeholder="게시글 작성"
-            multiLine
-          />
+          {is_edit ? (
+            <Input
+              defaultValue={selectPostInfo[0].content}
+              _onChange={(e) => {
+                setContent(e.target.value);
+              }}
+              label="게시글 내용"
+              placeholder="게시글을 작성해 주세요"
+              multiLine
+            />
+          ) : (
+            <Input
+              value={content}
+              _onChange={(e) => {
+                setContent(e.target.value);
+              }}
+              label="게시글 내용"
+              placeholder="게시글을 작성해 주세요"
+              multiLine
+            />
+          )}
         </Grid>
 
         <Grid width="50%" margin="30px auto" padding="8px 0">

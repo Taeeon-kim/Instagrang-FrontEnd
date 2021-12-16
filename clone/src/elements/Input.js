@@ -14,6 +14,7 @@ const Input = (props) => {
     border,
     padding,
     margin,
+    defaultValue,
   } = props; //InputSome 태그안에 {...props}라고 해도되는데 하다보면 props 에 InputSome에 들어가지않고 다른곳에서 쓰일수도있다. 따라서 필요없는걸 넣어줄필요없는데 다들어가게됨으로 그걸방하기위해 props안에있는걸 필요한거만 InputSome에 넣어줄것
   const styles = {
     padding: padding,
@@ -29,6 +30,7 @@ const Input = (props) => {
           {...styles}
           rows={5}
           value={value}
+          defaultValue={defaultValue}
           onChange={_onChange}
         ></ElTextarea>{" "}
         {/* rows는 몇줄을넣을지 */}
