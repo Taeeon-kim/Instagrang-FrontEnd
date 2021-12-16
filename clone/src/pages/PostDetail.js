@@ -34,7 +34,7 @@ const PostDetail = (props) => {
     }
 
     dispatch(postActions.getDetailPost(postId));
-    dispatch(postActions.getMainAPI());
+    dispatch(postActions.getMainAPI()); 
   }, );
 
   return (
