@@ -13,14 +13,18 @@ const IS_LIKE = "IS_LIKE";
 const NEW_COMMENT = "NEW_COMMENT";
 // 액션 생성 함수
 const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
-const addPost = createAction(ADD_POST, (post) => ({post}));
+
+const addPost = createAction(ADD_POST, (post_list) => ({
+  post_list,
+}));
+
 // [공성훈] editPost 작업 중
 const editPost = createAction(EDIT_POST, (image, content) => ({
   image,
   content,
 }));
 const deletePost = createAction(DELETE_POST, (post) => ({ post }));
-const getDetail = createAction(GET_DETAIL, (comment_list) => ({ comment_list }));
+const getDetail = createAction(GET_DETAIL, (post) => ({ post }));
 const like = createAction(IS_LIKE, (like) => ({ like }));
 const newComment = createAction(NEW_COMMENT, (postId) => ({ postId }));
 // 기본값 지정
@@ -32,7 +36,8 @@ const initialState = {
 
 const initalPost = {
   content: "",
-  // img_url:"https://newsimg.hankookilbo.com/cms/articlerelease/2021/06/05/ef519975-80c8-40b6-b25a-47ab6270dc60.png",
+  img_url:
+    "https://newsimg.hankookilbo.com/cms/articlerelease/2021/06/05/ef519975-80c8-40b6-b25a-47ab6270dc60.png",
   post_date: moment().format("YYYY-MM-DD"),
   title: "",
   // uid: "키값",
@@ -112,17 +117,15 @@ const getMainAPI = () => {
 const editPostDB = (image, content, postId) => {
   return function (dispatch, getState, { history }) {
     //formData에 이미지 담기
-    // const _image = getState().image.preview;
     const formData = new FormData();
     formData.append("image", image);
-    console.log(image);
     formData.append("content", content);
     const TOKEN = localStorage.getItem("token");
     console.log(TOKEN);
     // const a = `Bearer ${TOKEN}`;
     // console.log(a.split(" "));
-    instance
-      .put(`/api/posts/${postId}`, {
+    axios
+      .put(`http://3.36.100.253/api/posts/${postId}`, formData, {
         headers: {
           authorization: `${TOKEN}`,
         },
@@ -135,7 +138,7 @@ const editPostDB = (image, content, postId) => {
         dispatch(editPost());
       })
       .catch((err) => {
-        console.log("withdraw : 에.러", err);
+        console.log("에러 메세지", err);
       });
   };
 };
@@ -166,30 +169,9 @@ const deletePostDB = (postId) => {
   };
 };
 
-const getDetailPost = (postId) => {
+const getDetailPost = () => {
   return function (dispatch, getState, { history }) {
-      console.log("detailDB")
-      console.log(postId)
-    instance.get("/").then((response) => {
-        // console.log(postId);
-       console.log(response)
-        const _post = response.data.filter((list)=>list.postId===parseInt(postId))
-        console.log(_post[0]);
-        const comment_list =[]
-         comment_list.push(_post[0]);
-        console.log(comment_list)
-        dispatch(getDetail(comment_list));
-        // const result = response.data[postId]
-        // console.log(result.commentList);
-        // let post_list = [];
-        // response.data.forEach((post) => {
-        //   // console.log({...post});
-        //   post_list.push({ ...post });
-          
-        // });
-       
-      });
-    // dispatch(getDetail());
+    dispatch(getDetail());
   };
 };
 
@@ -224,9 +206,9 @@ export default handleActions(
       }), // 리스트를 초기값에서 갈아끼우기
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
-          console.log(state.list)
-        draft.list.unshift(action.payload.post);
-        console.log(state.list)
+
+        draft.list.unshift(action.payload.post_list);
+
         // draft.list = action.payload.post;
         console.log(draft.list);
       }),
@@ -234,7 +216,11 @@ export default handleActions(
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
         let index = draft.list.findIndex((l) => l.id === action.payload.postId);
-        draft.list[index] = { ...draft.list[index], ...action.payload.content };
+        console.log(index);
+        draft.list[index] = {
+          ...draft.list[index],
+          ...action.payload.new_post,
+        };
         console.log(draft.list);
       }),
     [DELETE_POST]: (state, action) =>
@@ -249,9 +235,7 @@ export default handleActions(
 
     [GET_DETAIL]: (state, action) =>
       produce(state, (draft) => {
-          console.log((action.payload))
-        draft.list = action.payload.comment_list;
-        // draft.detail = true;
+        draft.detail = true;
       }),
     [IS_LIKE]: (state, action) =>
       produce(state, (draft) => {

@@ -55,16 +55,16 @@ const AddPost = (props) => {
 
   React.useEffect(() => {
     dispatch(postActions.addPostDB());
-    // if (is_edit && !_post) {
-    //   alert("포스트 정보가 없어요.");
-    //   console.log("포스트 정보가 없어요.");
-    //   history.goBack();
-    //   return;
-    // }
-    // if (is_edit) {
-    //   dispatch(imageActions.setPreview(_post.image_url));
-    // }
-    // dispatch(imageActions.setPreview());
+    if (is_edit && !selectPostInfo) {
+      alert("포스트 정보가 없어요.");
+      console.log("포스트 정보가 없어요.");
+      history.goBack();
+      return;
+    }
+    if (is_edit) {
+      dispatch(imageActions.setPreview(selectPostInfo[0].image));
+    }
+    dispatch(imageActions.setPreview());
   }, []);
 
   // const changeContents = (e) => {
@@ -75,6 +75,7 @@ const AddPost = (props) => {
 
   const addPost = () => {
     dispatch(postActions.addPostDB(image, content));
+    console.log(image, content);
   };
 
   const selectFile = (e) => {
@@ -92,7 +93,7 @@ const AddPost = (props) => {
     };
   };
   const editPost = () => {
-    dispatch(postActions.editPostDB(image, content));
+    dispatch(postActions.editPostDB(image, content, postId));
     console.log(image, content);
   };
   if (!is_login) {

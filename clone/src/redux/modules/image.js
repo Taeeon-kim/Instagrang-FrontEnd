@@ -1,12 +1,12 @@
 import produce from "immer";
 import { handleActions, createAction } from "redux-actions";
 
-// const UPLOADING = "UPLOADING";
-// const UPLOAD_IMAGE = "UPLOAD_IMAGE";
+const UPLOADING = "UPLOADING";
+const UPLOAD_IMAGE = "UPLOAD_IMAGE"; //업로드 액션
 const SET_PREVIEW = "SET_PREVIEW";
 
-// const uploading = createAction(UPLOADING, (uploading) => ({ uploading }));
-// const uploadImage = createAction(UPLOAD_IMAGE, (image_url) => ({ image_url }));
+const uploading = createAction(UPLOADING, (uploading) => ({ uploading }));
+const uploadImage = createAction(UPLOAD_IMAGE, (image_url) => ({ image_url }));
 const setPreview = createAction(SET_PREVIEW, (preview) => ({ preview }));
 
 const initialState = {
@@ -33,15 +33,15 @@ const initialState = {
 
 export default handleActions(
   {
-    // [UPLOAD_IMAGE]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     draft.image_url = action.payload.image_url;
-    //     draft.uploading = false;
-    //   }),
-    // [UPLOADING]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     draft.uploading = action.payload.uploading;
-    //   }),
+    [UPLOAD_IMAGE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.image_url = action.payload.image_url;
+        draft.uploading = false;
+      }),
+    [UPLOADING]: (state, action) =>
+      produce(state, (draft) => {
+        draft.uploading = action.payload.uploading;
+      }),
     [SET_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
         draft.preview = action.payload.preview;
@@ -51,8 +51,8 @@ export default handleActions(
 );
 
 const actionCreators = {
-  //   uploadImage,
-  //   uploadImageFB,
+  uploadImage,
+  // uploadImageFB,
   setPreview,
 };
 
