@@ -48,14 +48,19 @@ const Login = () => {
 
   return (
     <React.Fragment>
-      <Grid width="350px" border="1px solid #e4e4e4" margin="100px auto">
+      <Grid
+        padding="10px 0"
+        width="350px"
+        border="1px solid #e4e4e4"
+        margin="100px auto"
+      >
         <Image
           imageType="logo"
-          width="190px"
-          height="70px"
+          width="175px"
+          height="50px"
           bgsize="cover"
-          margin="22px auto 22px auto"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2560px-Instagram_logo.svg.png"
+          margin="22px auto 12px auto"
+          src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/InstagramLogo.png"
         />
         <Grid width="268px" margin=" 0 auto">
           <Input
@@ -67,7 +72,7 @@ const Login = () => {
             padding="11px 0px 9px 8px"
             margin="5px auto"
           />
-          <Grid hide={email === "" ? "none" : null}>
+          {/* <Grid hide={email === "" ? "none" : null}>
             <Text
               color={checkEmail(email) ? "#1fc40f" : "#ff5d5d"}
               bold
@@ -78,7 +83,7 @@ const Login = () => {
                 ? "올바른 양식의 이메일입니다"
                 : "올바르지 않는 이메일 형식입니다."}
             </Text>
-          </Grid>
+          </Grid> */}
           <Input
             _onChange={(e) => {
               setPwd(e.target.value);
@@ -112,6 +117,13 @@ const Login = () => {
           >
             로그인
           </Button>
+          {/* <Grid is_flex>
+            <Grid border="1px solid black"></Grid>
+            <Text size="13px" width="26px" margin="0 18px">
+              또는
+            </Text>
+            <Grid border="1px solid black"></Grid>
+          </Grid> */}
           <Button
             // 회원가입 페이지 이동
             _onClick={() => {
