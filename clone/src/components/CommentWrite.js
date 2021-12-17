@@ -19,7 +19,7 @@ const CommentWrite = (props) => {
         console.log(comment_text)
         dispatch(commentActions.addCommentDB(postId, comment_text))
         setCommentText("");  //이렇게 클린하기위해서 아래 value={comment_text}를 쓴것이다.
-        
+
 
     }
     React.useEffect(()=>{
@@ -28,7 +28,7 @@ const CommentWrite = (props) => {
     return (
          <Grid is_flex>
           <Input padding="10px" placeholder="댓글 달기.." _onChange={(e)=>{  setCommentText(e.target.value)}} value={comment_text}></Input>
-         {comment_text.length>0 ? <Text position ="absolute" left="70%" color ="#0095F6" _onClick={write}>게시</Text>: <Text position ="absolute" left="70%" color ="#BFE0FD">게시</Text>}
+         {comment_text.length>0 ? <Text position ="absolute" left="50%" color ="#0095F6" _onClick={write}>게시</Text>: <Text position ="absolute" left="50%" color ="#BFE0FD">게시</Text>}
         </Grid>
        
     )
