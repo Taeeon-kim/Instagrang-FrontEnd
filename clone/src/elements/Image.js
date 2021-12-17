@@ -99,7 +99,7 @@ const ImageCircle = styled.div`
   min-width: 36px;
   background-image: url("${(props) => props.src}");
   background-size: cover;
-  // margin: 4px;
+  margin: ${(props) => props.margin};
 `;
 
 export default Image;

@@ -14,7 +14,7 @@ const RecommendList = (props) => {
         <React.Fragment>
           <Grid  margin="0px 0px 0px -100px">
 
-            <Grid is_fix is_flex height ="70px" top ="100px" width="400px" left="65%" >
+            <Grid is_fix is_flex height ="70px" top ="100px" width="400px" left="61%" >
                  <Image cursor='pointer' src={props.src} imageType="circle" size="66" />
                  <Grid width="200px" height="70px">
                      <Text margin="20px 0px 5px 5px" bold width="200px" height="20px" size="14px">유저닉네임 </Text>
@@ -22,7 +22,7 @@ const RecommendList = (props) => {
                  </Grid>
                  <Text bold color="#0095F6" size="12px">전환</Text>
              </Grid>
-             <Grid is_fix is_flex height ="20px" top ="180px" width="400px" left="65%">
+             <Grid is_fix is_flex height ="20px" top ="180px" width="400px" left="61%">
                <Text margin="10px 0px 0px 0px" bold width="250px" color="#8E8E8E" size="14px">회원님을 위한 추천</Text>
                <Text margin="10px 0px 0px 0px" bold size="12px">모두 보기</Text>  
             </Grid>
@@ -30,7 +30,7 @@ const RecommendList = (props) => {
 
 
             {/* 여기부분을 맵핑돌리면 될거같다 */}
-            <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="200px" width="400px" left="65%">
+            <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="200px" width="400px" left="61%">
                  <Image  cursor='pointer' src={props.src} imageType="circle" size="42"  src="https://img.insight.co.kr/static/2020/08/26/700/9q3e4k3731j1y60xqfg0.jpg"/>
                  <Grid width="210px" height="70px">
                      <Text margin="20px 0px 5px 5px" bold width="220px" height="20px" size="14px">유저닉네임 </Text>
@@ -38,7 +38,7 @@ const RecommendList = (props) => {
                  </Grid>
                  <Text bold color="#0095F6" size="12px">팔로우</Text>
              </Grid>
-             <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="270px" width="400px" left="65%">
+             <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="270px" width="400px" left="61%">
                  <Image  cursor='pointer' src={props.src} imageType="circle" size="42" src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/cnoC/image/8Ql-wYAJmiMkSg4gvS6zhMewDg4.JPEG"/>
                  <Grid width="210px" height="70px">
                      <Text margin="20px 0px 5px 5px" bold width="220px" height="20px" size="14px">유저닉네임 </Text>
@@ -46,7 +46,7 @@ const RecommendList = (props) => {
                  </Grid>
                  <Text bold color="#0095F6" size="12px">팔로우</Text>
              </Grid>
-             <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="340px" width="400px" left="65%">
+             <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="340px" width="400px" left="61%">
                  <Image  cursor='pointer' src={props.src} imageType="circle" size="42" src="https://img.insight.co.kr/static/2020/08/26/700/9q3e4k3731j1y60xqfg0.jpg"/>
                  <Grid width="210px" height="70px">
                      <Text margin="20px 0px 5px 5px" bold width="220px" height="20px" size="14px">유저닉네임 </Text>
@@ -54,7 +54,7 @@ const RecommendList = (props) => {
                  </Grid>
                  <Text bold color="#0095F6" size="12px">팔로우</Text>
              </Grid>
-             <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="410px" width="400px" left="65%">
+             <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="410px" width="400px" left="61%">
                  <Image  cursor='pointer' src={props.src} imageType="circle" size="42" src="https://img.insight.co.kr/static/2020/08/26/700/9q3e4k3731j1y60xqfg0.jpg"/>
                  <Grid width="210px" height="70px">
                      <Text margin="20px 0px 5px 5px" bold width="220px" height="20px" size="14px">유저닉네임 </Text>
@@ -62,7 +62,7 @@ const RecommendList = (props) => {
                  </Grid>
                  <Text bold color="#0095F6" size="12px">팔로우</Text>
              </Grid>
-             <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="480px" width="400px" left="65%">
+             <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="480px" width="400px" left="61%">
                  <Image  cursor='pointer' src={props.src} imageType="circle" size="42" src="https://img.insight.co.kr/static/2020/08/26/700/9q3e4k3731j1y60xqfg0.jpg"/>
                  <Grid width="210px" height="70px">
                      <Text margin="20px 0px 5px 5px" bold width="220px" height="20px" size="14px">유저닉네임 </Text>

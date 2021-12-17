@@ -20,7 +20,8 @@ const Text = (props) => {
     cursor,
     minWidth,
     is_flex,
-    zindex
+    zindex,
+    justifycontent
   } = props;
   const styles = {
     size,
@@ -39,6 +40,7 @@ const Text = (props) => {
     minWidth,
     is_flex,
     zindex,
+    justifycontent,
   };
   return (
     <React.Fragment>
@@ -62,6 +64,7 @@ Text.defaultProps = {
   top: null,
   left: null,
   textalign: false,
+  justifycontent: false,
   _onClick: () => {},
   cursor: "default",
   minWidth: null,
@@ -71,6 +74,7 @@ Text.defaultProps = {
 const P = styled.p`
 /* z-index: 1; */
 z-index: ${(props) => (props.zindex ? `1;` : null)};
+height: ${(props) => (props.height)};
   word-break: ${(props) => (props.wordbreak ? `break-all` : null)};
   ${(props) => (props.bold ? `font-weight: 600;` : `font-weight: 350;`)};
   ${(props) => `color : ${props.color};`};
@@ -83,6 +87,7 @@ z-index: ${(props) => (props.zindex ? `1;` : null)};
   ${(props) => `top : ${props.top};`};
   ${(props) => `left : ${props.left};`};
   ${(props) => (props.textalign ? `text-align: center;` : null)};
+  ${(props) => (props.justifycontent ? `justify-content: center;` : null)};
   cursor: ${(props) => props.cursor};
   white-space: pre-wrap;
   min-width: ${(props) => props.minWidth}; // 최소 width 값 지정

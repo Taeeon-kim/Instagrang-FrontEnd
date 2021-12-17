@@ -23,6 +23,7 @@ const Grid = (props) => {
     top,
     left,
     minHeight,
+    zindex,
 
   } = props;
 
@@ -45,6 +46,7 @@ const Grid = (props) => {
     top: top,
     left: left,
     minHeight: minHeight,
+    zindex:zindex,
   };
 
   return (
@@ -76,6 +78,7 @@ Grid.defaultProps = {
   top: null ,
   left: null,
   minHeight: null,
+  zindex:false,
 };
 
 const GridBox = styled.div`
@@ -96,7 +99,7 @@ ${(props) => (props.is_flex ? `display: flex; align-items: center;` : "")}
 ${(props) => (props.border ? `border:${props.border};` : "border: none;")}
 ${(props) =>
   props.is_fix ? ` position: fixed;   z-index: 1;` : ""}
-${(props) => (props.position ? `display: ${props.position};` : "")}
+${(props) => (props.position ? `position: ${props.position};` : "")}
 ${(props) =>
   props.borderBottom ? `border-bottom : ${props.borderBottom};` : ""}
 ${(props) =>
@@ -104,6 +107,7 @@ ${(props) =>
   min-width: ${(props) => props.minWidth}; // 최소 width 값 지정
   max-width: ${(props) => props.maxWidth}
   min-height: ${(props) => props.minHeight}; // 최소 width 값 지정
+  z-index: ${(props) => (props.zindex ? `1;` : null)};
   border-radius: ${(props) => props.borderRadius};
   @media (max-width:700px) {
         width:100%;

@@ -41,7 +41,7 @@ const Header = (props) => {
             }}
           >
             <Image
-              margin="20px 0px 0px 0px"
+              margin="20px 0px 0px 20px"
               imageType="logo"
               width="103px"
               height="29px"
