@@ -19,6 +19,7 @@ const Grid = (props) => {
     hide,
     minWidth, // 최소 width 값 지정
     borderRadius,
+    maxWidth,
   } = props;
 
   const styles = {
@@ -36,6 +37,7 @@ const Grid = (props) => {
     hide: hide,
     minWidth: minWidth, // 최소 width 값 지정
     borderRadius: borderRadius,
+    maxWidth: maxWidth,
   };
 
   return (
@@ -63,6 +65,7 @@ Grid.defaultProps = {
   borderBottom: false,
   minWidth: null, // 최소 width 값 지정
   borderRadius: null,
+  maxWidth: null,
 };
 
 const GridBox = styled.div`
@@ -74,19 +77,20 @@ const GridBox = styled.div`
   ${(props) => (props.margin ? `margin:${props.margin};` : "")}
 ${(props) => (props.bg ? `background-color:${props.bg};` : "")}
 /* ${(props) =>
-    props.is_flex
-      ? `display: flex; align-tiems: center; justify-content: space-between;`
-      : ""} */
+  props.is_flex
+    ? `display: flex; align-tiems: center; justify-content: space-between;`
+    : ""} */
 ${(props) => (props.is_flex ? `display: flex; align-items: center;` : "")}
 ${(props) => (props.border ? `border:${props.border};` : "border: none;")}
 ${(props) =>
-    props.is_fix ? ` position: fixed; top: 0; width:100%;  z-index: 1;` : ""}
+  props.is_fix ? ` position: fixed; top: 0; width:100%;  z-index: 1;` : ""}
 ${(props) => (props.position ? `display: relative;` : "")}
 ${(props) =>
-    props.borderBottom ? `border-bottom : ${props.borderBottom};` : ""}
+  props.borderBottom ? `border-bottom : ${props.borderBottom};` : ""}
 ${(props) =>
-    props.hide ? `display:none` : "none"}; // 가입양식 유효성 검사시 안내문구
+  props.hide ? `display:none` : "none"}; // 가입양식 유효성 검사시 안내문구
   min-width: ${(props) => props.minWidth}; // 최소 width 값 지정
+  max-width: ${(props) => props.maxWidth}
   border-radius: ${(props) => props.borderRadius};
 `;
 

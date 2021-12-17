@@ -4,11 +4,12 @@ import {
   AiOutlineHeart, // 좋아요 해제
   AiOutlineCheck, // 게시물 등록 버튼
 } from "react-icons/ai";
-import { BiArrowBack } from "react-icons/bi";
-import { FaRegComment } from "react-icons/fa";
+import { BiArrowBack, BiMessageRounded } from "react-icons/bi";
+import { FaRegComment, FaRegCompass } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
 import { MdOutlineAddBox } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
+import { HiHome } from "react-icons/hi";
 
 const IconButton = (props) => {
   // props
@@ -21,6 +22,9 @@ const IconButton = (props) => {
     checkIcon, // 게시물 등록 아이콘
     leftArrowIcon, // 뒤로가기 아이콘
     moreView, // 더보기 아이콘
+    compass, //
+    message,
+    home,
     size,
     height,
     margin,
@@ -96,6 +100,33 @@ const IconButton = (props) => {
       <React.Fragment>
         <Icon {...styles}>
           <BsThreeDots size={size} onClick={_onClick}></BsThreeDots>
+        </Icon>
+      </React.Fragment>
+    );
+  }
+  if (compass) {
+    return (
+      <React.Fragment>
+        <Icon {...styles}>
+          <FaRegCompass size={size} onClick={_onClick}></FaRegCompass>
+        </Icon>
+      </React.Fragment>
+    );
+  }
+  if (message) {
+    return (
+      <React.Fragment>
+        <Icon {...styles}>
+          <BiMessageRounded size={size} onClick={_onClick}></BiMessageRounded>
+        </Icon>
+      </React.Fragment>
+    );
+  }
+  if (home) {
+    return (
+      <React.Fragment>
+        <Icon {...styles}>
+          <HiHome size={size} onClick={_onClick}></HiHome>
         </Icon>
       </React.Fragment>
     );

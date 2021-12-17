@@ -1,4 +1,5 @@
 import React from "react";
+import logoutImage from "../user.png";
 import styled from "styled-components";
 import Grid from "../elements/Grid";
 import Button from "../elements/Button";
@@ -18,47 +19,95 @@ const Header = (props) => {
   console.log(is_login);
   // 로그인 확인
   const is_token = localStorage.getItem("token");
-
-  if (is_login && is_token ) {
+  // 로그아웃 확인 코드
+  const onRemove = () => {
+    if (window.confirm("로그아웃 하시겠습니까?") === true) {
+      logOut();
+    } else {
+      return false;
+    }
+  };
+  if (is_login && is_token) {
     return (
       <HeaderContainer>
-        
-        <Grid is_flex padding="10px" borderBottom="1px solid #DBDBDB"> 
+        <Grid is_flex width="935px">
           <Grid
             _onClick={() => {
               history.push("/");
             }}
           >
-            <Image margin="5px 0px 0px 20%" imageType= "logo"  width="103px" height="29px" bgsize="cover" alt='insta' src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/InstagramLogo.png" />
+            <Image
+              margin="20px 0px 0px 0px"
+              imageType="logo"
+              width="103px"
+              height="29px"
+              bgsize="cover"
+              alt="insta"
+              src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/InstagramLogo.png"
+            />
           </Grid>
-
-          <IconButton
-            plusIcon
-            margin="0 0 0 150px"
-            padding="0 0 7px 0"
-            size="32px"
-            _onClick={() => {
-              history.push("/addpost");
-            }}
-          ></IconButton>
-          <Button
-            _onClick={() => {
-              // 로그아웃 확인 코드
-              const onRemove = () => {
-                if (window.confirm("로그아웃 하시겠습니까?") === true) {
-                  logOut();
-                } else {
-                  return false;
-                }
-              };
-              onRemove();
-            }}
-            width="15%"
-            bg="white"
-            color="#0095F6"
-          >
-            로그아웃
-          </Button>
+          <Grid is_flex>
+            <IconButton
+              home
+              margin="0 0 0 auto"
+              padding="0 0 7px 0"
+              size="30px"
+            ></IconButton>
+            <IconButton
+              message
+              margin="0 0 0 10px"
+              padding="0 0 7px 0"
+              size="30px"
+            ></IconButton>
+            <IconButton
+              compass
+              margin="0 0 0 10px"
+              padding="0 0 7px 0"
+              size="30px"
+            ></IconButton>
+            <IconButton
+              unLikeIcon
+              margin="0 0 0 10px"
+              padding="0 0 7px 0"
+              size="30px"
+            ></IconButton>
+            <IconButton
+              plusIcon
+              margin="0 0 0 10px"
+              padding="0 0 7px 0"
+              size="30px"
+              _onClick={() => {
+                history.push("/addpost");
+              }}
+            ></IconButton>
+            <Image
+              imageType="preview"
+              width="24px"
+              height="24px"
+              margin="0 0 0 22px"
+              src={logoutImage}
+              _onClick={onRemove}
+            />
+            <Button
+              _onClick={() => {
+                // 로그아웃 확인 코드
+                const onRemove = () => {
+                  if (window.confirm("로그아웃 하시겠습니까?") === true) {
+                    logOut();
+                  } else {
+                    return false;
+                  }
+                };
+                onRemove();
+              }}
+              margin="0 0 0 22px"
+              width="15%"
+              bg="white"
+              color="#0095F6"
+            >
+              로그아웃
+            </Button>
+          </Grid>
         </Grid>
       </HeaderContainer>
     );
@@ -66,13 +115,15 @@ const Header = (props) => {
   return (
     <React.Fragment>
       <HeaderWrap>
-        <Grid is_flex padding="10px 20px" margin="0 0 0px 0" bg="#fff"></Grid>
+        <Grid is_flex bg="#fff"></Grid>
       </HeaderWrap>
     </React.Fragment>
   );
 };
 
 export default Header;
+
+const LogoutImage = styled.image``;
 
 const HeaderWrap = styled.div`
   width: 100%;
@@ -85,14 +136,14 @@ const HeaderWrap = styled.div`
 const HeaderContainer = styled.div`
   border: 1px solid #dbdbdb;
   width: 100%;
-  height: 55px;
+  height: 60px;
   position: fixed;
   z-index: 1;
-  background-color: white;
+  background-color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: -10px 0px 0px -10px;
+  // margin: -10px 0px 0px -10px; // 삭제 하는 것이 좋아 보입니다.
 `;
 
 const HeaderContents = styled.div`
