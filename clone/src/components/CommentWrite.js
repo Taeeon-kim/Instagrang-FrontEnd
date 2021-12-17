@@ -32,11 +32,11 @@ const CommentWrite = (props) => {
         value={comment_text}
       ></Input>
       {comment_text.length > 0 ? (
-        <Text position="absolute" left="70%" color="#0095F6" _onClick={write}>
+        <Text position="absolute" left="55%" color="#0095F6" _onClick={write}>
           게시
         </Text>
       ) : (
-        <Text position="absolute" left="70%" color="#BFE0FD">
+        <Text position="absolute" left="55%" color="#BFE0FD">
           게시
         </Text>
       )}
