@@ -29,7 +29,7 @@ const Post = (props) => {
   const result = props.likeList.filter(
     (userId) => userId.userId === login_userId
   );
- 
+
   const [is_like, setLike] = React.useState(result.length === 1 ? true : false);
   const length = props.content.split('\n').length;
   console.log(length)
@@ -50,7 +50,13 @@ const Post = (props) => {
 
   return (
     <React.Fragment>
-      <Grid border="1px solid #DBDBDB" position margin="auto" width="50%" minWidth= "456px">
+      <Grid
+        border="1px solid #DBDBDB"
+        position
+        margin="auto"
+        width="100%"
+        minWidth="456px"
+      >
         <Grid is_flex border="1px solid #DBDBDB">
           <Image imageType="circle" src={props.user_profile} />
           <Text padding="0px 0px" bold textalign>
@@ -105,14 +111,13 @@ const Post = (props) => {
           />
         </Grid>
         <Grid is_flex padding="6px 0px 8px 10px">
-          { is_like ? (
+          {is_like ? (
             <IconButton
               likeIcon
               padding="8px"
               _onClick={() => {
                 setLike(!is_like);
                 dispatch(postAction.likePost(props.postId, login_userId));
-                
               }}
             />
           ) : (
@@ -122,7 +127,6 @@ const Post = (props) => {
               _onClick={() => {
                 setLike(!is_like);
                 dispatch(postAction.likePost(props.postId, login_userId));
-                
               }}
             />
           )}
@@ -153,11 +157,13 @@ const Post = (props) => {
           ) : (
             <Grid is_flex>
               <SkipContent>{props.content}</SkipContent>
+
               {props.content.length>30||length>1&&
               <Grid _onClick={() => setDetail(true)}>
                 <Text color="#8E8E8E">더보기</Text>
               </Grid>
 }
+
             </Grid>
           )}{" "}
           {/* 생략부분*/}
@@ -212,7 +218,7 @@ const SkipContent = styled.p`
   height: 100%;
   white-space: pre-wrap;
   /* margin : 0px 20px 0px 0px; */
-  word-break: break-all; 
+  word-break: break-all;
 `;
 
 

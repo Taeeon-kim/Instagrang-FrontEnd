@@ -55,8 +55,8 @@ Image.defaultProps = {
 
 // 공성훈
 const ImageRectangle = styled.div`
-  width: 16px;
-  height: 16px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   background-size: ${(props) => props.bgsize};

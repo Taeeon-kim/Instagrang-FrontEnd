@@ -16,53 +16,47 @@ const PostList = (props) => {
   // const user_list = useSelector();
   const dispatch = useDispatch();
   const postList = useSelector((state) => state.post.list); // state는 리덕스 스토어의 전체 데이터
-  const is_login = useSelector((state)=> state.user.user.userId);
+  const is_login = useSelector((state) => state.user.user.userId);
 
-//   const is_login = useSelector((state) => state.user.is_login);
+  //   const is_login = useSelector((state) => state.user.is_login);
   // console.log(user_list);
-  console.log(postList);  // 여기서 불러오면 아래 useEffect 전에 불러와지므로 initial 값만 불러온다
+  console.log(postList); // 여기서 불러오면 아래 useEffect 전에 불러와지므로 initial 값만 불러온다
 
   React.useEffect(() => {
     dispatch(postActions.getMainAPI());
-    
   }, []);
+
 
 
 if(is_login===null){
   return <Grid _onClick={history.push("/login")} />
 }
 
-  return (
-    <Grid is_flex>
-    <Grid >
+    return (
+    <Grid width="50%" minWidth="438px" maxWidth="617px" margin="auto">
       <Story />
       {postList.map((p, idx) => {
-        if(p.userId === is_login){
-        return (
-          <Grid margin="20px 0px" key={p.postId}>
-            <Post {...p} is_me/> 
-          </Grid>
-        ); 
-        }
-        else{
+        if (p.userId === is_login) {
           return (
             <Grid margin="20px 0px" key={p.postId}>
-              <Post {...p} /> 
+              <Post {...p} is_me />
             </Grid>
-          ); 
+          );
+        } else {
+          return (
+            <Grid margin="20px 0px" key={p.postId}>
+              <Post {...p} />
+            </Grid>
+          );
         }
-
       })}
-    </Grid>
+   
     {/* <FriendContainer>
     <RecommendList />
     </FriendContainer> */} 
     </Grid>
   );
 };
-
-
-
 
 const FloatBtn = styled.button`
   width: 100px;
@@ -82,6 +76,7 @@ const FloatBtn = styled.button`
 `;
 
 
+
 const FriendContainer = styled.div`
     min-width:300px;
     box-sizing: border-box;
@@ -95,3 +90,4 @@ const FriendContainer = styled.div`
 `;
 
 export default PostList;
+
