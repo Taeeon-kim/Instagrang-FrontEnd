@@ -21,7 +21,7 @@ const Signup = () => {
   const [pwdCheck, setPwdCheck] = useState("");
 
   // 토큰 세션 확인
-  const is_session = localStorage.getItem("token");
+  // const is_session = sessionStorage.getItem("token");
 
   const signUp = () => {
     if (email === "" || pwd === "" || userName === "") {

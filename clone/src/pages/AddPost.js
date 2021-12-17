@@ -16,7 +16,7 @@ import { actionCreators as imageActions } from "../redux/modules/image";
 const AddPost = (props) => {
   const fileInput = React.useRef();
   const id = window.sessionStorage.getItem("id");
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
   // dispatch 사용
   const dispatch = useDispatch();
   // redux

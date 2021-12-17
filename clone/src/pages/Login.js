@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   // 토큰 세션 확인
-  const is_session = localStorage.getItem("token");
+  const is_session = sessionStorage.getItem("token");
 
   // 세션이 있을 때
   useEffect(() => {

@@ -25,7 +25,7 @@ const initialState = {
 
   const addCommentDB = (postId, content) =>{
       return function(dispatch, getState, {history}){
-        const TOKEN = localStorage.getItem("token");
+        const TOKEN = sessionStorage.getItem("token");
         console.log(TOKEN);
         console.log(postId);
         instance.post(`/api/comments/${postId}`,{content},{ headers: {
@@ -47,7 +47,7 @@ const initialState = {
 const deleteCommentDB = (commentId) => {
   return function (dispatch, getState, { history }) {
     console.log(commentId);
-    const TOKEN = localStorage.getItem("token");
+    const TOKEN = sessionStorage.getItem("token");
     console.log(TOKEN);
     // const a = `Bearer ${TOKEN}`;
     // console.log(a.split(" "));

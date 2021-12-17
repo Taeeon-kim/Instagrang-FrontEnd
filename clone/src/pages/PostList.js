@@ -10,6 +10,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import Post from "../components/Post";
 import Story from "../components/Story";
+import RecommendList from "../components/RecommendList";
 
 const PostList = (props) => {
   // const user_list = useSelector();
@@ -25,7 +26,13 @@ const PostList = (props) => {
     dispatch(postActions.getMainAPI());
   }, []);
 
-  return (
+
+
+if(is_login===null){
+  return <Grid _onClick={history.push("/login")} />
+}
+
+    return (
     <Grid width="50%" minWidth="438px" maxWidth="617px" margin="auto">
       <Story />
       {postList.map((p, idx) => {
@@ -43,6 +50,10 @@ const PostList = (props) => {
           );
         }
       })}
+   
+    {/* <FriendContainer>
+    <RecommendList />
+    </FriendContainer> */} 
     </Grid>
   );
 };
@@ -64,4 +75,19 @@ const FloatBtn = styled.button`
   border-radius: 100px;
 `;
 
+
+
+const FriendContainer = styled.div`
+    min-width:300px;
+    box-sizing: border-box;
+    display:flex;
+    height:100%;
+    margin-left:30px;
+    flex-direction:flex-start;
+    @media (max-width:1000px) {
+        display:none;
+    }
+`;
+
 export default PostList;
+

@@ -31,8 +31,8 @@ const Post = (props) => {
   );
 
   const [is_like, setLike] = React.useState(result.length === 1 ? true : false);
-  // const length = props.content.length;
-  // console.log(length)
+  const length = props.content.split('\n').length;
+  console.log(length)
   React.useEffect(() => {
     dispatch(postAction.getMainAPI());
 
@@ -157,11 +157,13 @@ const Post = (props) => {
           ) : (
             <Grid is_flex>
               <SkipContent>{props.content}</SkipContent>
-              {props.content.length > 45 && (
-                <Grid _onClick={() => setDetail(true)}>
-                  <Text color="#8E8E8E">더보기</Text>
-                </Grid>
-              )}
+
+              {props.content.length>30||length>1&&
+              <Grid _onClick={() => setDetail(true)}>
+                <Text color="#8E8E8E">더보기</Text>
+              </Grid>
+}
+
             </Grid>
           )}{" "}
           {/* 생략부분*/}
@@ -213,9 +215,23 @@ const SkipContent = styled.p`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   width: 100%;
+  height: 100%;
   white-space: pre-wrap;
   /* margin : 0px 20px 0px 0px; */
   word-break: break-all;
+`;
+
+
+const FriendContainer = styled.div`
+    min-width:300px;
+    box-sizing: border-box;
+    display:flex;
+    height:100%;
+    margin-left:30px;
+    flex-direction:flex-start;
+    @media (max-width:1000px) {
+        display:none;
+    }
 `;
 
 export default Post;

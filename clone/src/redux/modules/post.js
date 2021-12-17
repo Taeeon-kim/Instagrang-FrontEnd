@@ -51,7 +51,7 @@ const addPostDB = (image, content) => {
   const formData = new FormData();
   formData.append("image", image);
   formData.append("content", content);
-  const TOKEN = localStorage.getItem("token");
+  const TOKEN = sessionStorage.getItem("token");
   //   const options = {
   //     headers: {
   //       "content-type": "multipart/form-data",
@@ -120,7 +120,7 @@ const editPostDB = (image, content, postId) => {
     const formData = new FormData();
     formData.append("image", image);
     formData.append("content", content);
-    const TOKEN = localStorage.getItem("token");
+    const TOKEN = sessionStorage.getItem("token");
     console.log(TOKEN);
     // const a = `Bearer ${TOKEN}`;
     // console.log(a.split(" "));
@@ -146,7 +146,7 @@ const editPostDB = (image, content, postId) => {
 const deletePostDB = (postId) => {
   return function (dispatch, getState, { history }) {
     console.log(postId);
-    const TOKEN = localStorage.getItem("token");
+    const TOKEN = sessionStorage.getItem("token");
     console.log(TOKEN);
     // const a = `Bearer ${TOKEN}`;
     // console.log(a.split(" "));
@@ -177,7 +177,7 @@ const getDetailPost = () => {
 
 const likePost = (postId, userId) => {
   return function (dispatch, getState, { history }) {
-    const TOKEN = localStorage.getItem("token");
+    const TOKEN = sessionStorage.getItem("token");
     console.log(postId);
     axios
       .post(

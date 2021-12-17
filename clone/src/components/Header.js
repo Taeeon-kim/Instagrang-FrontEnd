@@ -19,7 +19,7 @@ const Header = (props) => {
   console.log(is_login);
   // 로그인 확인
   const is_token = localStorage.getItem("token");
-  // 로그아웃 확인 코드
+
   const onRemove = () => {
     if (window.confirm("로그아웃 하시겠습니까?") === true) {
       logOut();
@@ -27,7 +27,11 @@ const Header = (props) => {
       return false;
     }
   };
-  if (is_login && is_token) {
+
+  const is_session = sessionStorage.getItem("token");
+
+  if (is_login && is_session ) {
+
     return (
       <HeaderContainer>
         <Grid is_flex width="935px">
