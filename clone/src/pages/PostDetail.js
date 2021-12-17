@@ -14,27 +14,30 @@ const PostDetail = (props) => {
   const postId = props.match.params.id;
   console.log(postId);
   const dispatch = useDispatch();
-  const user_info = useSelector((state) => state.user.user);
+//   const user_info = useSelector((state) => state.user.user);
   const post_list = useSelector((state) => state.post.list);
     console.log(post_list)
 
   const post = post_list.filter((list) => list.postId === parseInt(postId));
   
+  const is_login = useSelector((state)=> state.user.user.userId);
   // const post_idx = post_list.findIndex(p => p.postId === parseInt(postId));
   // console.log(post_idx)
   // const post = post_list[post_idx];
   // console.log(post)
   // console.log(post_list);
   // const [post, setPost] = React.useState(post_data? post_data : null);
-
+console.log(post.length)
   React.useEffect(() => {
-    if(post.length){
+    if(post.length>0){
 
        return;
     }
-
+else{
+    
     dispatch(postActions.getDetailPost(postId));
     dispatch(postActions.getMainAPI()); 
+}
   }, );
 
   return (
@@ -57,7 +60,8 @@ const PostDetail = (props) => {
         <Text wordbreak padding="5px">
           {post[0]&& post[0].content}
         </Text>
-        <CommentList postId={postId} />
+         <CommentList postId={postId} />
+        
       </Grid>
     </Grid>
   );

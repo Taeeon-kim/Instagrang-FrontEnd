@@ -74,7 +74,7 @@ const getComment = (postId) => {
   return function (dispatch, getState, { history }) {
     instance.get("/").then((response) => {
       // console.log(postId);
-     
+      console.log(response.data)
       const _post = response.data.filter((list)=>list.postId===postId)
       console.log(_post[0].commentList);
       const comment_list= _post[0].commentList;

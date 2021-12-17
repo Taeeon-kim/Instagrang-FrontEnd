@@ -11,28 +11,38 @@ const CommentList = (props) => {
   const dispatch = useDispatch();
   const comment_list = useSelector(state => state.comment.list);
   console.log(comment_list)
-
-
+  const is_login = useSelector((state)=> state.user.user.userId);
+  console.log(is_login)
   React.useEffect(()=>{
-    if(comment_list.length){
+    if(comment_list.length>0){
         // console.log("dd")
         dispatch(commentActions.setComment(comment_list));
       
     }
+    else{
     dispatch(commentActions.getComment(parseInt(props.postId)));
+    }
     // console.log("dd22")
     // console.log(props.postId)
-  },[])
+  },[]) // 만약 []부분을 빼면 위의 조건에서 if에 맞지않고 else에 맞게 되는데 계속해서 무한루프가 걸린다.
 //   if(!comment_list[postId] || !post_id){
 //     return null;
 //   }
 
   return (
-    
+
       <Grid padding="16px">
         {comment_list.map( c =>{
-          return  <CommentItem key={c.commentId} {...c}/>
-        })}
+          if(c.userId === is_login)
+          {
+          return  <CommentItem key={c.commentId} {...c} is_me/>
+         }
+         else{
+          return  <CommentItem key={c.commentId} {...c} />
+         }
+        })
+        
+        }
 
       </Grid>
  
@@ -41,6 +51,7 @@ const CommentList = (props) => {
 
 CommentList.defaultProps ={
   postId:null,
+  is_me:false,
 
 }
 
@@ -59,8 +70,8 @@ const CommentItem = (props) => {
         <Grid is_flex width="auto"> 
             <Image imageType="circle" src={props.user_profile}/>
             <Text bold margin="0px 5px 0px 0px">{props.nickname}</Text>
-            <Text margin="0px" width ="100%">{props.content}</Text>
-             <Text
+            <Text wordbreak margin="0px" width ="100%">{props.content}</Text>
+            {props.is_me? <Text
              width= "50px"
                 margin="0px"
                 padding="0px 0px 6px 0px"
@@ -73,7 +84,7 @@ const CommentItem = (props) => {
                 _onClick={()=> deleteComment(props.commentId)}
               >
                 삭제
-              </Text>
+              </Text> : null }
         </Grid>
         <Grid  margin ="0px 40px">
             <Text size="13px" color= "#8E8E8E" bold margin="10px">{props.createdAt}</Text>
