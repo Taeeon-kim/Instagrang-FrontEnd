@@ -80,8 +80,8 @@ const addPostDB = (image, content) => {
         history.replace("/");
         dispatch(addPost(post_list));
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error.response);
       });
   };
 };

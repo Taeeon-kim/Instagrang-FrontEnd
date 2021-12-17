@@ -32,8 +32,7 @@ const Post = (props) => {
 
   const [is_like, setLike] = React.useState(result.length === 1 ? true : false);
 
-  const length = props.content.split('\n').length;
-  
+  const length = props.content.split("\n").length;
 
   React.useEffect(() => {
     dispatch(postAction.getMainAPI());
@@ -45,6 +44,16 @@ const Post = (props) => {
     console.log("editPost 클릭확인");
     dispatch(postAction.editPostDB(props.postId));
   };
+  // 삭제 확인 코드
+  const onRemove = () => {
+    if (window.confirm("게시글을 삭제 하시겠습니까?") === true) {
+      alert("삭제되었습니다.");
+      deletePost();
+    } else {
+      return false;
+    }
+  };
+
   const deletePost = () => {
     console.log("deletePost 클릭확인");
     dispatch(postAction.deletePostDB(props.postId));
@@ -101,7 +110,7 @@ const Post = (props) => {
                 size="12px"
                 color="#0095F6"
                 cursor="pointer"
-                _onClick={deletePost}
+                _onClick={onRemove}
               >
                 삭제
               </Text>
@@ -198,7 +207,7 @@ const Post = (props) => {
             {props.createdAt}
           </Text>
         </Grid>
-              
+
         <CommentWrite postId={props.postId} />
       </Grid>
     </React.Fragment>
