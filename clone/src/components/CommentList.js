@@ -27,7 +27,7 @@ const CommentList = (props) => {
   //   }
 
   return (
-    <Grid padding="16px" height="300px" overflowy="auto" overflowx="hidden" borderBottom="1px solid #8E8E8E">
+    <Grid padding="16px" height="430px" overflowy="auto" overflowx="hidden" borderBottom="1px solid #DBDBDB">
       {comment_list.map((c) => {
         if (c.userId === is_login) {
           return <CommentItem key={c.commentId} {...c} is_me />;
@@ -59,7 +59,7 @@ const CommentItem = (props) => {
         <Text bold margin="0px 5px 0px 0px">
           {props.nickname}
         </Text>
-        <Text wordbreak margin="0px" width="100%">
+        <Text wordbreak margin="0px" width="300px">
           {props.content}
         </Text>
         {props.is_me ? (
@@ -89,7 +89,7 @@ const CommentItem = (props) => {
         ) : null}
       </Grid>
       <Grid margin="0px 40px">
-        <Text size="13px" color="#8E8E8E" bold margin="10px">
+        <Text size="13px" color="#8E8E8E" bold margin="-10px">
           {props.createdAt}
         </Text>
       </Grid>

@@ -31,6 +31,7 @@ const Grid = (props) => {
     berderLeft,
     overflowy,
     overflowx,
+    
 
   } = props;
 
@@ -47,6 +48,7 @@ const Grid = (props) => {
     cursor: cursor,
     borderBottom: borderBottom,
     borderRight:borderRight,
+    
     hide: hide,
     minWidth: minWidth, // 최소 width 값 지정
     borderRadius: borderRadius,
@@ -109,6 +111,7 @@ const GridBox = styled.div`
   box-sizing: border-box;
   cursor: ${(props) => props.cursor};
   border-top: ${(props) => props.borderTop};
+  border-right: ${(props) => props.borderRight};
   ${(props) => (props.overflowy ? ` overflow-y:${props.overflowy};` : "")}
   ${(props) => (props.overflowx ? ` overflow-x:${props.overflowx};` : "")}
   ${(props) => (props.padding ? `padding:${props.padding};` : "")}
