@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Image from "../elements/Image";
 import Text from "../elements/Text";
-
+import logoutImage from "../user.png";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import Grid from "../elements/Grid";
@@ -15,7 +15,7 @@ const RecommendList = (props) => {
           <Grid  margin="0px 0px 0px -100px">
 
             <Grid is_fix is_flex height ="70px" top ="100px" width="400px" left="61%" >
-                 <Image cursor='pointer' src={props.src} imageType="circle" size="66" />
+                 <Image cursor='pointer' src={logoutImage} imageType="circle" size="66" />
                  <Grid width="200px" height="70px">
                      <Text margin="20px 0px 5px 5px" bold width="200px" height="20px" size="14px">유저닉네임 </Text>
                      <Text  margin="0px 0px 0px 5px" width="200px" height="20px" color="#8E8E8E" size="14px">이름 </Text>
@@ -47,7 +47,7 @@ const RecommendList = (props) => {
                  <Text bold color="#0095F6" size="12px">팔로우</Text>
              </Grid>
              <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="340px" width="400px" left="61%">
-                 <Image  cursor='pointer' src={props.src} imageType="circle" size="42" src="https://img.insight.co.kr/static/2020/08/26/700/9q3e4k3731j1y60xqfg0.jpg"/>
+                 <Image  cursor='pointer' src={props.src} imageType="circle" size="42" src="https://ae01.alicdn.com/kf/HTB1Q2xDMXXXXXagapXXq6xXFXXXp/-.jpg_Q90.jpg_.webp"/>
                  <Grid width="210px" height="70px">
                      <Text margin="20px 0px 5px 5px" bold width="220px" height="20px" size="14px">유저닉네임 </Text>
                      <Text  margin="0px 0px 0px 5px" width="220px" height="20px" color="#8E8E8E" size="14px">instagram 신규 가입 </Text>
@@ -55,7 +55,7 @@ const RecommendList = (props) => {
                  <Text bold color="#0095F6" size="12px">팔로우</Text>
              </Grid>
              <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="410px" width="400px" left="61%">
-                 <Image  cursor='pointer' src={props.src} imageType="circle" size="42" src="https://img.insight.co.kr/static/2020/08/26/700/9q3e4k3731j1y60xqfg0.jpg"/>
+                 <Image  cursor='pointer' src={props.src} imageType="circle" size="42" src="https://pbs.twimg.com/profile_images/861193219245080577/-iI9ThG0_400x400.jpg"/>
                  <Grid width="210px" height="70px">
                      <Text margin="20px 0px 5px 5px" bold width="220px" height="20px" size="14px">유저닉네임 </Text>
                      <Text  margin="0px 0px 0px 5px" width="220px" height="20px" color="#8E8E8E" size="14px">instagram 신규 가입 </Text>
@@ -63,7 +63,7 @@ const RecommendList = (props) => {
                  <Text bold color="#0095F6" size="12px">팔로우</Text>
              </Grid>
              <Grid padding="0px 8px" is_fix is_flex height ="70px" top ="480px" width="400px" left="61%">
-                 <Image  cursor='pointer' src={props.src} imageType="circle" size="42" src="https://img.insight.co.kr/static/2020/08/26/700/9q3e4k3731j1y60xqfg0.jpg"/>
+                 <Image  cursor='pointer' src={props.src} imageType="circle" size="42" src="https://mblogthumb-phinf.pstatic.net/MjAxNzAzMzFfNjEg/MDAxNDkwOTM2NjE4MDQy.eIMvlKaVriccpz8TPo-Wyagr3J6oEz_pRe3S32gADVIg.jQUkh4ws9TiGn6y2h2iu3z5xmyKvxrRMgS0rjJVTRPQg.PNG.jkirby/%EC%9E%A0%EB%A7%8C%EB%B3%B4.png?type=w800"/>
                  <Grid width="210px" height="70px">
                      <Text margin="20px 0px 5px 5px" bold width="220px" height="20px" size="14px">유저닉네임 </Text>
                      <Text  margin="0px 0px 0px 5px" width="220px" height="20px" color="#8E8E8E" size="14px">instagram 신규 가입 </Text>

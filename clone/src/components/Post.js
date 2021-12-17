@@ -10,9 +10,9 @@ import { actionCreators as postAction } from "../redux/modules/post";
 import { actionCreators as userAction } from "../redux/modules/user";
 
 import { actionCreators as commentActions } from "../redux/modules/comment";
-import { actionCreators as postActions } from "../redux/modules/post";
-import { history } from "../redux/configureStore";
 
+import { history } from "../redux/configureStore";
+import logoutImage from "../user.png";
 import CommentWrite from "./CommentWrite";
 
 const Post = (props) => {
@@ -62,7 +62,7 @@ const Post = (props) => {
       >
         <Grid is_flex borderBottom="1px solid #DBDBDB">
           <UserInfo>
-            <Image imageType="circle" size="36" src={props.user_profile} />
+            <Image imageType="circle" size="36" src={logoutImage} />
             <Text
               padding="0px 0px"
               margin="auto 0 auto 10px"
@@ -198,7 +198,7 @@ const Post = (props) => {
             {props.createdAt}
           </Text>
         </Grid>
-
+              
         <CommentWrite postId={props.postId} />
       </Grid>
     </React.Fragment>

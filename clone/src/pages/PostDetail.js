@@ -44,21 +44,21 @@ else{
     
     <Grid is_flex>
       <Grid is_flex >
-        {post[0] && (
+        {post[0] && (<Grid is_fix  top="100px" width="40%">
           <Image
             imageType="rectangle"
             src={"http://3.36.100.253" + post[0].image}
-          />
+          /></Grid>
         )}
       </Grid>
       <Grid >
-        <Grid is_flex height="50px" position="absolute" zindex top="100px" borderBottom="1px solid #DBDBDB" width="800px"> 
+        <Grid is_flex  borderBottom="1px solid #DBDBDB" width="800px"> 
           <Image imageType="circle" src={props.user_profile} margin="0px 10px 0px 10px" />
           <Text padding="0px 0px" bold textalign>
             {post[0]&& post[0].nickname}
           </Text>
         </Grid>
-        <Grid is_flex height="50px" position="absolute" zindex top="170px" width="800px"> 
+        <Grid is_flex > 
           <Image imageType="circle" src={props.user_profile} margin="0px 10px 0px 10px" height="50px"/>
           <Text bold textalign  height="20px">
             {post[0]&& post[0].nickname}
@@ -67,13 +67,11 @@ else{
           {post[0]&& post[0].content}
         </Text>
         </Grid>
-
-        <Grid is_flex height="50px" position="absolute" zindex top="220px" width="100px"  >
             <Text padding="0px 10px" margin="0px 0px 0px 10px" color="#8E8E8E" size="15px">{post[0]&& post[0].createdAt}</Text>
-        </Grid>
         
+        <Grid >
          <CommentList postId={postId} />
-        
+         </Grid>
       </Grid>
     </Grid>
   );
