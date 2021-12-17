@@ -33,7 +33,8 @@ if(is_login===null){
 }
 
     return (
-    <Grid width="50%" minWidth="438px" maxWidth="617px" margin="auto">
+      <Grid is_flex>
+    <Grid width="50%" minWidth="438px" maxWidth="617px" margin="auto" >
       <Story />
       {postList.map((p, idx) => {
         if (p.userId === is_login) {
@@ -50,10 +51,10 @@ if(is_login===null){
           );
         }
       })}
-   
-    {/* <FriendContainer>
+    </Grid>
+    <FriendContainer>
     <RecommendList />
-    </FriendContainer> */} 
+    </FriendContainer> 
     </Grid>
   );
 };

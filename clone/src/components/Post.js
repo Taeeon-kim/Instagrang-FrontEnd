@@ -31,8 +31,10 @@ const Post = (props) => {
   );
 
   const [is_like, setLike] = React.useState(result.length === 1 ? true : false);
-  const length = props.content.split("\n").length;
-  console.log(length);
+
+  const length = props.content.split('\n').length;
+  
+
   React.useEffect(() => {
     dispatch(postAction.getMainAPI());
 

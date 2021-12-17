@@ -19,6 +19,7 @@ const Text = (props) => {
     _onClick,
     cursor,
     minWidth,
+    is_flex
   } = props;
   const styles = {
     size,
@@ -35,6 +36,7 @@ const Text = (props) => {
     textalign,
     cursor,
     minWidth,
+    is_flex,
   };
   return (
     <React.Fragment>
@@ -61,6 +63,7 @@ Text.defaultProps = {
   _onClick: () => {},
   cursor: "default",
   minWidth: null,
+  is_flex:false,
 };
 const P = styled.p`
   word-break: ${(props) => (props.wordbreak ? `break-all` : null)};
@@ -78,6 +81,10 @@ const P = styled.p`
   cursor: ${(props) => props.cursor};
   white-space: pre-wrap;
   min-width: ${(props) => props.minWidth}; // 최소 width 값 지정
+  ${(props) =>
+  props.is_flex
+    ? `display: flex; align-tiems: center; justify-content: space-between;`
+    : ""}
 `;
 
 export default Text;

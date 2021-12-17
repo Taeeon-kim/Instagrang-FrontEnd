@@ -20,6 +20,8 @@ const Grid = (props) => {
     minWidth, // 최소 width 값 지정
     borderRadius,
     maxWidth,
+    top,
+
   } = props;
 
   const styles = {
@@ -38,6 +40,7 @@ const Grid = (props) => {
     minWidth: minWidth, // 최소 width 값 지정
     borderRadius: borderRadius,
     maxWidth: maxWidth,
+    top: top,
   };
 
   return (
@@ -66,11 +69,13 @@ Grid.defaultProps = {
   minWidth: null, // 최소 width 값 지정
   borderRadius: null,
   maxWidth: null,
+  top: null ,
 };
 
 const GridBox = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  top: ${(props) => props.top};
   box-sizing: border-box;
   cursor: ${(props) => props.cursor};
   ${(props) => (props.padding ? `padding:${props.padding};` : "")}
@@ -83,8 +88,8 @@ ${(props) => (props.bg ? `background-color:${props.bg};` : "")}
 ${(props) => (props.is_flex ? `display: flex; align-items: center;` : "")}
 ${(props) => (props.border ? `border:${props.border};` : "border: none;")}
 ${(props) =>
-  props.is_fix ? ` position: fixed; top: 0; width:100%;  z-index: 1;` : ""}
-${(props) => (props.position ? `display: relative;` : "")}
+  props.is_fix ? ` position: fixed;   z-index: 1;` : ""}
+${(props) => (props.position ? `display: ${props.position};` : "")}
 ${(props) =>
   props.borderBottom ? `border-bottom : ${props.borderBottom};` : ""}
 ${(props) =>
