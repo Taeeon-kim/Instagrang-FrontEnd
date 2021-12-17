@@ -33,7 +33,6 @@ const AddPost = (props) => {
   // console.log(props.match.params.id);
 
   const postId = props.match.params.id;
-  console.log(postId);
 
   const is_edit = postId ? true : false;
 
@@ -55,26 +54,26 @@ const AddPost = (props) => {
   const [preview, setPreview] = useState("");
   // const [editContent, setEditContent] = useState("");
 
-  React.useEffect(() => {
-    dispatch(postActions.addPostDB());
-    if (is_edit && !selectPostInfo) {
-      alert("포스트 정보가 없어요.");
-      console.log("포스트 정보가 없어요.");
-      history.goBack();
-      return;
-    }
-    if (is_edit) {
-      dispatch(imageActions.setPreview(selectPostInfo[0].image));
-    }
-    dispatch(imageActions.setPreview());
-  }, []);
+  // React.useEffect(() => {
+  //   dispatch(postActions.addPostDB());
+  //   if (is_edit && !selectPostInfo) {
+  //     alert("포스트 정보가 없어요.");
+  //     console.log("포스트 정보가 없어요.");
+  //     history.goBack();
+  //     return;
+  //   }
+  //   if (is_edit) {
+  //     dispatch(imageActions.setPreview(selectPostInfo[0].image));
+  //   }
+  //   dispatch(imageActions.setPreview());
+  // }, []);
 
   // const changeContents = (e) => {
   //   setContent(e.target.value);
   //   dispatch(postActions.addPost(changeContents));
   //   console.log(e.target.value);
   // };
-
+  console.log(postId);
   const addPost = () => {
     dispatch(postActions.addPostDB(image, content));
     console.log(image, content);
@@ -95,8 +94,8 @@ const AddPost = (props) => {
     };
   };
   const editPost = () => {
+    console.log(postId);
     dispatch(postActions.editPostDB(image, content, postId));
-    console.log(image, content);
   };
   if (!is_login) {
     return (
@@ -172,7 +171,7 @@ const AddPost = (props) => {
                 src={
                   preview
                     ? preview
-                    : "https://lh3.googleusercontent.com/proxy/-w9TkLeiJ0dHnWLRr7UC2OWsGKn4SwKZpIPhIf3adZLVqlbw5XWpdeVgO37ISdl2PfY1ga7MX_rxND2YPoXMxzTQfCpnRFXEIoZKrA2t7H5xIy5w_DZBlskA5nH_yco"
+                    : "https://lh3.googleusercontent.com/proxy/lo_ZzPevGQ89G3TfwgkdwUgMH2l965198jMBWZGIkZWj4XZBj14_cqupMi2W0u8WfEsw2agxv7gglDmJZWu5Rkps4xtZQYPrQwjooaf8MEQUAMVRJCsMNwLVVFB5t0Y"
                 }
               />
             ) : (
@@ -181,12 +180,16 @@ const AddPost = (props) => {
                 imageType="rectangle"
                 size="200px"
                 bgsize="cover"
-                src={preview ? preview : defalutImage}
+                src={
+                  preview
+                    ? preview
+                    : "https://lh3.googleusercontent.com/proxy/lo_ZzPevGQ89G3TfwgkdwUgMH2l965198jMBWZGIkZWj4XZBj14_cqupMi2W0u8WfEsw2agxv7gglDmJZWu5Rkps4xtZQYPrQwjooaf8MEQUAMVRJCsMNwLVVFB5t0Y"
+                }
               />
             )}
           </Grid>
           <Grid padding="16px">
-            <Label for="input-file">컴퓨터에서 선택</Label>
+            <Label htmlFor="input-file">컴퓨터에서 선택</Label>
             <input
               type="file"
               id="input-file"

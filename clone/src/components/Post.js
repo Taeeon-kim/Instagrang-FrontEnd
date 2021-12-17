@@ -40,10 +40,10 @@ const Post = (props) => {
     // dispatch(post)
   }, []); //좋아요를 누를때마다 update 되게 해줌
 
-  const editPost = () => {
-    console.log("editPost 클릭확인");
-    dispatch(postAction.editPostDB(props.postId));
-  };
+  // const editPost = () => {
+  //   console.log("editPost 클릭확인");
+  //   dispatch(postAction.editPostDB(props.postId));
+  // };
   // 삭제 확인 코드
   const onRemove = () => {
     if (window.confirm("게시글을 삭제 하시겠습니까?") === true) {
@@ -95,8 +95,6 @@ const Post = (props) => {
                 color="#0095F6"
                 cursor="pointer"
                 _onClick={() => {
-                  editPost();
-                  // dispatch(postActions.setPost(props.postId));
                   history.push(`/addpost/${props.postId}`);
                 }}
               >
