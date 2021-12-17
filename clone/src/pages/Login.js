@@ -54,9 +54,7 @@ const Login = () => {
         padding="10px 0"
         width="350px"
         border="1px solid #e4e4e4"
-
         margin="100px auto 0px auto"
-
       >
         <Image
           imageType="logo"

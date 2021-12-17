@@ -53,6 +53,7 @@ Image.defaultProps = {
   bgsize: "cover",
 };
 
+// 공성훈
 const ImageRectangle = styled.div`
   width: 16px;
   height: 16px;
