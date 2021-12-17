@@ -9,8 +9,6 @@ const CommentWrite = (props) => {
   const dispatch = useDispatch();
 
    
-    const dispatch = useDispatch();
-   
      const [comment_text, setCommentText ]= React.useState("");
  
     const {postId} = props;
