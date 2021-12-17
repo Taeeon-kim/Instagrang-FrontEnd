@@ -27,7 +27,7 @@ const CommentList = (props) => {
   //   }
 
   return (
-    <Grid padding="16px">
+    <Grid padding="16px" height="300px" overflowy="auto" overflowx="hidden" borderBottom="1px solid #8E8E8E">
       {comment_list.map((c) => {
         if (c.userId === is_login) {
           return <CommentItem key={c.commentId} {...c} is_me />;
@@ -42,6 +42,7 @@ const CommentList = (props) => {
 CommentList.defaultProps = {
   postId: null,
   is_me: false,
+  width: null,
 };
 
 const CommentItem = (props) => {
@@ -52,7 +53,7 @@ const CommentItem = (props) => {
   };
   // const {user_profile,user_name,user_id,post_id,insert_dt, contents} =props
   return (
-    <Grid>
+    <Grid height="70px" padding="0px 0px 0px 5px">
       <Grid is_flex width="auto">
         <Image imageType="circle" src={props.user_profile} />
         <Text bold margin="0px 5px 0px 0px">

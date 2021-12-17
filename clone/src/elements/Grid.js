@@ -1,4 +1,5 @@
 import React from "react";
+import { FaSadCry, FaSmileBeam } from "react-icons/fa";
 import styled from "styled-components";
 
 const Grid = (props) => {
@@ -16,6 +17,7 @@ const Grid = (props) => {
     height,
     cursor,
     borderBottom,
+    borderTop,
     hide,
     minWidth, // 최소 width 값 지정
     borderRadius,
@@ -24,6 +26,11 @@ const Grid = (props) => {
     left,
     minHeight,
     zindex,
+    media,
+    borderRight,
+    berderLeft,
+    overflowy,
+    overflowx,
 
   } = props;
 
@@ -39,6 +46,7 @@ const Grid = (props) => {
     height: height,
     cursor: cursor,
     borderBottom: borderBottom,
+    borderRight:borderRight,
     hide: hide,
     minWidth: minWidth, // 최소 width 값 지정
     borderRadius: borderRadius,
@@ -47,6 +55,11 @@ const Grid = (props) => {
     left: left,
     minHeight: minHeight,
     zindex:zindex,
+    media:media,
+    berderLeft:berderLeft,
+    overflowy:overflowy,
+    overflowx:overflowx,
+    borderTop:borderTop,
   };
 
   return (
@@ -72,6 +85,7 @@ Grid.defaultProps = {
   height: "100%",
   cursor: "Default",
   borderBottom: false,
+  berderLeft: false,
   minWidth: null, // 최소 width 값 지정
   borderRadius: null,
   maxWidth: null,
@@ -79,15 +93,24 @@ Grid.defaultProps = {
   left: null,
   minHeight: null,
   zindex:false,
+  media:false,
+  overflowy:false,
+  overflowx:false,
+  borderTop:false,
+  
 };
 
 const GridBox = styled.div`
+
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   top: ${(props) => props.top};
   left: ${(props) => props.left};
   box-sizing: border-box;
   cursor: ${(props) => props.cursor};
+  border-top: ${(props) => props.borderTop};
+  ${(props) => (props.overflowy ? ` overflow-y:${props.overflowy};` : "")}
+  ${(props) => (props.overflowx ? ` overflow-x:${props.overflowx};` : "")}
   ${(props) => (props.padding ? `padding:${props.padding};` : "")}
   ${(props) => (props.margin ? `margin:${props.margin};` : "")}
 ${(props) => (props.bg ? `background-color:${props.bg};` : "")}
@@ -102,6 +125,10 @@ ${(props) =>
 ${(props) => (props.position ? `position: ${props.position};` : "")}
 ${(props) =>
   props.borderBottom ? `border-bottom : ${props.borderBottom};` : ""}
+  ${(props) =>
+  props.borderBottom ? `border-top : ${props.borderTop};` : ""}
+  ${(props) =>
+  props.berderLeft ? `border-left : ${props.berderLeft};` : ""}
 ${(props) =>
   props.hide ? `display:none` : "none"}; // 가입양식 유효성 검사시 안내문구
   min-width: ${(props) => props.minWidth}; // 최소 width 값 지정
@@ -112,8 +139,8 @@ ${(props) =>
   @media (max-width:700px) {
         width:100%;
         padding: 0px;
-      
     }
+  ${(props) => (props.media ? `@media (max-width:${props.media}){display:none};` : "")}
 `;
 
 export default Grid;

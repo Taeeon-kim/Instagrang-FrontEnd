@@ -42,28 +42,31 @@ else{
 
   return (
     
-    <Grid is_flex>
-      <Grid is_flex >
-        {post[0] && (<Grid is_fix  top="100px" width="40%">
+    <Grid is_flex >
+      <Grid  >
+        {post[0] && (<Grid is_fix  top="100px" width="46%" height="670px">
           <Image
             imageType="rectangle"
             src={"http://3.36.100.253" + post[0].image}
+            height="0px"
           /></Grid>
         )}
       </Grid>
-      <Grid >
-        <Grid is_flex  borderBottom="1px solid #DBDBDB" width="800px"> 
+      <Grid media="700px" width="60%" berderLeft="1px solid #DBDBDB">
+        <Grid is_flex  borderBottom="1px solid #DBDBDB" width="900px" borderTop="1px solid #DBDBDB"> 
           <Image imageType="circle" src={props.user_profile} margin="0px 10px 0px 10px" />
           <Text padding="0px 0px" bold textalign>
             {post[0]&& post[0].nickname}
           </Text>
+          <Text bold margin="1px 0px 0px 10px" color="#00376B">• 팔로잉</Text>
         </Grid>
-        <Grid is_flex > 
+        <Grid is_flex  > 
           <Image imageType="circle" src={props.user_profile} margin="0px 10px 0px 10px" height="50px"/>
           <Text bold textalign  height="20px">
             {post[0]&& post[0].nickname}
           </Text>
-          <Text wordbreak padding="10px" width="350px" >
+          
+          <Text wordbreak padding="10px" width="300px" >
           {post[0]&& post[0].content}
         </Text>
         </Grid>
