@@ -93,7 +93,7 @@ Grid.defaultProps = {
   left: null,
   minHeight: null,
   zindex:false,
-  media:false,
+  media:"false",
   overflowy:false,
   overflowx:false,
   borderTop:false,
