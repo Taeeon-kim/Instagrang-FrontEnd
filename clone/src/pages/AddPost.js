@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+import defalutImage from "../defaultImage.png";
 // 엘레먼트 불러오기
 import Input from "../elements/Input";
 import Grid from "../elements/Grid";
@@ -127,14 +129,40 @@ const AddPost = (props) => {
       </Grid>
     );
   }
+  // 게시물박스
   return (
     <React.Fragment>
-      <Grid margin="auto" width="428px">
+      <Grid
+        margin="auto"
+        width="428px"
+        border="1px solid #e4e4e4"
+        borderRadius="20px"
+        bg="#fff"
+      >
+        {is_edit ? (
+          <Text
+            margin="10px auto 0px auto"
+            size="16px"
+            color="#262626"
+            textalign="center"
+            bold
+          >
+            게시물 수정하기
+          </Text>
+        ) : (
+          <Text
+            margin="10px auto 0px auto"
+            size="16px"
+            color="#262626"
+            textalign="center"
+            bold
+          >
+            새 게시물 만들기
+          </Text>
+        )}
+        <Borderbottom></Borderbottom>
         <Grid>
-          <Grid is_flex margin="30px auto auto auto" padding="16px">
-            <Text margin="0 auto auto auto" size="32px" bold>
-              미리보기
-            </Text>
+          <Grid is_flex margin="auto">
             {is_edit ? (
               <Image
                 margin="0 0 0 auto"
@@ -153,16 +181,19 @@ const AddPost = (props) => {
                 imageType="rectangle"
                 size="200px"
                 bgsize="cover"
-                src={
-                  preview
-                    ? preview
-                    : "https://lh3.googleusercontent.com/proxy/-w9TkLeiJ0dHnWLRr7UC2OWsGKn4SwKZpIPhIf3adZLVqlbw5XWpdeVgO37ISdl2PfY1ga7MX_rxND2YPoXMxzTQfCpnRFXEIoZKrA2t7H5xIy5w_DZBlskA5nH_yco"
-                }
+                src={preview ? preview : defalutImage}
               />
             )}
           </Grid>
-          <Grid>
-            <input type="file" onChange={selectFile} ref={fileInput} />
+          <Grid padding="16px">
+            <Label for="input-file">컴퓨터에서 선택</Label>
+            <input
+              type="file"
+              id="input-file"
+              style={{ display: "none" }}
+              onChange={selectFile}
+              ref={fileInput}
+            />
           </Grid>
         </Grid>
 
@@ -173,8 +204,9 @@ const AddPost = (props) => {
               _onChange={(e) => {
                 setContent(e.target.value);
               }}
+              padding="16px"
               label="게시글 내용"
-              placeholder="게시글을 작성해 주세요"
+              placeholder="문구 입력..."
               multiLine
             />
           ) : (
@@ -183,8 +215,12 @@ const AddPost = (props) => {
               _onChange={(e) => {
                 setContent(e.target.value);
               }}
+              padding="12px 4px"
+              margin="0 auto"
               label="게시글 내용"
-              placeholder="게시글을 작성해 주세요"
+              placeholder="문구 입력..."
+              border="1px solid #fff"
+              bg="#fff"
               multiLine
             />
           )}
@@ -199,7 +235,9 @@ const AddPost = (props) => {
             ></Button>
           ) : (
             <Button
+              borderRadius="6px"
               padding="8px 0"
+              margin="20px auto"
               text="게시글 작성"
               _onClick={addPost}
             ></Button>
@@ -210,4 +248,20 @@ const AddPost = (props) => {
   );
 };
 
+const Borderbottom = styled.div`
+  border-bottom: 1px solid #e4e4e4;
+  height: 10px;
+`;
+
+const Label = styled.label`
+  width: 102px;
+  background-color: #0095f6;
+  font-size: 14px;
+  padding: 5px 9px;
+  color: white;
+  font-weight: bold;
+  border-radius: 3px;
+  margin: 0 auto;
+  display: block;
+`;
 export default AddPost;
