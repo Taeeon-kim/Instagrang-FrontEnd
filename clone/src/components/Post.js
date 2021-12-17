@@ -31,8 +31,10 @@ const Post = (props) => {
   );
 
   const [is_like, setLike] = React.useState(result.length === 1 ? true : false);
+
   const length = props.content.split('\n').length;
   
+
   React.useEffect(() => {
     dispatch(postAction.getMainAPI());
 
@@ -56,12 +58,23 @@ const Post = (props) => {
         margin="auto"
         width="100%"
         minWidth="456px"
+        bg="#fff"
       >
-        <Grid is_flex border="1px solid #DBDBDB">
-          <Image imageType="circle" src={props.user_profile} />
-          <Text padding="0px 0px" bold textalign>
-            {props.nickname}
-          </Text>
+        <Grid is_flex borderBottom="1px solid #DBDBDB">
+          <UserInfo>
+            <Image imageType="circle" size="36" src={props.user_profile} />
+            <Text
+              padding="0px 0px"
+              margin="auto 0 auto 10px"
+              size="14px"
+              color="#262626"
+              bold
+              textalign="left"
+            >
+              {props.nickname}
+            </Text>
+          </UserInfo>
+
           {props.is_me ? (
             <Grid is_flex>
               <Text
@@ -69,8 +82,7 @@ const Post = (props) => {
                 padding="0px 0px 6px 0px"
                 textalign
                 bold
-                size="15px"
-                left="60%"
+                size="12px"
                 color="#0095F6"
                 cursor="pointer"
                 _onClick={() => {
@@ -86,8 +98,7 @@ const Post = (props) => {
                 padding="0px 0px 6px 0px"
                 textalign
                 bold
-                size="15px"
-                left="70%"
+                size="12px"
                 color="#0095F6"
                 cursor="pointer"
                 _onClick={deletePost}
@@ -99,22 +110,22 @@ const Post = (props) => {
             <IconButton
               moreView
               width="20px"
-              margin="0 16px 0 auto"
+              margin="0 24px 0 auto"
               cursor="default"
             ></IconButton>
           )}
         </Grid>
-        <Grid>
+        <Grid borderBottom="1px solid #DBDBDB">
           <Image
             imageType="rectangle"
             src={"http://3.36.100.253" + props.image}
           />
         </Grid>
-        <Grid is_flex padding="6px 0px 8px 10px">
+        <Grid is_flex padding="6px 16px 8px 16px">
           {is_like ? (
             <IconButton
               likeIcon
-              padding="8px"
+              padding="8px 16px 8px 0"
               _onClick={() => {
                 setLike(!is_like);
                 dispatch(postAction.likePost(props.postId, login_userId));
@@ -123,7 +134,7 @@ const Post = (props) => {
           ) : (
             <IconButton
               unLikeIcon
-              padding="8px"
+              padding="8px 16px 8px 0"
               _onClick={() => {
                 setLike(!is_like);
                 dispatch(postAction.likePost(props.postId, login_userId));
@@ -132,7 +143,7 @@ const Post = (props) => {
           )}
           <IconButton
             commentIcon
-            padding="8px"
+            padding="8px 16px 8px 0"
             _onClick={() => {
               dispatch(commentActions.getComment(props.postId));
               history.push(`/posts/${props.postId}`);
@@ -142,28 +153,28 @@ const Post = (props) => {
           {/*좋아요하트 아이콘, 댓글말풍선 아이콘*/}
         </Grid>
         <Grid>
-          <Text bold margin="0px 10px">
+          <Text bold margin="0px 10px" size="14px" color="#262626">
             좋아요 {props.likeList.length} 개
           </Text>
         </Grid>
         <Grid is_flex>
-          <Text margin="0px 10px" bold>
+          <Text margin="0px 10px" size="14px" color="#262626" bold>
             {props.nickname}
           </Text>
           {detail ? (
-            <Text wordbreak padding="5px">
+            <Text wordbreak padding="5px" size="14px" color="#262626">
               {props.content}
             </Text>
           ) : (
             <Grid is_flex>
               <SkipContent>{props.content}</SkipContent>
 
-              {props.content.length>30||length>1&&
-              <Grid _onClick={() => setDetail(true)}>
-                <Text color="#8E8E8E">더보기</Text>
-              </Grid>
-}
-
+              {props.content.length > 30 ||
+                (length > 1 && (
+                  <Grid _onClick={() => setDetail(true)}>
+                    <Text color="#8E8E8E">더보기</Text>
+                  </Grid>
+                ))}
             </Grid>
           )}{" "}
           {/* 생략부분*/}
@@ -182,8 +193,8 @@ const Post = (props) => {
             </Text>
           ) : null}
         </Grid>
-        <Grid>
-          <Text size="10px" margin="0px 10px" bold>
+        <Grid borderBottom="1px solid #DBDBDB">
+          <Text size="10px" margin="0px 10px 16px 10px" color="#8E8E8E" bold>
             {props.createdAt}
           </Text>
         </Grid>
@@ -209,6 +220,11 @@ Post.defaultProps = {
   is_me: false,
 };
 
+const UserInfo = styled.div`
+  display: flex;
+  padding: 11px 4px 11px 16px;
+`;
+
 const SkipContent = styled.p`
   overflow: hidden;
   display: -webkit-box;
@@ -221,17 +237,16 @@ const SkipContent = styled.p`
   word-break: break-all;
 `;
 
-
 const FriendContainer = styled.div`
-    min-width:300px;
-    box-sizing: border-box;
-    display:flex;
-    height:100%;
-    margin-left:30px;
-    flex-direction:flex-start;
-    @media (max-width:1000px) {
-        display:none;
-    }
+  min-width: 300px;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  margin-left: 30px;
+  flex-direction: flex-start;
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 export default Post;
