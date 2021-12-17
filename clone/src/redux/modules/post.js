@@ -122,6 +122,7 @@ const editPostDB = (image, content, postId) => {
     formData.append("content", content);
     const TOKEN = sessionStorage.getItem("token");
     console.log(TOKEN);
+
     // const a = `Bearer ${TOKEN}`;
     // console.log(a.split(" "));
     axios
@@ -137,9 +138,7 @@ const editPostDB = (image, content, postId) => {
         history.replace("/");
         dispatch(editPost(image, content, postId));
       })
-      .catch((err) => {
-        console.log("에러 메세지", err);
-      });
+      .catch((error) => {});
   };
 };
 

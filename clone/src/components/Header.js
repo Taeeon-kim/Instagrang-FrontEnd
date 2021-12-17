@@ -30,8 +30,7 @@ const Header = (props) => {
 
   const is_session = sessionStorage.getItem("token");
 
-  if (is_login && is_session ) {
-
+  if (is_login && is_session) {
     return (
       <HeaderContainer>
         <Grid is_flex width="935px">
@@ -84,14 +83,7 @@ const Header = (props) => {
                 history.push("/addpost");
               }}
             ></IconButton>
-            <Image
-              imageType="preview"
-              width="24px"
-              height="24px"
-              margin="0 0 0 22px"
-              src={logoutImage}
-              _onClick={onRemove}
-            />
+
             <Button
               _onClick={() => {
                 // 로그아웃 확인 코드
@@ -104,12 +96,18 @@ const Header = (props) => {
                 };
                 onRemove();
               }}
-              margin="0 0 0 22px"
-              width="15%"
+              margin="0 20px 0 20px"
+              width="0px"
               bg="white"
               color="#0095F6"
             >
-              로그아웃
+              <Image
+                imageType="preview"
+                width="24px"
+                height="24px"
+                src={logoutImage}
+                _onClick={onRemove}
+              />
             </Button>
           </Grid>
         </Grid>
