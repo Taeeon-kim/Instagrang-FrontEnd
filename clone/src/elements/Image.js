@@ -77,7 +77,7 @@ const OutBox = styled.div`
 `;
 const InBox = styled.div`
   position: relative; // 상대적인 포지션
-  padding-top: 75%; // 75%를 주는 이유는 넓이가 100%이기 때문에 4:3비율을 맟추기 위해
+  padding-top: 100%; // 75%를 주는 이유는 넓이가 100%이기 때문에 4:3비율을 맟추기 위해
   overflow: hidden; // 이 박스 영역을 벗어나면 숨겨버린다.
   background-image: url("${(props) => props.src}");
   background-size: ${(props) => props.bgsize};
@@ -86,9 +86,9 @@ const InBox = styled.div`
 const ImageCircle = styled.div`
   --size: ${(props) =>
     props.size}px; //css 에서도 변수를 만들수있는데 --size 와 같이 쓰면된다.
-  /* width: 36px;
-    height: 36px;
-    border-radius: 36px; */
+  // width: 36px;
+  // height: 36px;
+  // border-radius: 36px;
   width: var(
     --size
   ); //위에 --size 변수를 쓸땐 이렇게 var하고 ()안에 넣어준다. var()함수
@@ -99,7 +99,7 @@ const ImageCircle = styled.div`
   min-width: 36px;
   background-image: url("${(props) => props.src}");
   background-size: cover;
-  margin: 4px;
+  // margin: 4px;
 `;
 
 export default Image;
