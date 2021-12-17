@@ -57,7 +57,7 @@ const Post = (props) => {
         position
         margin="auto"
         width="100%"
-        minWidth="456px"
+        minWidth="300px"
         bg="#fff"
       >
         <Grid is_flex borderBottom="1px solid #DBDBDB">

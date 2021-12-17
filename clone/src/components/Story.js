@@ -96,7 +96,7 @@ const StoryContainer = styled.div`
   background-color: white;
   overflow: auto; // 요거 쓰면 아래 스크롤생김
   margin: auto;
-  min-width: 456px;
+  min-width: 300px;
 `;
 
 const ImageContainer = styled.div`

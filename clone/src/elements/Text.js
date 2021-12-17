@@ -19,7 +19,8 @@ const Text = (props) => {
     _onClick,
     cursor,
     minWidth,
-    is_flex
+    is_flex,
+    zindex
   } = props;
   const styles = {
     size,
@@ -37,6 +38,7 @@ const Text = (props) => {
     cursor,
     minWidth,
     is_flex,
+    zindex,
   };
   return (
     <React.Fragment>
@@ -64,8 +66,11 @@ Text.defaultProps = {
   cursor: "default",
   minWidth: null,
   is_flex:false,
+  zindex: false,
 };
 const P = styled.p`
+/* z-index: 1; */
+z-index: ${(props) => (props.zindex ? `1;` : null)};
   word-break: ${(props) => (props.wordbreak ? `break-all` : null)};
   ${(props) => (props.bold ? `font-weight: 600;` : `font-weight: 350;`)};
   ${(props) => `color : ${props.color};`};

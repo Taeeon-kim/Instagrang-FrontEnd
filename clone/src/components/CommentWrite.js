@@ -4,6 +4,7 @@ import Text from "../elements/Text";
 import Input from "../elements/Input";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 
 const CommentWrite = (props) => {
   const dispatch = useDispatch();
@@ -21,27 +22,45 @@ const CommentWrite = (props) => {
   React.useEffect(() => {}, []);
   return (
     <Grid is_flex>
+        <FriendContainer >
       <Input
+      margin="0px 0px 0px -30px"
         border="0px"
         padding="10px"
         placeholder="댓글 달기.."
+        width="510px"
         _onChange={(e) => {
           setCommentText(e.target.value);
         }}
         onSubmit={write}
         value={comment_text}
       ></Input>
+     
       {comment_text.length > 0 ? (
-        <Text position="absolute" left="55%" color="#0095F6" _onClick={write}>
+      <Text textalign width="70px" height="30px" zindex color="#0095F6" _onClick={write} margin="10px 5px 0px 0px" >
           게시
         </Text>
       ) : (
-        <Text position="absolute" left="55%" color="#BFE0FD">
+        <Text textalign width="70px" height="30px" zindex color="#BFE0FD" margin="10px 5px 0px 0px" >
           게시
         </Text>
+       
       )}
+       </FriendContainer>
     </Grid>
   );
 };
+
+
+const FriendContainer = styled.div`
+    min-width:300px;
+    box-sizing: border-box;
+    display:flex;
+    height:100%;
+    margin-left:30px;
+    flex-direction:flex-start;
+    @media (max-width:1000px) {
+        display:none;
+    }`
 
 export default CommentWrite;

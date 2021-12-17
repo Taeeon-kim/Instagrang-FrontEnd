@@ -34,7 +34,7 @@ if(is_login===null){
 
     return (
       <Grid is_flex>
-    <Grid width="50%" minWidth="438px" maxWidth="617px" margin="auto" >
+    <Grid width="700px" minWidth="300px" maxWidth="617px" margin="-50px auto" padding="70px">
       <Story />
       {postList.map((p, idx) => {
         if (p.userId === is_login) {
@@ -85,8 +85,9 @@ const FriendContainer = styled.div`
     height:100%;
     margin-left:30px;
     flex-direction:flex-start;
-    @media (max-width:1000px) {
+    @media (max-width:900px) {
         display:none;
+      
     }
 `;
 

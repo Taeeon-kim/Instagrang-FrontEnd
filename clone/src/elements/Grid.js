@@ -21,6 +21,8 @@ const Grid = (props) => {
     borderRadius,
     maxWidth,
     top,
+    left,
+    minHeight,
 
   } = props;
 
@@ -41,6 +43,8 @@ const Grid = (props) => {
     borderRadius: borderRadius,
     maxWidth: maxWidth,
     top: top,
+    left: left,
+    minHeight: minHeight,
   };
 
   return (
@@ -70,12 +74,15 @@ Grid.defaultProps = {
   borderRadius: null,
   maxWidth: null,
   top: null ,
+  left: null,
+  minHeight: null,
 };
 
 const GridBox = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   top: ${(props) => props.top};
+  left: ${(props) => props.left};
   box-sizing: border-box;
   cursor: ${(props) => props.cursor};
   ${(props) => (props.padding ? `padding:${props.padding};` : "")}
@@ -96,7 +103,13 @@ ${(props) =>
   props.hide ? `display:none` : "none"}; // 가입양식 유효성 검사시 안내문구
   min-width: ${(props) => props.minWidth}; // 최소 width 값 지정
   max-width: ${(props) => props.maxWidth}
+  min-height: ${(props) => props.minHeight}; // 최소 width 값 지정
   border-radius: ${(props) => props.borderRadius};
+  @media (max-width:700px) {
+        width:100%;
+        padding: 0px;
+      
+    }
 `;
 
 export default Grid;
