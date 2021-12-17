@@ -16,10 +16,14 @@ import PostDetail from "../pages/PostDetail";
 
 function App() {
   const dispatch = useDispatch();
-  const is_token = localStorage.getItem("token") ? true : false;
+  // const is_token = localStorage.getItem("token") ? true : false;
+ const is_session = sessionStorage.getItem("token") ? true : false;
 
   React.useEffect(() => {
-    if (is_token) {
+    // if (is_token) {
+    //   dispatch(userActions.loginCheckDB());
+    // }
+    if (is_session) {
       dispatch(userActions.loginCheckDB());
     }
   });

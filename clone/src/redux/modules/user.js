@@ -40,8 +40,10 @@ const loginDB = (email, pwd) => {
         console.log("loginDB 접근 확인");
         const userId = res.data.userId
         const jwtToken = res.headers.authorization;
-        localStorage.setItem("token", jwtToken);
-        localStorage.setItem("userId", userId);
+        // localStorage.setItem("token", jwtToken);
+        // localStorage.setItem("userId", userId);
+        sessionStorage.setItem("token", jwtToken)
+        sessionStorage.setItem("userId", userId)
 
         dispatch(setUser({ email: email, user_name: email, userId: userId }));
         alert("정상적으로 로그인 되었습니다.");
@@ -82,7 +84,7 @@ const signupDB = (email, userName, pwd) => {
 
 const loginCheckDB = () => {
   return function (dispatch, getState, { history }) {
-    const userId = localStorage.getItem("userId");
+    const userId = sessionStorage.getItem("userId");
     dispatch(setUser({ userId: parseInt(userId) }));
     
   };
@@ -93,8 +95,10 @@ const logoutDB = () => {
   return function (dispatch, getState, { history }) {
     dispatch(logOut());
     alert("로그아웃 되었습니다.");
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("userId");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("userId");
     history.push("/login");
     window.location.reload();
   };
@@ -112,7 +116,9 @@ export default handleActions(
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
         deleteCookie("is_login");
-        localStorage.removeItem("token");
+        // localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("useId");
         window.sessionStorage.clear();
         draft.user = null;
         draft.is_login = false;

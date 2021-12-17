@@ -18,6 +18,7 @@ const Text = (props) => {
     textalign,
     _onClick,
     cursor,
+    minWidth,
   } = props;
   const styles = {
     size,
@@ -33,6 +34,7 @@ const Text = (props) => {
     left,
     textalign,
     cursor,
+    minWidth,
   };
   return (
     <React.Fragment>
@@ -58,6 +60,7 @@ Text.defaultProps = {
   textalign: false,
   _onClick: () => {},
   cursor: "default",
+  minWidth: null,
 };
 const P = styled.p`
   word-break: ${(props) => (props.wordbreak ? `break-all` : null)};
@@ -74,6 +77,7 @@ const P = styled.p`
   ${(props) => (props.textalign ? `text-align: center;` : null)};
   cursor: ${(props) => props.cursor};
   white-space: pre-wrap;
+  min-width: ${(props) => props.minWidth}; // 최소 width 값 지정
 `;
 
 export default Text;
