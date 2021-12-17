@@ -65,7 +65,7 @@ const Story = (props) => {
           <Image
             imageType="circle"
             size="62"
-            src="https://lh3.googleusercontent.com/proxy/fQFlH5DELQ8fUFjdLjnwZaR7GuCNLR1fBtiuaXlunBEhch5iIpaLSuEe3UwH2zrS5gFPSFcUTAoL4NgXANTVHMI7d0ZJtMM_jkF5bIJmf70RD8WwPoXiYtANPu2RvjbM0EFngykhk1-ceDh79LJbnKg_yzviYfYZLOt3lhw8_USGYQ"
+            src="https://dimg.donga.com/wps/NEWS/IMAGE/2020/08/21/102583646.1.jpg"
           ></Image>
           <Text size="12px" margin="0px auto" textalign="center">
             jeny
