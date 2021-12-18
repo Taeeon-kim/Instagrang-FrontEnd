@@ -73,7 +73,7 @@ const Signup = () => {
             padding="11px 0px 9px 8px"
             margin="5px auto"
           />
-          {/* <Grid hide={email === "" ? "none" : null}>
+          <Grid hide={email === "" ? "none" : null}>
             <Text
               color={checkEmail(email) ? "#1fc40f" : "#ff5d5d"}
               bold
@@ -84,7 +84,7 @@ const Signup = () => {
                 ? "올바른 양식의 이메일입니다"
                 : "올바르지 않는 이메일 형식입니다."}
             </Text>
-          </Grid> */}
+          </Grid>
           <Input
             _onChange={(e) => {
               setUserName(e.target.value);
@@ -94,17 +94,20 @@ const Signup = () => {
             padding="11px 0px 9px 8px"
             margin="5px auto"
           />
-          {/* <Text
-            color={checkName(userName) ? "#1fc40f" : "#ff5d5d"}
-            bold
-            margin="0px 0px 13px 5px"
-            size="0.75rem"
-          >
-            {checkName(userName)
-              ? // userName == null || userName.length() < 4 || userName.length() > 15
-                "사용할 수 있는 이름입니다"
-              : "최소 4자 이상, 15글자 이하가 되어야 합니다."}
-          </Text> */}
+          <Grid hide={userName === "" ? "none" : null}>
+            <Text
+              color={checkName(userName) ? "#1fc40f" : "#ff5d5d"}
+              bold
+              margin="0px 0px 13px 5px"
+              size="0.75rem"
+            >
+              {checkName(userName)
+                ? // userName == null || userName.length() < 4 || userName.length() > 15
+                  "사용할 수 있는 이름입니다"
+                : "최소 4자 이상, 15글자 이하가 되어야 합니다."}
+            </Text>
+          </Grid>
+
           <Input
             _onChange={(e) => {
               setPwd(e.target.value);
@@ -115,7 +118,7 @@ const Signup = () => {
             margin="5px auto"
             type="password"
           />
-          {/* <Grid hide={pwd === "" ? "none" : null}>
+          <Grid hide={pwd === "" ? "none" : null}>
             <Text
               color={
                 checkPassword(pwd) && pwd.includes(email) === false
@@ -130,7 +133,7 @@ const Signup = () => {
                 ? "사용할 수 있는 비밀번호입니다"
                 : "특수문자 영문, 숫자 포함, 최소 8자 이상이어야 합니다."}
             </Text>
-          </Grid> */}
+          </Grid>
           <Input
             _onChange={(e) => {
               setPwdCheck(e.target.value);
@@ -141,7 +144,7 @@ const Signup = () => {
             margin="5px auto"
             type="password"
           />
-          {/* <Grid hide={pwdCheck === "" ? "none" : null}>
+          <Grid hide={pwdCheck === "" ? "none" : null}>
             <Text
               color={pwd === pwdCheck ? "#1fc40f" : "#ff5d5d"}
               bold
@@ -152,7 +155,7 @@ const Signup = () => {
                 ? "비밀번호가 같습니다."
                 : "비밀번호가 다릅니다."}
             </Text>
-          </Grid> */}
+          </Grid>
           <Button
             _onClick={signUp}
             padding="8px 0px"
