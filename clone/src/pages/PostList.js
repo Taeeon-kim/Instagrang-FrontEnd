@@ -26,35 +26,39 @@ const PostList = (props) => {
     dispatch(postActions.getMainAPI());
   }, []);
 
+  if (is_login === null) {
+    return <Grid _onClick={history.push("/login")} />;
+  }
 
-
-if(is_login===null){
-  return <Grid _onClick={history.push("/login")} />
-}
-
-    return (
-      <Grid is_flex>
-    <Grid width="700px" minWidth="300px" maxWidth="617px" margin="-50px auto" padding="70px">
-      <Story />
-      {postList.map((p, idx) => {
-        if (p.userId === is_login) {
-          return (
-            <Grid margin="20px 0px" key={p.postId}>
-              <Post {...p} is_me />
-            </Grid>
-          );
-        } else {
-          return (
-            <Grid margin="20px 0px" key={p.postId}>
-              <Post {...p} />
-            </Grid>
-          );
-        }
-      })}
-    </Grid>
-    <FriendContainer>
-    <RecommendList />
-    </FriendContainer> 
+  return (
+    <Grid is_flex>
+      <Grid
+        width="700px"
+        minWidth="300px"
+        maxWidth="617px"
+        margin="-50px auto"
+        padding="70px"
+      >
+        <Story />
+        {postList.map((p, idx) => {
+          if (p.userId === is_login) {
+            return (
+              <Grid margin="20px 0px" key={p.postId}>
+                <Post {...p} is_me />
+              </Grid>
+            );
+          } else {
+            return (
+              <Grid margin="20px 0px" key={p.postId}>
+                <Post {...p} />
+              </Grid>
+            );
+          }
+        })}
+      </Grid>
+      <FriendContainer>
+        <RecommendList />
+      </FriendContainer>
     </Grid>
   );
 };
@@ -76,20 +80,16 @@ const FloatBtn = styled.button`
   border-radius: 100px;
 `;
 
-
-
 const FriendContainer = styled.div`
-    min-width:300px;
-    box-sizing: border-box;
-    display:flex;
-    height:100%;
-    margin-left:30px;
-    flex-direction:flex-start;
-    @media (max-width:900px) {
-        display:none;
-      
-    }
+  min-width: 300px;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  margin-left: 30px;
+  flex-direction: flex-start;
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export default PostList;
-
