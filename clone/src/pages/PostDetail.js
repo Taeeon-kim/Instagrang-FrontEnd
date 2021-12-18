@@ -14,13 +14,13 @@ import IconButton from "../elements/IconButton";
 
 const PostDetail = (props) => {
   const postId = parseInt(props.match.params.id);
-  console.log(postId);
+
   const dispatch = useDispatch();
   //   const user_info = useSelector((state) => state.user.user);
   const post_list = useSelector((state) => state.post.list);
 
   const user_list = useSelector((state) => state.user.user);
-    console.log(post_list)
+
     const login_userId = user_list.userId;
 
     const [detail, setDetail] = React.useState(false);
@@ -38,17 +38,17 @@ if(post[0]){
 //   const result = post[0].likeList.filter(
 //     (userId) => userId.userId === login_userId
 //   );
-console.log(result.length)
+
   const [is_like, setLike] = React.useState(result.length === 1 ? true : false);
-  console.log(is_like);
+
 
   // const post_idx = post_list.findIndex(p => p.postId === parseInt(postId));
   // console.log(post_idx)
   // const post = post_list[post_idx];
-  console.log(post);
+
   // console.log(post_list);
   // const [post, setPost] = React.useState(post_data? post_data : null);
-  console.log(post.length);
+
 
 //   if (!is_login) {
 //     alert("포스트 접근 권한이 없습니다.");
@@ -150,7 +150,7 @@ console.log(result.length)
               likeIcon
               padding="8px 16px 8px 8px"
               _onClick={() => {
-                  console.log("클릭")
+                 
                 setLike(!is_like);
                 dispatch(postActions.likePost(postId, login_userId));
               }}
@@ -158,7 +158,7 @@ console.log(result.length)
             unLikeIcon
             padding="8px 16px 8px 8px"
             _onClick={() => {
-                console.log("클릭")
+               
               setLike(!is_like);
               dispatch(postActions.likePost(postId, login_userId));
             }}

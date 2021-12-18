@@ -13,21 +13,21 @@ const Upload = () => {
   const dispatch = useDispatch();
 
   const selectFile = (e) => {
-    console.log(e);
-    console.log(e.target);
-    console.log(e.target.files[0]);
-    console.log(fileInput.current.files[0]);
+    // console.log(e);
+    // console.log(e.target);
+    // console.log(e.target.files[0]);
+    // console.log(fileInput.current.files[0]);
 
     const reader = new FileReader();
     const selectImage = fileInput.current.files[0];
     // const formData = new FormData();
     // formData.append("image", selectImage);
-    console.log(selectImage);
+    // console.log(selectImage);
     reader.readAsDataURL(selectImage);
 
     reader.onloadend = () => {
       const selectedImage = reader.result;
-      console.log(selectedImage);
+      // console.log(selectedImage);
 
       dispatch(imageActions.setPreview(selectedImage));
       //   dispatch(postActions.addPostDB(selectedImage));

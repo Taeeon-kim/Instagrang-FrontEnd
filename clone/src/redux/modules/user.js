@@ -31,13 +31,13 @@ const loginDB = (email, pwd) => {
       username: email,
       password: pwd,
     };
-    console.log(user);
+    
     // apis
     //   .login(user)
     axios
       .post("http://3.36.100.253/user/login", user)
       .then((res) => {
-        console.log("loginDB 접근 확인");
+        
         const userId = res.data.userId
         const jwtToken = res.headers.authorization;
         // localStorage.setItem("token", jwtToken);
@@ -67,7 +67,7 @@ const signupDB = (email, userName, pwd) => {
       nickname: userName,
       password: pwd,
     };
-    console.log(user);
+   
     // apis
     //   .signUp(user)
     axios

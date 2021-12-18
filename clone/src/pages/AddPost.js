@@ -21,19 +21,18 @@ const AddPost = (props) => {
   const dispatch = useDispatch();
   // redux
   const user_list = useSelector((state) => state.user.user); // 유저리스트
-  console.log(user_list);
+ 
   // const preview = useSelector((state) => state.image.preview); // 미리보기
   const is_login = useSelector((state) => state.user.is_login); // 로그인 체크
 
   const post_list = useSelector((state) => state.post.list);
-  console.log(post_list);
+ 
 
   // let _post = is_edit ? post_list.find((p) => p.id === postId) : null;
-  // console.log(_post);
-  // console.log(props.match.params.id);
+ 
 
   const postId = props.match.params.id;
-  console.log(postId);
+
 
   const is_edit = postId ? true : false;
 
@@ -42,11 +41,11 @@ const AddPost = (props) => {
   const selectPostInfo = post_list.filter(
     (list) => list.postId === parseInt(postId)
   );
-  console.log(selectPostInfo);
+
   // let editContent = selectPostInfo[0].content;
-  // console.log(editContent);
+  
   // let _post = is_edit ? post_list.find((p) => p.id === post_id) : null;
-  // console.log(_post);
+
 
   // state 값
   // const [contents, setContents] = React.useState(_post ? _post.contents : "");
@@ -68,7 +67,7 @@ const AddPost = (props) => {
   // dispatch(postActions.addPostDB());
   // if (is_edit && !selectPostInfo) {
   //   alert("포스트 정보가 없어요.");
-  //   console.log("포스트 정보가 없어요.");
+  
   //   history.goBack();
   //   return;
   // }
@@ -81,19 +80,19 @@ const AddPost = (props) => {
   // const changeContents = (e) => {
   //   setContent(e.target.value);
   //   dispatch(postActions.addPost(changeContents));
-  //   console.log(e.target.value);
+  //    (e.target.value);
   // };
-  console.log(postId);
+
   const addPost = () => {
     dispatch(postActions.addPostDB(image, content));
-    console.log(image, content);
+  
   };
 
   const selectFile = (e) => {
     const reader = new FileReader(); // 미리보기 리더
     const targetImage = fileInput.current.files[0];
-    console.log(e.target.files[0]);
-    console.log(targetImage);
+  
+ 
     reader.readAsDataURL(targetImage);
     setImage(e.target.files[0]);
     reader.onloadend = () => {
@@ -104,7 +103,7 @@ const AddPost = (props) => {
     };
   };
   const editPost = () => {
-    console.log(postId);
+
     dispatch(postActions.editPostDB(image, content, postId));
   };
 
@@ -151,7 +150,7 @@ const AddPost = (props) => {
                 src={
                   preview
                     ? preview
-                    : "https://lh3.googleusercontent.com/proxy/lo_ZzPevGQ89G3TfwgkdwUgMH2l965198jMBWZGIkZWj4XZBj14_cqupMi2W0u8WfEsw2agxv7gglDmJZWu5Rkps4xtZQYPrQwjooaf8MEQUAMVRJCsMNwLVVFB5t0Y"
+                    : "https://www.touchtaiwan.com/images/default.jpg"
                 }
               />
             ) : (
@@ -163,7 +162,7 @@ const AddPost = (props) => {
                 src={
                   preview
                     ? preview
-                    : "https://lh3.googleusercontent.com/proxy/lo_ZzPevGQ89G3TfwgkdwUgMH2l965198jMBWZGIkZWj4XZBj14_cqupMi2W0u8WfEsw2agxv7gglDmJZWu5Rkps4xtZQYPrQwjooaf8MEQUAMVRJCsMNwLVVFB5t0Y"
+                    : "https://www.touchtaiwan.com/images/default.jpg"
                 }
               />
             )}

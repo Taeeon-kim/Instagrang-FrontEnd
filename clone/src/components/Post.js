@@ -16,10 +16,10 @@ import logoutImage from "../user.png";
 import CommentWrite from "./CommentWrite";
 
 const Post = (props) => {
-  // console.log(props)
+  //  (props)
   const dispatch = useDispatch();
   const user_list = useSelector((state) => state.user.user);
-  // console.log(user_list)
+  //  (user_list)
   // const is_like = useSelector((state)=>state.post.is_like);
   const _post = useSelector((state) => state.post);
   const login_userId = user_list.userId;
@@ -41,7 +41,7 @@ const Post = (props) => {
   }, []); //좋아요를 누를때마다 update 되게 해줌
 
   // const editPost = () => {
-  //   console.log("editPost 클릭확인");
+  //    ("editPost 클릭확인");
   //   dispatch(postAction.editPostDB(props.postId));
   // };
   // 삭제 확인 코드
@@ -55,7 +55,7 @@ const Post = (props) => {
   };
 
   const deletePost = () => {
-    console.log("deletePost 클릭확인");
+  
     dispatch(postAction.deletePostDB(props.postId));
   };
 

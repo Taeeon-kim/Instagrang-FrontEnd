@@ -9,9 +9,9 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 const CommentList = (props) => {
   const dispatch = useDispatch();
   const comment_list = useSelector((state) => state.comment.list);
-  console.log(comment_list);
+
   const is_login = useSelector((state) => state.user.user.userId);
-  console.log(is_login);
+
   React.useEffect(() => {
     if (comment_list.length > 0) {
       // console.log("dd")
@@ -48,7 +48,7 @@ CommentList.defaultProps = {
 const CommentItem = (props) => {
   const dispatch = useDispatch();
   const deleteComment = () => {
-    console.log(props.commentId);
+  
     dispatch(commentActions.deleteCommentDB(props.commentId));
   };
   // const {user_profile,user_name,user_id,post_id,insert_dt, contents} =props

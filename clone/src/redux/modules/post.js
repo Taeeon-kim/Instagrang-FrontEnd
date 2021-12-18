@@ -46,7 +46,7 @@ const initalPost = {
 };
 
 const addPostDB = (image, content) => {
-  console.log(image);
+  
   //formData에 이미지 담기
   const formData = new FormData();
   formData.append("image", image);
@@ -73,10 +73,9 @@ const addPostDB = (image, content) => {
         },
       })
       .then((res) => {
-        console.log("addPostDB 접근 확인");
-        console.log(res.data);
+     
         let post_list = res.data;
-        console.log(post_list);
+      
         history.replace("/");
         dispatch(addPost(post_list));
       })
@@ -89,13 +88,13 @@ const addPostDB = (image, content) => {
 const getMainAPI = () => {
   return function (dispatch, getState, { history }) {
     instance.get("/").then((response) => {
-      console.log(response.data);
+    
       let post_list = [];
       response.data.forEach((post) => {
         // console.log({...post});
         post_list.push({ ...post });
       });
-      console.log(post_list);
+    
       dispatch(setPost(post_list));
     });
 
@@ -121,7 +120,7 @@ const editPostDB = (image, content, postId) => {
     formData.append("image", image);
     formData.append("content", content);
     const TOKEN = sessionStorage.getItem("token");
-    console.log(TOKEN);
+ 
 
     // const a = `Bearer ${TOKEN}`;
     // console.log(a.split(" "));
@@ -132,8 +131,7 @@ const editPostDB = (image, content, postId) => {
         },
       })
       .then((res) => {
-        console.log(res);
-        console.log("editPostDB 접근 확인");
+      
         // let users = res.data
         history.replace("/");
         dispatch(editPost(image, content, postId));
@@ -144,9 +142,9 @@ const editPostDB = (image, content, postId) => {
 
 const deletePostDB = (postId) => {
   return function (dispatch, getState, { history }) {
-    console.log(postId);
+
     const TOKEN = sessionStorage.getItem("token");
-    console.log(TOKEN);
+   
     // const a = `Bearer ${TOKEN}`;
     // console.log(a.split(" "));
     instance
@@ -156,8 +154,7 @@ const deletePostDB = (postId) => {
         },
       })
       .then((res) => {
-        console.log(res);
-        console.log("deletePostDB 접근 확인");
+  
         // let users = res.data
         history.replace("/");
         dispatch(deletePost(postId));
@@ -177,7 +174,7 @@ const getDetailPost = () => {
 const likePost = (postId, userId) => {
   return function (dispatch, getState, { history }) {
     const TOKEN = sessionStorage.getItem("token");
-    console.log(postId);
+
     axios
       .post(
         `http://3.36.100.253/api/likes/${postId}`,
@@ -189,8 +186,7 @@ const likePost = (postId, userId) => {
         }
       )
       .then((response) => {
-        console.log("like 눌름");
-        console.log(response);
+       
         dispatch(like(postId, userId));
       });
   };
@@ -208,7 +204,7 @@ export default handleActions(
         draft.list.unshift(action.payload.post_list);
 
         // draft.list = action.payload.post;
-        console.log(draft.list);
+       
       }),
     // [공성훈] 작업 중
     [EDIT_POST]: (state, action) =>
@@ -216,12 +212,12 @@ export default handleActions(
         let index = draft.list.findIndex(
           (l) => l.postId === action.payload.postId
         );
-        console.log(index);
+      
         draft.list[index] = {
           ...draft.list[index],
           ...action.payload.new_post,
         };
-        console.log(draft.list);
+     
       }),
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
@@ -239,20 +235,19 @@ export default handleActions(
       }),
     [IS_LIKE]: (state, action) =>
       produce(state, (draft) => {
-        console.log(state);
-        console.log(action.payload);
+      
         let idx = draft.list.findIndex(
           (p) => p.postId === action.payload.postId
         );
         let likeIdex = draft.list[idx].likeList.findIndex(
           (p) => p.userId === action.payload.userId
         );
-        console.log(likeIdex);
+      
         const is_like = { userId: action.payload.userId };
         likeIdex === -1
           ? draft.list[idx].likeList.push(is_like)
           : draft.list[idx].likeList.splice(likeIdex);
-        console.log(state.list[idx]);
+        
       }),
     [NEW_COMMENT]: (state, action) =>
       produce(state, (draft) => {
@@ -262,7 +257,7 @@ export default handleActions(
         // 게시물 수정과 같은 방법으로 해당 게시물의 index를 찾아내 comments에 아무 정보(add)를 추가해준다. 어차피 comments 숫자 세는 용도로 사용
         draft.list[idx].commentList.push("count를위해추가");
         // console.log(draft.list[idx]) // draft는 콘솔로 찍어봐도 proxy 로만뜨고 null 값만 나와서 확인못한다
-        console.log(state.list[idx]); // 위치 체크할땐 state로 해볼것
+        // console.log(state.list[idx]); // 위치 체크할땐 state로 해볼것
       }),
   },
   initialState
