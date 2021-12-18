@@ -143,10 +143,7 @@ console.log(result.length)
         <Grid width="650px" border="1px solid #DBDBDB">
           <CommentList postId={postId} />
         </Grid>
-
-        <Grid width="650px" border ="1px solid #DBDBDB">
-         <CommentList postId={postId} />
-         </Grid>
+ 
          <Grid is_flex border="1px solid #DBDBDB" width="650px">
          {is_like ? 
          <IconButton

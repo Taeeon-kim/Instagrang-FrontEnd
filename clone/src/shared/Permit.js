@@ -13,7 +13,7 @@ const Permit = (props) =>{
     return <React.Fragment>{props.children}</React.Fragment>
     }
 
-    return <>{alert("포스트 접근 권한이 없습니다."), history.push('/login')}</>
+    return <>{history.push('/login')}</>
 //     return(<React.Fragment>
 //     <Grid is_flex padding="4px 16px">
 //         <Grid>

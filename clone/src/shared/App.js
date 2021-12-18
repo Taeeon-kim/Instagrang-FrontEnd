@@ -33,12 +33,13 @@ function App() {
       <Header />
       <Grid padding="100px 0px 0px 0px ">
       <ConnectedRouter history={history}>
+      
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
+        <Permit>
         <Route path="/" exact component={PostList} />
         <Route path="/addpost" exact component={AddPost} />
         <Route path="/addpost/:id" exact component={AddPost} />
-        <Permit>
         <Route path="/posts/:id" exact component={PostDetail} />
         </Permit>
       </ConnectedRouter>

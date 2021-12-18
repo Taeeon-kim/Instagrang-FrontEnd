@@ -54,10 +54,10 @@ const AddPost = (props) => {
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState("");
   // const [editContent, setEditContent] = useState("");
-  if (!is_login) {
-    alert("포스트 접근 권한이 없습니다.");
-    history.replace("/");
-  }
+  // if (!is_login) {
+  //   alert("포스트 접근 권한이 없습니다.");
+  //   history.replace("/");
+  // }
   // else if (!is_edit) {
   //   alert("포스트 접근 권한이 없습니다.");
 
