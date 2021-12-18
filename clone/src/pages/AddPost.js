@@ -33,6 +33,7 @@ const AddPost = (props) => {
   // console.log(props.match.params.id);
 
   const postId = props.match.params.id;
+  console.log(postId);
 
   const is_edit = postId ? true : false;
 
@@ -53,19 +54,28 @@ const AddPost = (props) => {
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState("");
   // const [editContent, setEditContent] = useState("");
+  if (!is_login) {
+    alert("포스트 접근 권한이 없습니다.");
+    history.replace("/");
+  }
+  // else if (!is_edit) {
+  //   alert("포스트 접근 권한이 없습니다.");
+
+  //   history.replace("/");
+  // }
 
   // React.useEffect(() => {
-  //   dispatch(postActions.addPostDB());
-  //   if (is_edit && !selectPostInfo) {
-  //     alert("포스트 정보가 없어요.");
-  //     console.log("포스트 정보가 없어요.");
-  //     history.goBack();
-  //     return;
-  //   }
-  //   if (is_edit) {
-  //     dispatch(imageActions.setPreview(selectPostInfo[0].image));
-  //   }
-  //   dispatch(imageActions.setPreview());
+  // dispatch(postActions.addPostDB());
+  // if (is_edit && !selectPostInfo) {
+  //   alert("포스트 정보가 없어요.");
+  //   console.log("포스트 정보가 없어요.");
+  //   history.goBack();
+  //   return;
+  // }
+  // if (is_edit) {
+  //   dispatch(imageActions.setPreview(selectPostInfo[0].image));
+  // }
+  // dispatch(imageActions.setPreview());
   // }, []);
 
   // const changeContents = (e) => {
@@ -97,37 +107,7 @@ const AddPost = (props) => {
     console.log(postId);
     dispatch(postActions.editPostDB(image, content, postId));
   };
-  if (!is_login) {
-    return (
-      <Grid
-        minWidth="428px"
-        width="50%"
-        margin="100px auto"
-        padding="60px"
-        bg="#0095f6"
-        center
-      >
-        <Text color="#fff" size="32px" bold>
-          Instagrang.
-        </Text>
-        <Text color="#fff" size="16px">
-          로그인 후에만 포스트 작성이 가능합니다.
-        </Text>
-        <Grid width="50%" margin="50px 0 32px 0" padding="8px 0">
-          <Button
-            _onClick={() => {
-              history.replace("/login");
-            }}
-            padding="8px 0"
-            bg="#fff"
-            color="#0095f6"
-          >
-            로그인 하러가기
-          </Button>
-        </Grid>
-      </Grid>
-    );
-  }
+
   // 게시물박스
   return (
     <React.Fragment>
@@ -203,7 +183,7 @@ const AddPost = (props) => {
         <Grid margin="30px auto">
           {is_edit ? (
             <Input
-              defaultValue={selectPostInfo[0].content}
+              defaultValue={selectPostInfo[0] && selectPostInfo[0].content}
               _onChange={(e) => {
                 setContent(e.target.value);
               }}
