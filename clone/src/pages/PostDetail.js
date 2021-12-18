@@ -11,6 +11,7 @@ import Image from "../elements/Image";
 import Text from "../elements/Text";
 import Button from "../elements/Button";
 import IconButton from "../elements/IconButton";
+import logoutImage from "../user.png";
 
 const PostDetail = (props) => {
   const postId = parseInt(props.match.params.id);
@@ -99,7 +100,7 @@ if(post[0]){
         >
           <Image
             imageType="circle"
-            src={props.user_profile}
+            src={logoutImage}
             margin="0px 10px 0px 10px"
           />
           <Text padding="0px 0px" bold textalign>
@@ -119,7 +120,7 @@ if(post[0]){
           <Grid is_flex width="650px" borderRight="1px solid #DBDBDB">
             <Image
               imageType="circle"
-              src={props.user_profile}
+              src={logoutImage}
               margin="0px 10px 0px 10px"
               height="50px"
             />

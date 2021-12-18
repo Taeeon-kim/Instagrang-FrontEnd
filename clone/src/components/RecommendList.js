@@ -17,7 +17,7 @@ const RecommendList = (props) => {
           <Grid  margin="0px 0px 0px -100px">
 
             <Grid is_fix is_flex height ="70px" top ="100px" width="400px" left="61%" >
-                 <Image cursor='pointer' src={props.src} imageType="circle" size="66" />
+                 <Image cursor='pointer' src={logoutImage} imageType="circle" size="66" />
                  <Grid width="200px" height="70px">
                      <Text margin="20px 0px 5px 5px" bold width="200px" height="20px" size="14px">{user_info.nickname }</Text>
                      <Text  margin="0px 0px 0px 5px" width="200px" height="20px" color="#8E8E8E" size="14px">{user_info.email} </Text>
@@ -79,7 +79,7 @@ const RecommendList = (props) => {
 }
 
 RecommendList.defaultProps={
-  src : "https://media.vlpt.us/images/ekdms5948/post/f03e95b3-288c-42cd-b0f7-688ab50738ce/%E1%84%92%E1%85%A1%E1%86%BC%E1%84%92%E1%85%A299%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9.png?w=768"
+  src : "  "
 }
 
 

@@ -5,6 +5,7 @@ import Image from "../elements/Image";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
+import logoutImage from "../user.png";
 
 const CommentList = (props) => {
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const CommentItem = (props) => {
   return (
     <Grid height="70px" padding="0px 0px 0px 5px">
       <Grid is_flex width="auto">
-        <Image imageType="circle" src={props.user_profile} />
+        <Image imageType="circle" src={logoutImage} />
         <Text bold margin="0px 5px 0px 0px">
           {props.nickname}
         </Text>

@@ -214,7 +214,7 @@ const Post = (props) => {
 
 Post.defaultProps = {
   user_profile:
-    "https://youngble.s3.ap-northeast-2.amazonaws.com/KakaoTalk_Photo_2021-11-17-00-56-23.jpeg", //테스트용으로 그전 강의에서 쓰던것 가져와서 먼저 써봄
+    "https://media.vlpt.us/images/ekdms5948/post/f03e95b3-288c-42cd-b0f7-688ab50738ce/%E1%84%92%E1%85%A1%E1%86%BC%E1%84%92%E1%85%A299%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9.png?w=768", //테스트용으로 그전 강의에서 쓰던것 가져와서 먼저 써봄
   likeList: [],
   detail: false,
   nickname: "test_nickname",

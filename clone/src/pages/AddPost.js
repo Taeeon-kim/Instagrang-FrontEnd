@@ -52,6 +52,7 @@ const AddPost = (props) => {
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState("");
+  console.log(content)
   // const [editContent, setEditContent] = useState("");
   // if (!is_login) {
   //   alert("포스트 접근 권한이 없습니다.");
