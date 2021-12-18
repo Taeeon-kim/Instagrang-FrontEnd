@@ -25,7 +25,7 @@ const PostDetail = (props) => {
   // const post_idx = post_list.findIndex(p => p.postId === parseInt(postId));
   // console.log(post_idx)
   // const post = post_list[post_idx];
-  // console.log(post)
+  console.log(post)
   // console.log(post_list);
   // const [post, setPost] = React.useState(post_data? post_data : null);
 console.log(post.length)
@@ -67,6 +67,7 @@ else{
               cursor="default"
             ></IconButton>
         </Grid>
+        <Grid border="1px solid #DBDBDB" width="650px">
         <Grid is_flex  width="650px" borderRight="1px solid #DBDBDB"> 
           <Image imageType="circle" src={props.user_profile} margin="0px 10px 0px 10px" height="50px"/>
           <Text bold textalign  height="20px">
@@ -77,9 +78,9 @@ else{
           {post[0]&& post[0].content}
         </Text>
         </Grid>
-            <Text padding="0px 10px" margin="0px 0px 0px 10px" color="#8E8E8E" size="15px">{post[0]&& post[0].createdAt}</Text>
-        
-        <Grid width="650px">
+        <Text padding="0px 10px" margin="0px 0px 0px 10px" color="#8E8E8E" size="15px">{post[0]&& post[0].createdAt}</Text>
+        </Grid>
+        <Grid width="650px" border ="1px solid #DBDBDB">
          <CommentList postId={postId} />
          </Grid>
          <Grid is_flex border="1px solid #DBDBDB" width="650px">
@@ -100,14 +101,14 @@ else{
             }}
           />
 
-        <Grid>
-          <Text bold margin="0px 10px" size="14px" color="#262626">
-            {/* 좋아요 {props.likeList.length} 개 */}
-            좋아요 oo 개
-          </Text>
-        </Grid>
             
          </Grid>
+         <Grid border="1px solid #DBDBDB" width="650px">
+          <Text bold margin="0px 10px" size="14px" color="#262626">
+            {/* 좋아요 {props.likeList.length} 개 */}
+            {post[0]&& `좋아요 ${post[0].likeList.length}개`}
+          </Text>
+        </Grid>
          <Grid>
             {/* <CommentWrite postId={props.postId}></CommentWrite> */}
             </Grid>
