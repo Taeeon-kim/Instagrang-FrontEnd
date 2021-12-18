@@ -46,7 +46,6 @@ const initalPost = {
 };
 
 const addPostDB = (image, content) => {
-  
   //formData에 이미지 담기
   const formData = new FormData();
   formData.append("image", image);
@@ -73,13 +72,13 @@ const addPostDB = (image, content) => {
         },
       })
       .then((res) => {
-     
         let post_list = res.data;
-      
+
         history.replace("/");
         dispatch(addPost(post_list));
       })
       .catch((error) => {
+        alert("이미지를 추가해 주세요");
         console.log(error.response);
       });
   };
@@ -88,13 +87,12 @@ const addPostDB = (image, content) => {
 const getMainAPI = () => {
   return function (dispatch, getState, { history }) {
     instance.get("/").then((response) => {
-    
       let post_list = [];
       response.data.forEach((post) => {
         // console.log({...post});
         post_list.push({ ...post });
       });
-    
+
       dispatch(setPost(post_list));
     });
 
@@ -120,7 +118,6 @@ const editPostDB = (image, content, postId) => {
     formData.append("image", image);
     formData.append("content", content);
     const TOKEN = sessionStorage.getItem("token");
- 
 
     // const a = `Bearer ${TOKEN}`;
     // console.log(a.split(" "));
@@ -131,20 +128,21 @@ const editPostDB = (image, content, postId) => {
         },
       })
       .then((res) => {
-      
         // let users = res.data
         history.replace("/");
         dispatch(editPost(image, content, postId));
       })
-      .catch((error) => {});
+      .catch((error) => {
+        alert("이미지를 추가해 주세요");
+        console.log(error);
+      });
   };
 };
 
 const deletePostDB = (postId) => {
   return function (dispatch, getState, { history }) {
-
     const TOKEN = sessionStorage.getItem("token");
-   
+
     // const a = `Bearer ${TOKEN}`;
     // console.log(a.split(" "));
     instance
@@ -154,7 +152,6 @@ const deletePostDB = (postId) => {
         },
       })
       .then((res) => {
-  
         // let users = res.data
         history.replace("/");
         dispatch(deletePost(postId));
@@ -186,7 +183,6 @@ const likePost = (postId, userId) => {
         }
       )
       .then((response) => {
-       
         dispatch(like(postId, userId));
       });
   };
@@ -204,7 +200,6 @@ export default handleActions(
         draft.list.unshift(action.payload.post_list);
 
         // draft.list = action.payload.post;
-       
       }),
     // [공성훈] 작업 중
     [EDIT_POST]: (state, action) =>
@@ -212,12 +207,11 @@ export default handleActions(
         let index = draft.list.findIndex(
           (l) => l.postId === action.payload.postId
         );
-      
+
         draft.list[index] = {
           ...draft.list[index],
           ...action.payload.new_post,
         };
-     
       }),
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
@@ -235,19 +229,17 @@ export default handleActions(
       }),
     [IS_LIKE]: (state, action) =>
       produce(state, (draft) => {
-      
         let idx = draft.list.findIndex(
           (p) => p.postId === action.payload.postId
         );
         let likeIdex = draft.list[idx].likeList.findIndex(
           (p) => p.userId === action.payload.userId
         );
-      
+
         const is_like = { userId: action.payload.userId };
         likeIdex === -1
           ? draft.list[idx].likeList.push(is_like)
           : draft.list[idx].likeList.splice(likeIdex);
-        
       }),
     [NEW_COMMENT]: (state, action) =>
       produce(state, (draft) => {
