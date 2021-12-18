@@ -26,7 +26,7 @@ const PostDetail = (props) => {
     const [detail, setDetail] = React.useState(false);
   
   const post = post_list.filter((list) => list.postId === parseInt(postId));
-//   const is_login = useSelector((state)=> state.user.user.userId);
+  const is_login = useSelector((state)=> state.user.user.userId);
   var count =0;
   var result 
 if(post[0]){
@@ -50,10 +50,10 @@ console.log(result.length)
   // const [post, setPost] = React.useState(post_data? post_data : null);
   console.log(post.length);
 
-  if (!is_login) {
-    alert("포스트 접근 권한이 없습니다.");
-    history.replace("/");
-  }
+//   if (!is_login) {
+//     alert("포스트 접근 권한이 없습니다.");
+//     history.replace("/");
+//   }
 
   React.useEffect(() => {
     if (post.length > 0) {

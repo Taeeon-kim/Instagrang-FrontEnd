@@ -13,6 +13,7 @@ import Grid from "../elements/Grid";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
 import PostDetail from "../pages/PostDetail";
+import Permit from "./Permit";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +38,9 @@ function App() {
         <Route path="/" exact component={PostList} />
         <Route path="/addpost" exact component={AddPost} />
         <Route path="/addpost/:id" exact component={AddPost} />
+        <Permit>
         <Route path="/posts/:id" exact component={PostDetail} />
+        </Permit>
       </ConnectedRouter>
       </Grid>
     </Grid>
