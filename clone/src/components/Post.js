@@ -16,7 +16,7 @@ import logoutImage from "../user.png";
 import CommentWrite from "./CommentWrite";
 
 const Post = (props) => {
-  //  (props)
+  console.log(history.location.pathname)
   const dispatch = useDispatch();
   const user_list = useSelector((state) => state.user.user);
   //  (user_list)

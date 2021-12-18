@@ -38,14 +38,23 @@ const loginDB = (email, pwd) => {
       .post("http://3.36.100.253/user/login", user)
       .then((res) => {
         
-        const userId = res.data.userId
+        const userId = res.data.userId;
+        const email = res.data.email;
+        const nickname = res.data.nickname;
         const jwtToken = res.headers.authorization;
         // localStorage.setItem("token", jwtToken);
         // localStorage.setItem("userId", userId);
         sessionStorage.setItem("token", jwtToken)
         sessionStorage.setItem("userId", userId)
-
-        dispatch(setUser({ email: email, user_name: email, userId: userId }));
+        sessionStorage.setItem("nickname", nickname)
+        sessionStorage.setItem("email", email)
+        const user = {
+          email: email,
+          nickname: nickname,
+          userId: userId,
+        };
+        console.log(user)
+        dispatch(setUser(user));
         alert("정상적으로 로그인 되었습니다.");
         // window.location.href = "/";  // 요렇게하면 redux 값이 다 날라감
         history.push('/')
@@ -85,7 +94,14 @@ const signupDB = (email, userName, pwd) => {
 const loginCheckDB = () => {
   return function (dispatch, getState, { history }) {
     const userId = sessionStorage.getItem("userId");
-    dispatch(setUser({ userId: parseInt(userId) }));
+    const nickname = sessionStorage.getItem("nickname");
+    const email = sessionStorage.getItem("email");
+    const user = {
+      email: email,
+      nickname: nickname,
+      userId: userId,
+    };
+    dispatch(setUser(user));
     
   };
 };
@@ -111,6 +127,7 @@ export default handleActions(
       produce(state, (draft) => {
         setCookie("is_login", "SUCCESS");
         draft.user = action.payload.user;
+        console.log(state.user)
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
