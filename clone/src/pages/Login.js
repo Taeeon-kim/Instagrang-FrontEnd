@@ -55,6 +55,7 @@ const Login = () => {
         width="350px"
         border="1px solid #e4e4e4"
         margin="0px auto 0px auto"
+        bg="#fff"
       >
         <Image
           imageType="logo"
@@ -159,6 +160,7 @@ const Login = () => {
         width="350px"
         border="1px solid #e4e4e4"
         margin="10px auto"
+        bg="#fff"
       >
         <Grid is_flex>
           <Text margin="15px 0 15px auto" size="14px">
