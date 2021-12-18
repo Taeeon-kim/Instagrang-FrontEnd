@@ -12,16 +12,33 @@ import Button from "../elements/Button";
 import IconButton from "../elements/IconButton"
 
 const PostDetail = (props) => {
-  const postId = props.match.params.id;
+  const postId = parseInt(props.match.params.id);
   console.log(postId);
   const dispatch = useDispatch();
 //   const user_info = useSelector((state) => state.user.user);
   const post_list = useSelector((state) => state.post.list);
+  const user_list = useSelector((state) => state.user.user);
     console.log(post_list)
+    const login_userId = user_list.userId;
 
-  const post = post_list.filter((list) => list.postId === parseInt(postId));
+    const [detail, setDetail] = React.useState(false);
   
-  const is_login = useSelector((state)=> state.user.user.userId);
+  const post = post_list.filter((list) => list.postId === parseInt(postId));
+//   const is_login = useSelector((state)=> state.user.user.userId);
+  var count =0;
+  var result 
+if(post[0]){
+     result = post[0].likeList.filter(
+        (userId) => userId.userId === login_userId
+      );
+    //   count++;
+}
+//   const result = post[0].likeList.filter(
+//     (userId) => userId.userId === login_userId
+//   );
+console.log(result.length)
+  const [is_like, setLike] = React.useState(result.length === 1 ? true : false);
+  console.log(is_like);
   // const post_idx = post_list.findIndex(p => p.postId === parseInt(postId));
   // console.log(post_idx)
   // const post = post_list[post_idx];
@@ -84,14 +101,24 @@ else{
          <CommentList postId={postId} />
          </Grid>
          <Grid is_flex border="1px solid #DBDBDB" width="650px">
+         {is_like ? 
          <IconButton
               likeIcon
               padding="8px 16px 8px 8px"
               _onClick={() => {
-                // setLike(!is_like);
-                // dispatch(postAction.likePost(props.postId, login_userId));
+                  console.log("클릭")
+                setLike(!is_like);
+                dispatch(postActions.likePost(postId, login_userId));
               }}
-            />
+            />:<IconButton
+            unLikeIcon
+            padding="8px 16px 8px 8px"
+            _onClick={() => {
+                console.log("클릭")
+              setLike(!is_like);
+              dispatch(postActions.likePost(postId, login_userId));
+            }}
+          />} 
             <IconButton
             commentIcon
             padding="8px 16px 8px 0"
@@ -110,7 +137,7 @@ else{
           </Text>
         </Grid>
          <Grid>
-            {/* <CommentWrite postId={props.postId}></CommentWrite> */}
+            {/* <CommentWrite postId={postId}></CommentWrite> */}
             </Grid>
       </Grid>
     </Grid>
