@@ -87,7 +87,11 @@ const addPostDB = (image, content) => {
 
 const getMainAPI = () => {
   return function (dispatch, getState, { history }) {
-    instance.get("/").then((response) => {
+    const TOKEN = sessionStorage.getItem("token")
+    instance.get("/",  {
+      headers: {
+        authorization: `${TOKEN}`,
+      }}    ).then((response) => {
     
       let post_list = [];
       response.data.forEach((post) => {

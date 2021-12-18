@@ -9,6 +9,7 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Image from "../elements/Image";
+import { push } from "connected-react-router";
 const Header = (props) => {
   const dispatch = useDispatch();
 
@@ -55,6 +56,7 @@ const Header = (props) => {
               margin="0 0 0 auto"
               padding="0 0 7px 0"
               size="30px"
+              _onClick={()=> history.push('/')}
             ></IconButton>
             <IconButton
               message

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import {history} from "../redux/configureStore"
 const Permit = (props) =>{
     const is_login = useSelector((state)=> state.user.is_login);
+    console.log(history.location)
     // const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`; 
     // const is_session = sessionStorage.getItem(_session_key)? true : false;
     const is_session = sessionStorage.getItem("token");
@@ -13,7 +14,7 @@ const Permit = (props) =>{
     return <React.Fragment>{props.children}</React.Fragment>
     }
 
-    return <>{history.push('/login')}</>
+    return <>{history.location.pathname!=='/signup'&&history.push('/login')}</>
 //     return(<React.Fragment>
 //     <Grid is_flex padding="4px 16px">
 //         <Grid>

@@ -69,7 +69,11 @@ const deleteCommentDB = (commentId) => {
 
 const getComment = (postId) => {
   return function (dispatch, getState, { history }) {
-    instance.get("/").then((response) => {
+    const TOKEN = sessionStorage.getItem("token");
+    instance.get("/",{
+      headers: {
+        authorization: `${TOKEN}`,
+      }}).then((response) => {
       // console.log(postId);
      
       const _post = response.data.filter((list)=>list.postId===postId)
