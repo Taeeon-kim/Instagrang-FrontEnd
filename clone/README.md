@@ -23,7 +23,7 @@ https://www.notion.so/10-Home-ffb072e101d34e2884ca081ded79a2ab
 **FRONT END**
 
 - 공통 : CSS(styled-components)
-- 김태언 : 메인리스트화면 / 상세페이지/ 등
+- 김태언 : 메인리스트화면 / 상세페이지/ 좋아요 및 댓글 추가,삭제 등
 - 공성훈 : 회원가입 / 로그인 / 유저 토큰 인증 /게시물 수정,삭제/ 게시물작성페이지 등 
 
 **BACK END**
